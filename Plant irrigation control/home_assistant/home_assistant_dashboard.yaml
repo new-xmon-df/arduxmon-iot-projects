@@ -1,0 +1,78 @@
+views:
+  - title: Prototype PIC
+    path: plant-irrigation-control
+    subview: false
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-title-card
+            title: Information
+            subtitle: Device operation
+            alignment: center
+          - type: entities
+            entities:
+              - input_boolean.ota_update_available
+          - show_name: true
+            show_icon: true
+            show_state: true
+            type: glance
+            entities:
+              - entity: binary_sensor.test_1_riego_plantas_battery_level_updated
+              - entity: binary_sensor.test_1_riego_plantas_palmera_updated
+              - entity: binary_sensor.test_1_riego_plantas_potos_grande_updated
+            title: Data receiving
+            state_color: true
+          - show_name: true
+            show_icon: true
+            show_state: true
+            type: glance
+            entities:
+              - entity: sensor.test_1_riego_plantas_count_batt_v_updates
+              - entity: binary_sensor.test_1_riego_plantas_data_updates_done
+              - entity: binary_sensor.test_1_riego_plantas_sensor_data_sent
+              - entity: sensor.test_1_riego_plantas_uptime_sensor
+              - entity: binary_sensor.test_1_riego_plantas_on_shutdown_test
+            columns: 3
+            title: Diagnostic
+            state_color: true
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-title-card
+            title: Battery
+            subtitle: charging and voltage information
+            alignment: center
+          - type: gauge
+            entity: sensor.test_1_riego_plantas_battery_percent
+            needle: false
+            severity:
+              green: 50
+              yellow: 30
+              red: 0
+            name: Carga
+          - graph: line
+            type: sensor
+            detail: 1
+            entity: sensor.test_1_riego_plantas_battery_voltage_filtered
+            name: Voltage
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-title-card
+            title: Status
+            alignment: center
+            subtitle: Soil moisture status of each plant
+          - show_name: true
+            show_icon: true
+            show_state: true
+            type: glance
+            entities:
+              - entity: sensor.test_1_riego_plantas_palmera
+              - entity: sensor.test_1_riego_plantas_potos_grande
+              - entity: sensor.test_1_riego_plantas_palmera_percent
+              - entity: sensor.test_1_riego_plantas_potos_grande_percent
+              - entity: sensor.test_1_riego_plantas_palmera_status
+              - entity: sensor.test_1_riego_plantas_potos_grande_status
+            columns: 2
+            state_color: true
+            title: Plants
+title: Plant irrigation control

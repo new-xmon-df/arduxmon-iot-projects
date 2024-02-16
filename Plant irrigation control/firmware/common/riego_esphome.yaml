@@ -1,0 +1,6 @@
+# Project Definition
+esphome:
+  name: $devicename
+  friendly_name: $upper_devicename
+  comment: $comment_device
+

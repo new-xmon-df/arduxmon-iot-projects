@@ -1,0 +1,13 @@
+
+# Enable logging
+logger:
+  level: DEBUG #NONE ERROR WARN INFO DEBUG VERBOSE VERY_VERBOSE
+
+# Set up a web server, if you access the device's internal IP, you can control it!
+web_server:
+  auth:
+    username: !secret web_server_username
+    password: !secret web_server_password
+
+# If the Wi-Fi connection fails, it creates a hotspot to connect to and configure the Wi-Fi.
+captive_portal:
