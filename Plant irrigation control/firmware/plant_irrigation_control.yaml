@@ -318,6 +318,23 @@ sensor:
     icon: "mdi:counter"
     entity_category: diagnostic
 
+  # El servicio que se crea en HA con el sensor "batt_voltage"
+  - platform: homeassistant
+    id: ha_batt_voltage
+    entity_id: sensor.battery_voltage
+
+  # El servicio que se crea en HA con el sensor "moisture_sensor_01"
+  - platform: homeassistant
+    id: ha_moisture_sensor_01
+    entity_id: sensor.moisture_sensor_01
+
+  # El servicio que se crea en HA con el sensor "moisture_sensor_02"
+  - platform: homeassistant
+    id: ha_moisture_sensor_02
+    entity_id: sensor.moisture_sensor_02
+
+
+
 
 # BINARIES SENSORS
 binary_sensor:
@@ -379,6 +396,12 @@ binary_sensor:
         - logger.log:
             format: "All sensors updated after %.1f secs of uptime"
             args: [ 'id(uptime_sec).state']
+
+
+  - platform: homeassistant
+    name: "Data updates problem"
+    entity_id: "binary_sensor.all_updates_problem"
+    id: homeassistant_binary_sensor_updates_problem
 
 
 # TEXTS SENSORS
@@ -465,6 +488,19 @@ script:
             - component.update: moisture_sensor_02
             - delay: 200ms
       - logger.log: "....Ending sensor reading" #log
+      # fuerzo la actualización de los datos
+      - homeassistant.service:
+          service: update_entity
+          data:
+            entity_id: sensor.battery_voltage
+      - homeassistant.service:
+          service: update_entity
+          data:
+            entity_id: sensor.moisture_sensor_01
+      - homeassistant.service:
+          service: update_entity
+          data:
+            entity_id: sensor.moisture_sensor_02
 
   # We check if there is a pending OTA update, indicated from HA. | wake up
   - id: are_ota_update
@@ -490,7 +526,10 @@ script:
     then:
       - wait_until:
           condition:
-            binary_sensor.is_on: all_updates_received
+            and:
+              - lambda: 'return id(homeassistant_binary_sensor_updates_problem).state != "";'
+              - binary_sensor.is_on: all_updates_received
+              - binary_sensor.is_off: homeassistant_binary_sensor_updates_problem
           # If it has not been achieved in 30 seconds, we continue so as not to drain the battery
           timeout: 30s
       # We check if the shipment has finally been made, in case of error, we show it in the binary_sensor
@@ -522,3 +561,4 @@ script:
     then:
       # We check that the data has been sent before going back to sleep
       - script.execute: check_data_send
+      - delay: 15s
