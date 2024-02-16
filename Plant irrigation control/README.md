@@ -44,6 +44,8 @@ This project utilizes ESPHome for firmware development and integrates with Home 
 ### PCB 3D
 ![PCB 3D](screenshots/PCB-3D.png)
 
+![PCB 3D](screenshots/PCB-3D.gif)
+
 In this screenshot, you can see the Home Assistant dashboard configured for the project. It provides an intuitive interface for monitoring and controlling the plant irrigation system from any network-connected device. Explore the different options and functionalities to customize your experience! 🌿💻
 
 ## Dependencies
