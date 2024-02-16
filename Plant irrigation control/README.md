@@ -21,8 +21,8 @@ This project utilizes ESPHome for firmware development and integrates with Home 
 - [`home_assistant_dashboard.yaml`](./home_assistant/home_assistant_dashboard.yaml): Home Assistant configuration file for dashboard setup.
 - [`input_boolean_esphome.yaml`](./home_assistant/input_boolean_esphome.yaml): Configuration file containing custom settings for ESPHome devices in Home Assistant.
 - [`schematic.pdf`](./hardware/schematic.pdf): Electrical schematic diagram
-- [`pcb_design.pcb`](./hardware/pcb_design.pcb): PCB design file
-- [`gerber_files.zip`](./hardware/gerber_files.zip): Gerber files for PCB fabrication
+- `pcb_design.pcb`: PCB design file
+- `gerber_files.zip`: Gerber files for PCB fabrication
 - [`LICENSE`](./LICENSE): Creative Commons Attribution-ShareAlike 4.0 International License
 
 ## Installation
@@ -37,6 +37,12 @@ This project utilizes ESPHome for firmware development and integrates with Home 
 
 ### Home Assistant Dashboard
 ![Home Assistant Dashboard](screenshots/dashboard_ha.png)
+
+### PCB front
+![PCB top view](screenshots/PCB-front.png)
+
+### PCB 3D
+![PCB 3D](screenshots/PCB-3D.png)
 
 In this screenshot, you can see the Home Assistant dashboard configured for the project. It provides an intuitive interface for monitoring and controlling the plant irrigation system from any network-connected device. Explore the different options and functionalities to customize your experience! 🌿💻
 
