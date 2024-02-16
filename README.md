@@ -12,6 +12,10 @@ Hey there, tech enthusiasts! I'm Arduxmon, a passionate developer and graphic de
 
 4. **PCB Designs and Gerber Files**: Take your projects to the next level with our PCB designs and ready-to-produce Gerber files. Bring your ideas to life!
 
+### Projects in the Repository
+
+- [**Plant Irrigation Control System**](./Plant%20irrigation%20control): An automated irrigation system for plants.
+
 ### How can you contribute?
 
 I love the idea of building a collaborative community! If you have improvements, corrections, or new projects to add, feel free to make a contribution! Simply fork the repository, make your changes, and send a pull request.
