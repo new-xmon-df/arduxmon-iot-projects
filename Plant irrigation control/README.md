@@ -36,17 +36,24 @@ This project utilizes ESPHome for firmware development and integrates with Home 
 ## Screenshots
 
 ### Home Assistant Dashboard
-![Home Assistant Dashboard](screenshots/dashboard_ha.png)
-
-### PCB front
-![PCB top view](screenshots/PCB-front.png)
-
-### PCB 3D
-![PCB 3D](screenshots/PCB-3D.png)
-
-![PCB 3D](screenshots/PCB-3D.gif)
 
 In this screenshot, you can see the Home Assistant dashboard configured for the project. It provides an intuitive interface for monitoring and controlling the plant irrigation system from any network-connected device. Explore the different options and functionalities to customize your experience! 🌿💻
+
+![Home Assistant Dashboard](screenshots/dashboard_ha.png){ width=800px }
+
+### PCB front
+
+Here's a top view of my printed circuit board (PCB). This image provides a clear view of the layout of components on the board. It's essential for understanding the physical arrangement of the circuit. If you have any questions or need further details, feel free to ask!
+
+![PCB top view](screenshots/PCB-front.png){ width=400px }
+
+### PCB 3D
+
+Here's a 3D representation of my printed circuit board (PCB). In this image, you can observe the arrangement of the components and the three-dimensional structure of the board. It's useful for visualizing how the final product will look once assembled. I hope you find it helpful. If you need anything else, I'm here for you!
+
+![PCB 3D](screenshots/PCB-3D.png){ width=400px }
+
+![PCB 3D](screenshots/PCB-3D.gif){ width=400px }
 
 ## Dependencies
 
