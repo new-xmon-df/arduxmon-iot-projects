@@ -1,4 +1,0 @@
-ota_update_available:
-  name: OTA Update Available
-  initial: off
-  icon: mdi:nature-people

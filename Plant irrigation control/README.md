@@ -11,6 +11,9 @@ This project utilizes ESPHome for firmware development and integrates with Home 
 - [TP4046 Charger](https://www.aliexpress.com/item/1005006365875594.html)
 - [MT3608 Voltage Booster](https://www.aliexpress.com/item/1005006365807934.html)
 - 18650 Battery
+- LED
+- Resistor 220Ω
+- As many **JST 1x03 P2.50mm Vertical connectors** as the number of plants you want to control (the board supports a maximum of 6).
 
 ## Files Included
 - [`plant_irrigation_control.yaml`](./firmware/plant_irrigation_control.yaml): ESPHome firmware configuration file.
@@ -19,7 +22,7 @@ This project utilizes ESPHome for firmware development and integrates with Home 
     - [`riego_esphome.yaml`](./firmware/common/riego_esphome.yaml)
     - [`wifi_test.yaml`](./firmware/common/wifi_test.yaml)
 - [`home_assistant_dashboard.yaml`](./home_assistant/home_assistant_dashboard.yaml): Home Assistant configuration file for dashboard setup.
-- [`input_boolean_esphome.yaml`](./home_assistant/input_boolean_esphome.yaml): Configuration file containing custom settings for ESPHome devices in Home Assistant.
+    - [`plant_irrigation_control.yaml`](./home_assistant/xmon_packages/plant_irrigation_control.yaml): Configuration file containing custom settings for ESPHome devices in Home Assistant.
 - [`schematic.pdf`](./hardware/schematic.pdf): Electrical schematic diagram
 - `pcb_design.pcb`: PCB design file
 - `gerber_files.zip`: Gerber files for PCB fabrication
@@ -64,13 +67,20 @@ Additionally, the provided `home_assistant_dashboard.yaml` file in this reposito
 
 ### ESPHome Configuration (Dependencies)
 
-To enable OTA updates for your ESP devices, make sure to include the following configuration in your `configuration.yaml` file:
+These lines include necessary configuration for:
+- OTA updates in ESPHome, allowing for seamless firmware updates of your ESP devices.
+- Check data received by Home Assistant,
+
+Make sure to add them appropriately to your `configuration.yaml` file.
 
 ```yaml
-# Files where I include various custom configurations for my ESPHome devices.
-input_boolean: !include input_boolean_esphome.yaml
+homeassistant:
+  # Files where I include various custom configurations for my ESPHome devices.
+  packages: !include_dir_merge_named xmon_packages
 ```
-These lines include necessary configuration for OTA updates in ESPHome, allowing for seamless firmware updates of your ESP devices. Make sure to add them appropriately to your configuration.yaml file.
+
+**Note:** To load the necessary configurations, I'm using [Home Assistant Packages](https://www.home-assistant.io/docs/configuration/packages/).
+
 ## License
 This project is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](LICENSE).
 
