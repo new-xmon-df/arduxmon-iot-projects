@@ -11,14 +11,15 @@ xmon_pack_esphome_1:
           unique_id: all_updates_problem
           device_class: problem
           icon: mdi:lan-check
+          # It is checked that no control sensor is not updated and also that its update is less than 5 minutes ago.
           state: >
             {% if
                 is_state('binary_sensor.test_1_riego_plantas_battery_level_updated', 'off')
                 or is_state('binary_sensor.test_1_riego_plantas_palmera_updated', 'off')
                 or is_state('binary_sensor.test_1_riego_plantas_potos_grande_updated', 'off')
-                or as_timestamp(now()) - as_timestamp(states.binary_sensor.test_1_riego_plantas_battery_level_updated.last_changed) < 30
-                or as_timestamp(now()) - as_timestamp(states.binary_sensor.test_1_riego_plantas_palmera_updated.last_changed) < 30
-                or as_timestamp(now()) - as_timestamp(states.binary_sensor.test_1_riego_plantas_potos_grande_updated.last_changed) < 30
+                or as_timestamp(now()) - as_timestamp(states.binary_sensor.test_1_riego_plantas_battery_level_updated.last_changed) < 300
+                or as_timestamp(now()) - as_timestamp(states.binary_sensor.test_1_riego_plantas_palmera_updated.last_changed) < 300
+                or as_timestamp(now()) - as_timestamp(states.binary_sensor.test_1_riego_plantas_potos_grande_updated.last_changed) < 300
             %}
               off
             {% else %}
