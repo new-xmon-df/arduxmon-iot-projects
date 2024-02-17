@@ -26,7 +26,7 @@ substitutions:
   pin_led_ota_wait: GPIO37
   pin_led_onboard: GPIO15
   # TIMES
-  tiempo_deepsleep: 5min # time to be in Deep sleep
+  tiempo_deepsleep: 12h # time to be in Deep sleep
   tiempo_espera_deepsleep: 5min # time to wait before entering deep_sleep
 
 ############################## common code
@@ -61,14 +61,16 @@ esphome:
           condition:
             lambda: 'return id(ota_update_available).state != "";'
           timeout: 30s
+      # Check for pending OTA update, indicated from HA
+      - script.execute: are_ota_update
       # Reset sensor update counters. These are for debugging.
       - script.execute: counter_sensors_reset
       # Turn off all sensors controlling data transmission
       - script.execute: received_sensors_reset
       # Read sensors
       - script.execute: sensors_read
-      # Check for pending OTA update, indicated from HA
-      - script.execute: are_ota_update
+      # Check data send
+      - script.execute: check_data_send
   on_shutdown: #Includes deep sleep
     priority: -100
     then:
@@ -76,7 +78,7 @@ esphome:
       - binary_sensor.template.publish:
           id: on_shutdown_test
           state: ON
-      - script.execute: before_shutdown
+      #- script.execute: before_shutdown
 
 
 ## Deep Sleep Configuration
@@ -342,8 +344,8 @@ binary_sensor:
   # Alert of problem in data updates.
   - platform: template
     id: data_update_problem
-    name: Sensor data sent
-    icon: mdi:database-alert-outline
+    name: Data sent (ESPHome)
+    icon: mdi:database-arrow-up
     device_class: problem
     entity_category: diagnostic
 
@@ -397,7 +399,6 @@ binary_sensor:
             format: "All sensors updated after %.1f secs of uptime"
             args: [ 'id(uptime_sec).state']
 
-
   - platform: homeassistant
     name: "Data updates problem"
     entity_id: "binary_sensor.all_updates_problem"
@@ -433,8 +434,8 @@ text_sensor:
               - light.turn_on:
                   id: led_esp
                   effect: "Fast Pulse"
-              - script.execute: before_shutdown
-              - deep_sleep.enter: deep_sleep_sensor
+              - script.execute: check_data_send
+              #- deep_sleep.enter: deep_sleep_sensor
             else:
               - deep_sleep.prevent: deep_sleep_sensor
 
@@ -501,6 +502,7 @@ script:
           service: update_entity
           data:
             entity_id: sensor.moisture_sensor_02
+      #- delay: 10s
 
   # We check if there is a pending OTA update, indicated from HA. | wake up
   - id: are_ota_update
@@ -518,8 +520,7 @@ script:
           else:
             - logger.log: "no OTA Update Available!" #log
             - logger.log: "permitimos deep_sleep" #log
-            - script.execute: before_shutdown
-            - deep_sleep.enter: deep_sleep_sensor
+            - deep_sleep.allow: deep_sleep_sensor
 
   # We check that the data has been sent before going back to sleep. | sleeping
   - id: check_data_send
@@ -527,7 +528,8 @@ script:
       - wait_until:
           condition:
             and:
-              - lambda: 'return id(homeassistant_binary_sensor_updates_problem).state != "";'
+              #- lambda: 'return id(homeassistant_binary_sensor_updates_problem).state != "";'
+              - lambda: 'return id(homeassistant_binary_sensor_updates_problem).state != true and id(homeassistant_binary_sensor_updates_problem).state != false;'
               - binary_sensor.is_on: all_updates_received
               - binary_sensor.is_off: homeassistant_binary_sensor_updates_problem
           # If it has not been achieved in 30 seconds, we continue so as not to drain the battery
@@ -541,6 +543,7 @@ script:
             - light.turn_on:
                 id: led_esp
                 effect: "Slow Pulse"
+            - deep_sleep.enter: deep_sleep_sensor
           else:
             - logger.log: "A sensor might be down...missing updates"
             - binary_sensor.template.publish:
@@ -552,6 +555,7 @@ script:
                 effect: "Asymmetrical Pulse"
             - deep_sleep.prevent: deep_sleep_sensor
 
+  # @deprecated
   # I create this method because it has to be executed in 3 circumstances:
   # - 1 when the time defined in “run_duration” is met
   # - 2 when it is checked that all the data has already been sent and to save energy and not wait for the “run_duration” the “deep_sleep.enter” is executed
@@ -561,4 +565,3 @@ script:
     then:
       # We check that the data has been sent before going back to sleep
       - script.execute: check_data_send
-      - delay: 15s

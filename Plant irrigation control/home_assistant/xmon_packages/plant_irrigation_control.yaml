@@ -7,7 +7,7 @@ xmon_pack_esphome_1:
 
   template:
     - binary_sensor:
-        - name: Data updates problem
+        - name: Data updates (HA)
           unique_id: all_updates_problem
           device_class: problem
           icon: mdi:lan-check
@@ -16,11 +16,11 @@ xmon_pack_esphome_1:
                 is_state('binary_sensor.test_1_riego_plantas_battery_level_updated', 'off')
                 or is_state('binary_sensor.test_1_riego_plantas_palmera_updated', 'off')
                 or is_state('binary_sensor.test_1_riego_plantas_potos_grande_updated', 'off')
-                or (now() - state_attr('binary_sensor.test_1_riego_plantas_battery_level_updated', 'last_changed')).total_seconds() > 300
-                or (now() - state_attr('binary_sensor.test_1_riego_plantas_palmera_updated', 'last_changed')).total_seconds() > 300
-                or (now() - state_attr('binary_sensor.test_1_riego_plantas_potos_grande_updated', 'last_changed')).total_seconds() > 300
+                or as_timestamp(now()) - as_timestamp(states.binary_sensor.test_1_riego_plantas_battery_level_updated.last_changed) < 30
+                or as_timestamp(now()) - as_timestamp(states.binary_sensor.test_1_riego_plantas_palmera_updated.last_changed) < 30
+                or as_timestamp(now()) - as_timestamp(states.binary_sensor.test_1_riego_plantas_potos_grande_updated.last_changed) < 30
             %}
-              true
+              off
             {% else %}
-              false
+              on
             {% endif %}
