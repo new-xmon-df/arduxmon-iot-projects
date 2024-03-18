@@ -40,10 +40,10 @@ Throughout this section, I will explore in detail how we have maximized the capa
 4. **Boards Used in my Projects**: In this section, I will detail the specific boards that I have used in my IoT projects. Each of these boards has been selected for its particular features and capabilities to meet the requirements of each project.
 
     - **[WEMOS S2 MINI:](Boards/WEMOS_S2_MINI/README.md)**
-      This board uses the ESP32-S2, offering an alternative with higher performance and advanced features such as native USB and increased RAM and Flash compared to the ESP8266.
+      This board uses the **ESP32-S2**, offering an alternative with higher performance and advanced features such as native USB and increased RAM and Flash compared to the ESP8266.
 
-   - **WEMOS D1 MINI** v1, v2, v3, and v4:
-      These compact boards based on the ESP8266 are ideal for projects that require WiFi connectivity and a small footprint. Versions v1, v2, v3, and v4 offer progressive improvements in performance and features.
+   - **[WEMOS D1 MINI](Boards/WEMOS_D1_MINI/README.md)** v1, v2, v3, and v4:
+      These compact boards based on the **ESP8266** are ideal for projects that require WiFi connectivity and a small footprint. Versions v1, v2, v3, and v4 offer progressive improvements in performance and features.
 
    - **ESP32-DevKitC 38 pins:**
      This ESP32-based development kit offers a wide range of interfaces and peripherals, including GPIO, SPI, I2C, UART, PWM, and more, making it a versatile choice for complex projects.
