@@ -73,7 +73,7 @@ You should hear the USB connect sound from your computer.
 | GND        | Ground             | -      | -                  | -     | -        | -            |
 | VBUS       | Power              | -      | -                  | -     | -        | -            |
 
-[<img src="WEMOS-ESP32-S2-MINI-pinout.jpg" width="700" alt="top view"/>](WEMOS-ESP32-S2-MINI-pinout.jpg)
+[<img src="WEMOS-ESP32-S2-MINI-pinout.jpg" width="700" alt="PINOUT"/>](WEMOS-ESP32-S2-MINI-pinout.jpg)
 
 
 ## Documentation Links

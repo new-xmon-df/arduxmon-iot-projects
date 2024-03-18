@@ -45,6 +45,9 @@ Throughout this section, I will explore in detail how we have maximized the capa
    - **[WEMOS D1 MINI](Boards/WEMOS_D1_MINI/README.md)** v1, v2, v3, and v4:
       These compact boards based on the **ESP8266** are ideal for projects that require WiFi connectivity and a small footprint. Versions v1, v2, v3, and v4 offer progressive improvements in performance and features.
 
+   - **[LOLIN32 Lite:](Boards/LOLIN32_Lite/README.md)**
+     The LOLIN32 Lite is an **ESP32**-based board that strikes a balance between performance and power consumption. It's ideal for projects requiring WiFi and Bluetooth connectivity, as well as processing power.
+
    - **ESP32-DevKitC 38 pins:**
      This ESP32-based development kit offers a wide range of interfaces and peripherals, including GPIO, SPI, I2C, UART, PWM, and more, making it a versatile choice for complex projects.
 
@@ -53,9 +56,6 @@ Throughout this section, I will explore in detail how we have maximized the capa
 
    - **ESP32-C3 Supermini:**
    The ESP32-C3 Supermini is a compact version of the ESP32-C3 that provides WiFi and Bluetooth LE connectivity. Its small size makes it ideal for applications where space is limited.
-
-   - **LOLIN32 Lite:**
-   The LOLIN32 Lite is an ESP32-based board that strikes a balance between performance and power consumption. It's ideal for projects requiring WiFi and Bluetooth connectivity, as well as processing power.
 
 
 ### How can you contribute?
