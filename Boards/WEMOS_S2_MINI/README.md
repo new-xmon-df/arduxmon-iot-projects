@@ -1,4 +1,4 @@
-# WEMOS D1 MINI v1, v2, v3, and v4
+# WEMOS S2 MINI
 
 ## Overview
 The WEMOS S2 Mini is a compact microcontroller board based on the ESP32-S2 chip. It offers WiFi connectivity and a small form factor, making it suitable for IoT projects that require wireless communication and advanced features.
@@ -77,7 +77,7 @@ You should hear the USB connect sound from your computer.
 
 
 ## Documentation Links
-- [Official WEMOS D1 MINI Documentation](link-to-official-docs)
 - [Dimensions](pdf/dim_s2_mini_v1.0.0.pdf)
 - [Schematic](pdf/sch_s2_mini_v1.0.0.pdf)
 - [ESP32-S2 Datasheet](pdf/esp32-s2_datasheet_en.pdf)
+- [Official WEMOS D1 MINI Documentation](https://www.wemos.cc/en/latest/s2/s2_mini.html)
