@@ -63,6 +63,32 @@ In this section, I categorize the components utilized in my projects according t
 
     - [SH1116](Components/Displays/SH1106/README.md): The SH1106 display is a popular choice among hobbyists and professionals alike, offering high contrast and excellent visibility in various lighting conditions. Here's what you need to know about integrating the SH1106 display into your IoT projects:
 
+2. **Sensors**:
+   Sensors play a crucial role in gathering environmental data and enabling smart functionalities in my projects. Explore the different types of sensors I've integrated, each serving a unique purpose:
+
+   - **Environmental**:
+     - [BME680](Components/Sensors/Environmental/BME680/README.md): The BME680 sensor is a versatile environmental sensor capable of measuring temperature, humidity, pressure, and gas levels.
+     - BMP280: *Documentation pending*
+     
+   - **Distance**:
+     - [HC-SR04](Components/Sensors/Distance/HC-SR04/README.md): The HC-SR04 is an ultrasonic distance sensor capable of measuring distance accurately using ultrasonic waves.
+
+   - **Light**:
+     - [LDR 5528](Components/Sensors/Light/LDR_5528/README.md): The LDR 5528 is a light-dependent resistor that changes resistance based on the intensity of light falling on its surface.
+
+   - **Magnetic**:
+       - MC-38: *Documentation pending*
+       - A3144E: *Documentation pending*
+
+   - **Presence**:
+     - [LD2410b](Components/Sensors/Presence/LD2410b/README.md): The LD2410b sensor by Hilink Electronics detects human presence with high sensitivity using FMCW at 24GHz, enabling precise detection of motion and stationary states, along with distance calculation.
+     - LD2411: *Documentation pending*
+
+   - **Soil Moisture**:
+       - Capacitive Soil Moisture: *Documentation pending*
+
+   - **Temperature**:
+     - DS18B20: *Documentation pending*
 
 ### How can you contribute?
 
