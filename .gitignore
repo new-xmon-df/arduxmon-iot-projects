@@ -122,5 +122,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-/_template/
+Components/_template/
+Components/_template/README.md
 
