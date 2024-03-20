@@ -34,10 +34,9 @@ is another popular and affordable board known for its integrated WiFi connectivi
      - Interfaces: GPIO, SPI, I2C, UART, PWM, ADC
      - Memory: 80 KB RAM, 1 MB Flash
 3. **Uses in my Projects**:
-Both ESP boards have been used in various projects to control sensors, send data to the cloud, receive remote commands, and automate tasks. Their ease of programming, low power consumption, and active development community make them indispensable tools for implementing IoT solutions.
-Throughout this section, I will explore in detail how we have maximized the capabilities of these boards to create intelligent and connected systems that meet the needs of our users.
+   Both ESP boards have been used in various projects to control sensors, send data to the cloud, receive remote commands, and automate tasks. Their ease of programming, low power consumption, and active development community make them indispensable tools for implementing IoT solutions. Throughout this section, I will explore in detail how we have maximized the capabilities of these boards to create intelligent and connected systems that meet the needs of our users.
 
-4. **Boards Used in my Projects**: In this section, I will detail the specific boards that I have used in my IoT projects. Each of these boards has been selected for its particular features and capabilities to meet the requirements of each project.
+    In this section, I will detail the specific boards that I have used in my IoT projects. Each of these boards has been selected for its particular features and capabilities to meet the requirements of each project.
 
     - **[WEMOS S2 MINI:](Boards/WEMOS_S2_MINI/README.md)**
       This board uses the **ESP32-S2**, offering an alternative with higher performance and advanced features such as native USB and increased RAM and Flash compared to the ESP8266.
@@ -56,6 +55,13 @@ Throughout this section, I will explore in detail how we have maximized the capa
 
    - **ESP32-C3 Supermini:**
    The ESP32-C3 Supermini is a compact version of the ESP32-C3 that provides WiFi and Bluetooth LE connectivity. Its small size makes it ideal for applications where space is limited.
+
+### Components Used in my Projects:
+In this section, I categorize the components utilized in my projects according to their type. Each component type is accompanied by a general description, and each specific component is linked to its respective documentation.
+
+1. **Displays**: are essential components in many of my IoT projects, providing visual feedback and information display to users. Explore the diverse range of displays I've integrated:
+
+    - [SH1116](Components/Displays/SH1106/README.md): The SH1106 display is a popular choice among hobbyists and professionals alike, offering high contrast and excellent visibility in various lighting conditions. Here's what you need to know about integrating the SH1106 display into your IoT projects:
 
 
 ### How can you contribute?
