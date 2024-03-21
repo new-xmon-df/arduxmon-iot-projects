@@ -1,0 +1,673 @@
+substitutions:
+  # Datos del dispositivo
+  devicename: living-room-sensors
+  upper_devicename: LIVING ROOM SENSORS
+  comment_device: "Sensors for my living room, presence, temperature, humidity, altitude, gases and luminosity, based on Wemos-S2 Mini"
+  static_ip: 192.168.1.32
+  api_key: "setYourApiKey"
+  ota_password: "setYourOTAPassword"
+  # PININ
+  pin_fotorresistencia: GPIO5
+  pin_trigger: GPIO7
+  pin_echo: GPIO9
+  pin_sda: GPIO3
+  pin_scl: GPIO39
+  pin_rx: GPIO18
+  # PINOUT
+  pin_red: GPIO37
+  pin_green: GPIO35
+  pin_blue: GPIO33
+  pin_tx: GPIO16
+  # TIMES
+  intervalo_lectura_luz_ambiente: 30s # cada cuanto tiempo se mide la luz ambiente
+  intervalo_cambio_pantalla: 10s # cada cuanto tiempo se cambian las pantallas
+  # I2C
+  i2c_address_bme68x: "0x77"
+  i2c_address_sh1106: "0x3C"
+  # FONTS
+  font_bold: 'fonts/Roboto Mono Bold for Powerline.ttf'
+  font_light: 'fonts/Roboto Mono Light for Powerline.ttf'
+  # IMG
+  img_logo: "images/logo-arduxmon-oled.png"
+
+globals:
+   - id: screen_on
+     type: bool
+     #initial_value: 'false'
+     initial_value: 'true'
+
+external_components:
+  - source: github://neffs/esphome@bsec2_bme68x
+    components: [ bme68x_bsec ]
+    # refresh: 1d
+
+esphome:
+  name: $devicename
+  friendly_name: $upper_devicename
+  comment: $comment_device 
+  # Automatically add the mac address to the name
+  # so you can use a single firmware for all devices
+  name_add_mac_suffix: false
+  on_boot:
+    then:
+      - delay: 10s
+      - if:
+          condition:
+            lambda: 'return id(screen_on);'
+          then:         
+            - lambda: id(d_oled).turn_on();
+          else:
+            - lambda: id(d_oled).turn_off();
+
+esp32:
+  board:  lolin_s2_mini # https://www.wemos.cc/en/latest/s2/s2_mini.html
+  framework:
+    type: arduino
+
+# Habilitar logging
+logger:
+  level: DEBUG #NONE ERROR WARN INFO DEBUG VERBOSE VERY_VERBOSE
+  #baud_rate: 0
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: $api_key
+
+ota:
+  password: $ota_password
+  on_begin:
+    then:
+      - logger.log: "Deteniendo procesos antes de la actualización OTA"
+
+wifi:
+  id: my_wifi
+  # power_save_mode: none #light (default) # doc https:#esphome.io/components/wifi.html#wifi-power-save-mode
+  password: !secret wifi_domo_password
+  ssid: !secret wifi_domo_ssid
+  fast_connect: true # se conecta directamente a la red WiFi sin realizar primero un escaneo completo.
+
+  manual_ip:
+    # Configura esto con la IP del ESP
+    static_ip: $static_ip
+    # Configura esto con la dirección IP del router. Por lo general, termina en .1
+    gateway: 192.168.1.1
+    # La subred de la red. 255.255.255.0 suele funcionar bien para la mayoría de las redes domésticas.
+    subnet: 255.255.255.0
+
+  # Habilita el punto de acceso de respaldo (portal cautivo) en caso de que falle la conexión wifi
+  ap:
+    ssid: "${upper_devicename} HSPOT"
+    password: !secret fallback_hotspot_password
+
+# monta un webserver, si accedes a la ip interna del dispositivo ¡¡Puedes controlarlo!!
+web_server:
+  auth:
+    username: !secret web_server_username
+    password: !secret web_server_password
+
+# Si falla la conexión wifi, crea el hotspot para conectarse a él y configurar la WIFI
+captive_portal:
+
+# Minimal example configuration with common sensors
+i2c:
+  - sda: $pin_sda # D2  
+    scl: $pin_scl # D1
+    scan: false
+    frequency: 400kHz
+
+font:
+  - file: $font_bold
+    id: font_bold_10
+    size: 10
+    glyphs: [., -, B, D, E, L, M, S, a, c, d, e, g, i, l, m, n, o, t, u, v, x]
+  - file: $font_bold
+    id: font_bold_14
+    size: 14
+    glyphs: [., '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+  #- file: $font_bold
+  #  id: font_bold_16
+  #  size: 16
+  #  glyphs: [., '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', C, D, E, L, N, T, O, R]
+  - file: $font_light
+    id: font_light_9
+    size: 9
+    glyphs: [' ', °, '%', A, C, I, P, Q, a, d, e, h, i, l, r, x]
+
+image:
+  - file: $img_logo
+    id: arduxmon_logo
+    resize: 62x80
+  - file: mdi:wifi
+    id: wifi_connected
+    resize: 16x16
+  - file: mdi:wifi-strength-outline
+    id: wifi_disconnected
+    resize: 16x16
+  - file: mdi:thermometer
+    id: thermometer
+    resize: 16x16
+  - file: mdi:water-percent
+    id: water_percent
+    resize: 16x16
+  - file: mdi:track-light
+    id: track_light
+    resize: 16x16
+  - file: mdi:thermometer-lines
+    id: thermometer_lines
+    resize: 16x16
+  - file: mdi:gauge
+    id: gauge
+    resize: 16x16
+  - file: mdi:air-filter
+    id: air_filter
+    resize: 40x40
+
+switch:
+  - platform: template
+    id: 'switch_oled'
+    name: "Estado pantalla Oled"
+    optimistic: true
+    restore_mode: ALWAYS_ON
+    turn_on_action:
+      - lambda: id(d_oled).turn_on();
+      # - display.page.show: page_logo
+      # - component.update: d_oled
+      # - delay: 2s
+      - lambda: id(screen_on) = true;
+    turn_off_action:
+      - lambda: id(d_oled).turn_off();
+      - lambda: id(screen_on) = false;
+
+  - platform: ld2410
+    engineering_mode:
+      name: "engineering mode"
+    bluetooth:
+      name: "control bluetooth"
+
+# https://esphome.io/components/display/ssd1306.html?highlight=sh1106#ssd1306-spi
+display:
+  - platform: ssd1306_i2c
+    id: d_oled
+    model: "SH1106 128x64"
+    address: $i2c_address_sh1106
+    rotation: 90
+    # REFERENCIA POSICIONES TEXTO https://esphome.io/api/namespaceesphome_1_1display
+    pages:
+      - id: 'page_logo'
+        lambda: |-
+          it.image(1, 24, id(arduxmon_logo));
+#          it.printf(5, 82, id(font_bold_14), TextAlign::TOP_LEFT, "CENTRO");
+#          it.printf(26, 98, id(font_bold_10), TextAlign::TOP_LEFT, "DE");
+#          it.printf(1, 110, id(font_bold_14), TextAlign::TOP_LEFT, "CONTROL");
+
+      - id: 'page_summary'
+        lambda: |-
+          if (id(my_wifi).is_connected()) {
+            it.image(46, 2, id(wifi_connected));
+          } else {
+            it.image(46, 2, id(wifi_disconnected));
+          }
+
+          it.image(0, 22, id(thermometer));
+          if (id(temperatura).has_state()) {
+            it.printf(52, 20, id(font_bold_14), TextAlign::TOP_RIGHT, "%.1f", id(temperatura).state);
+          } else {
+            it.printf(52, 20, id(font_bold_14), TextAlign::TOP_RIGHT, "--");
+          }
+          it.printf(64, 22, id(font_light_9), TextAlign::TOP_RIGHT, "°C");
+
+          it.image(0, 44, id(water_percent));
+          if (id(humedad).has_state()) {
+            it.printf(52, 42, id(font_bold_14), TextAlign::TOP_RIGHT, "%.1f", id(humedad).state);
+          } else {
+            it.printf(52, 42, id(font_bold_14), TextAlign::TOP_RIGHT, "--");
+          }
+          it.printf(62, 44, id(font_light_9), TextAlign::TOP_RIGHT, "%%");
+
+          it.image(0, 66, id(track_light));
+          if (id(sensor_iluminacion_ambiente).has_state()) {
+            it.printf(52, 64, id(font_bold_14), TextAlign::TOP_RIGHT, "%.0f", id(sensor_iluminacion_ambiente).state);
+          } else {
+            it.printf(52, 64, id(font_bold_14), TextAlign::TOP_RIGHT, "--");
+          }
+          it.printf(64, 66, id(font_light_9), TextAlign::TOP_RIGHT, "lx");
+
+          it.image(0, 88, id(thermometer_lines));
+          if (id(presion).has_state()) {
+            it.printf(48, 86, id(font_bold_14), TextAlign::TOP_RIGHT, "%.0f", id(presion).state);
+          } else {
+            it.printf(48, 86, id(font_bold_14), TextAlign::TOP_RIGHT, "--");
+          }
+          it.printf(64, 88, id(font_light_9), TextAlign::TOP_RIGHT, "hPa");
+
+          it.image(0, 110, id(gauge));
+          if (id(iaq).has_state()) {
+            it.printf(48, 108, id(font_bold_14), TextAlign::TOP_RIGHT, "%.0f", id(iaq).state);
+          } else {
+            it.printf(48, 108, id(font_bold_14), TextAlign::TOP_RIGHT, "--");
+          }
+          it.printf(64, 110, id(font_light_9), TextAlign::TOP_RIGHT, "IAQ");
+
+      - id: 'page_quality'
+        lambda: |-
+          if (id(my_wifi).is_connected()) {
+            it.image(46, 2, id(wifi_connected));
+          } else {
+            it.image(46, 2, id(wifi_disconnected));
+          }
+
+          it.printf(32, 22, id(font_light_9), TextAlign::TOP_CENTER, "Calidad");
+          it.printf(32, 34, id(font_light_9), TextAlign::TOP_CENTER, "del aire");
+          it.image(12, 50, id(air_filter));
+
+          if (id(iaq_clasificacion).has_state()) {
+
+              std::string str1 = id(iaq_clasificacion).state; 
+              // Display position and line height
+              int xPos1 = 32, yPos1 = 96, lineHeight1 = 14;
+        
+              // Split into lines where comma+space is delimiter
+              std::string delimiter1 = " ";
+              std::size_t curPos1 = 0, commaPos1 = 0;
+              while (commaPos1 != std::string::npos) {
+                  commaPos1 = str1.find(delimiter1, curPos1);
+                  it.print(xPos1, yPos1, id(font_bold_10), TextAlign::TOP_CENTER, str1.substr(curPos1, commaPos1 - curPos1).c_str());
+                  yPos1 += lineHeight1;
+                  curPos1 = commaPos1 + delimiter1.size();
+              }
+          } else {
+            it.printf(32, 80, id(font_bold_10), TextAlign::TOP_CENTER, "calculando...");
+          }
+
+# intervalo que se encarga de ir cambiando las pantallas
+interval:
+  - interval: $intervalo_cambio_pantalla
+    id: interval_screen
+    then:
+      - if:
+          condition:
+            lambda: 'return id(screen_on);'
+          then:
+          #  - if:
+          #      condition:
+          #        not:
+          #          display.is_displaying_page: page_logo
+          #      then:
+          #        delay: 10s
+            - display.page.show_next: d_oled
+            - component.update: d_oled
+          else:
+            - logger.log: "la pantalla está apagada, no actualizamos las páginas"
+
+# https://esphome.io/components/sensor/bme680_bsec.html?highlight=bme680
+# para esp32 https://github.com/esphome/esphome/pull/4585
+bme68x_bsec:
+  # i2c address
+  # -----------
+  # Common values are:
+  # - 0x76
+  # - 0x77
+  # Default: 0x76
+  address: $i2c_address_bme68x
+
+  # Sample rate
+  # -----------
+  # Available options:
+  # - lp (low power - samples every 3 seconds)
+  # - ulp (ultra-low power - samples every 5 minutes)
+  # Default: lp
+  #sample_rate: ulp
+
+  # Interval at which to save BSEC state
+  # ------------------------------------
+  # Default: 6h
+  state_save_interval: 30min
+
+  bsec_configuration: 0,0,4,2,189,1,0,0,0,0,0,0,158,7,0,0,176,0,1,0,0,192,168,71,64,49,119,76,0,0,97,69,0,0,97,69,137,65,0,63,0,0,0,63,0,0,64,63,205,204,204,62,10,0,3,0,0,0,96,64,23,183,209,56,0,0,0,0,0,0,0,0,0,0,0,0,205,204,204,189,0,0,0,0,0,0,0,0,0,0,128,63,0,0,0,0,0,0,128,63,0,0,0,0,0,0,0,0,0,0,128,63,0,0,0,0,0,0,128,63,0,0,0,0,0,0,0,0,0,0,128,63,0,0,0,0,0,0,128,63,82,73,157,188,95,41,203,61,118,224,108,63,155,230,125,63,191,14,124,63,0,0,160,65,0,0,32,66,0,0,160,65,0,0,32,66,0,0,32,66,0,0,160,65,0,0,32,66,0,0,160,65,8,0,2,0,236,81,133,66,16,0,3,0,10,215,163,60,10,215,35,59,10,215,35,59,13,0,5,0,0,0,0,0,100,35,41,29,86,88,0,9,0,229,208,34,62,0,0,0,0,0,0,0,0,218,27,156,62,225,11,67,64,0,0,160,64,0,0,0,0,0,0,0,0,94,75,72,189,93,254,159,64,66,62,160,191,0,0,0,0,0,0,0,0,33,31,180,190,138,176,97,64,65,241,99,190,0,0,0,0,0,0,0,0,167,121,71,61,165,189,41,192,184,30,189,64,12,0,10,0,0,0,0,0,0,0,0,0,13,5,11,0,1,2,2,207,61,208,65,149,110,24,66,180,108,177,65,219,148,13,192,70,132,58,66,163,58,140,192,12,99,178,192,185,59,255,193,178,213,175,63,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,110,211,55,195,237,6,56,67,0,0,0,0,0,0,0,0,26,3,255,63,61,246,7,192,171,201,228,192,249,144,215,63,237,199,104,193,128,158,216,64,117,140,155,63,137,120,129,67,108,109,253,191,0,0,0,0,81,64,57,68,103,241,231,64,109,29,152,192,209,43,193,63,93,54,30,65,197,46,92,64,128,27,224,192,6,20,144,191,56,179,130,64,0,0,0,0,43,156,59,196,33,217,100,194,104,77,72,65,15,103,175,191,249,252,12,193,63,117,253,192,233,5,141,65,155,42,25,64,13,88,249,191,0,0,0,0,48,141,122,190,204,150,44,192,36,162,29,193,96,59,39,189,54,202,48,65,151,205,68,64,79,105,55,193,53,120,53,192,77,211,32,192,0,0,0,0,193,207,92,65,239,201,76,65,208,70,82,66,81,63,96,65,48,179,0,194,251,96,242,193,176,51,96,194,153,114,98,66,144,247,64,65,0,0,0,0,219,179,180,63,175,218,119,191,51,71,207,191,245,145,129,63,53,16,244,65,138,208,117,65,138,97,36,66,228,15,32,195,126,91,103,191,0,0,0,0,26,151,170,193,64,105,49,193,46,223,189,193,129,203,168,193,40,91,49,66,4,87,107,65,205,202,37,65,244,36,154,66,240,85,39,193,0,0,0,0,166,96,87,192,114,7,68,191,233,32,214,63,84,249,40,192,45,78,132,64,145,33,253,61,49,43,187,192,244,32,77,67,224,250,71,191,0,0,0,0,103,75,214,190,206,141,252,63,99,15,178,65,80,79,166,190,214,25,146,192,165,29,24,194,18,228,219,193,113,246,235,194,49,115,232,63,0,0,0,0,17,211,124,64,56,252,251,62,25,118,148,193,168,234,94,64,131,157,82,64,217,119,236,65,120,245,240,65,17,69,168,195,49,51,8,63,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,131,217,97,66,182,104,101,194,0,0,0,0,0,0,0,0,6,142,142,195,229,54,143,67,0,0,0,0,0,0,0,0,25,224,153,66,217,51,154,194,0,0,0,0,0,0,0,0,142,36,105,194,199,63,110,66,0,0,0,0,0,0,0,0,206,73,250,193,138,69,249,65,0,0,0,0,0,0,0,0,123,173,127,66,20,116,128,194,0,0,0,0,0,0,0,0,49,65,49,64,205,213,107,192,0,0,0,0,0,0,0,0,189,250,179,194,164,98,180,66,0,0,0,0,0,0,0,0,96,182,197,67,155,71,197,195,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,0,2,185,28,179,73,64,25,141,76,223,26,138,76,222,207,133,76,87,134,164,75,23,127,159,75,166,9,155,75,94,120,170,73,95,221,177,73,93,44,182,73,0,0,0,0,0,0,0,0,0,0,0,0,30,55,120,73,215,98,32,76,7,79,34,76,161,238,36,76,119,151,160,75,119,96,157,75,202,75,154,75,118,89,111,73,133,239,116,73,219,140,120,73,0,0,128,63,0,0,128,63,0,0,128,63,0,0,0,88,1,254,0,2,1,5,48,117,100,0,44,1,112,23,151,7,132,3,197,0,92,4,144,1,64,1,64,1,144,1,48,117,48,117,48,117,48,117,100,0,100,0,100,0,48,117,48,117,48,117,100,0,100,0,48,117,48,117,8,7,8,7,8,7,8,7,8,7,100,0,100,0,100,0,100,0,48,117,48,117,48,117,100,0,100,0,100,0,48,117,48,117,100,0,100,0,255,255,255,255,255,255,255,255,255,255,44,1,44,1,44,1,44,1,44,1,44,1,44,1,44,1,44,1,44,1,44,1,44,1,44,1,44,1,255,255,255,255,255,255,255,255,255,255,112,23,112,23,112,23,112,23,8,7,8,7,8,7,8,7,112,23,112,23,112,23,112,23,112,23,112,23,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,112,23,112,23,112,23,112,23,255,255,255,255,220,5,220,5,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,220,5,220,5,220,5,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,44,1,0,5,10,5,0,2,0,10,0,30,0,5,0,5,0,5,0,5,0,5,0,5,0,64,1,100,0,100,0,100,0,200,0,200,0,200,0,64,1,64,1,64,1,10,1,0,0,0,0,233,74,0,0
+
+ld2410:
+
+uart:
+  tx_pin: $pin_tx #GPIO16
+  rx_pin: $pin_rx #GPIO18
+  baud_rate: 256000
+  parity: NONE
+  stop_bits: 1
+  
+binary_sensor:
+  - platform: ld2410
+    has_target:
+      name: Presence
+    has_moving_target:
+      name: Moving Target
+    has_still_target:
+      name: Still Target
+    out_pin_presence_status:
+      name: out pin presence status
+
+sensor:
+  # SENSOR DE LUZ
+  - platform: adc
+    pin: $pin_fotorresistencia
+    id: sensor_iluminacion_ambiente  # Asigna una ID al sensor
+    name: "Nivel luz ambiente"
+    update_interval: $intervalo_lectura_luz_ambiente
+    unit_of_measurement: lx
+    device_class: illuminance
+    force_update: true
+    filters:
+      - multiply: 3.3
+      - calibrate_linear:  # calibración de la foto resistencia, para obtener valores entre 0-1000
+          - 0.0 -> 0.0
+          - 2.0 -> 1000.0
+
+  # SENSOR ULTRASÓNICO DE PROXIMIDAD https://esphome.io/components/sensor/ultrasonic.html?highlight=hc+sr04
+  - platform: ultrasonic
+    trigger_pin: $pin_trigger
+    echo_pin: $pin_echo
+    name: "Sensor Ultrasónico"
+    icon: "mdi:signal-distance-variant"
+    device_class: "distance"
+    state_class: "measurement"
+    update_interval: 2s
+    accuracy_decimals: 0
+    unit_of_measurement: "cm."
+    filters:
+      - multiply: 100  # Multiplica la distancia en metros por 100 para obtener centímetros
+      - timeout: 500ms  # Establece un tiempo de espera de 500 milisegundos (0.5 segundos)
+      - debounce: 50ms  # Filtra las lecturas rápidas durante 50 milisegundos
+      - delta: 0.5  # Solo envía una actualización si la lectura cambia más de 0.5 cm
+      - filter_out: nan  # Filtra los valores NaN
+    on_value_range:
+      - below: 4
+        then:
+          - if:
+              condition:
+                lambda: 'return id(screen_on);'
+              then:         
+                switch.turn_off: switch_oled
+              else:
+                switch.turn_on: switch_oled
+          - delay: 0.5s
+          - light.turn_off: rgb_led
+          - script.execute: script_estado_aire
+
+  # SENSORES PLACA BME680
+  - platform: bme68x_bsec
+    temperature:
+      # Temperature in °C
+      id: temperatura
+      name: "BME680 Temperatura"
+      sample_rate: lp
+      filters:
+        - median
+    pressure:
+      # Pressure in hPa
+      id: presion
+      name: "BME680 Presión"
+      sample_rate: lp
+      filters:
+        - median
+    humidity:
+      # Relative humidity %
+      id: humedad
+      name: "BME680 Humedad"
+      sample_rate: lp
+      filters:
+        - median
+    gas_resistance:
+      # Gas resistance in Ω
+      name: "BME680 Resistencia de Gas"
+      filters:
+        - median
+    iaq:
+      id: iaq
+      # Indoor air quality value
+      name: "BME680 IAQ"
+      filters:
+        - median
+      on_value:
+        then:
+          - script.execute: script_estado_aire
+    iaq_static:
+      name: "BME680 Static IAQ"
+      filters:
+        - median
+    iaq_accuracy:
+      # IAQ accuracy as a numeric value of 0, 1, 2, 3
+      name: "BME680 Precisión numérica IAQ"
+    co2_equivalent:
+      # CO2 equivalent estimate in ppm
+      name: "BME680 Equivalente de CO2"
+      filters:
+        - median
+    breath_voc_equivalent:
+      # Volatile organic compounds equivalent estimate in ppm
+      name: "BME680 Equivalente de VOC en aliento"
+      filters:
+        - median
+
+  # SENSOR PRESENCIA
+  - platform: ld2410
+    light:
+      name: light
+    moving_distance:
+      name : Moving Distance
+    still_distance:
+      name: Still Distance
+    moving_energy:
+      name: Move Energy
+    still_energy:
+      name: Still Energy
+    detection_distance:
+      name: Detection Distance
+    g0:
+      move_energy:
+        name: g0 move energy
+      still_energy:
+        name: g0 still energy
+    g1:
+      move_energy:
+        name: g1 move energy
+      still_energy:
+        name: g1 still energy
+    g2:
+      move_energy:
+        name: g2 move energy
+      still_energy:
+        name: g2 still energy
+    g3:
+      move_energy:
+        name: g3 move energy
+      still_energy:
+        name: g3 still energy
+    g4:
+      move_energy:
+        name: g4 move energy
+      still_energy:
+        name: g4 still energy
+    g5:
+      move_energy:
+        name: g5 move energy
+      still_energy:
+        name: g5 still energy
+    g6:
+      move_energy:
+        name: g6 move energy
+      still_energy:
+        name: g6 still energy
+    g7:
+      move_energy:
+        name: g7 move energy
+      still_energy:
+        name: g7 still energy
+    g8:
+      move_energy:
+        name: g8 move energy
+      still_energy:
+        name: g8 still energy
+
+# Configuración del LED RGB Cátodo Común
+output:
+  # Definimos las salidas PWM para cada color del LED RGB
+  - platform: ledc
+    id: red_led
+    pin: $pin_red  # Conectar el pin R (rojo) del LED RGB al pin D6 de la placa
+  - platform: ledc
+    id: green_led
+    pin: $pin_green  # Conectar el pin G (verde) del LED RGB al pin D8 de la placa
+  - platform: ledc
+    id: blue_led
+    pin: $pin_blue  # Conectar el pin B (azul) del LED RGB al pin D0 de la placa
+
+light:
+  # Configuramos el dispositivo de luz RGB utilizando las salidas PWM definidas
+  - platform: rgb
+    name: "LED RGB Cátodo"
+    red: red_led
+    green: green_led
+    blue: blue_led
+    id: rgb_led
+    restore_mode: ALWAYS_OFF
+
+button:
+  - platform: restart
+    name: "Botón de reinicio"
+
+  - platform: ld2410
+    factory_reset:
+      name: "restablecimiento de fábrica"
+    restart:
+      name: "reinicio"
+    query_params:
+      name: consulta de parámetros
+
+text_sensor:
+  - platform: bme68x_bsec
+    iaq_accuracy:
+      # IAQ accuracy as a text value of Stabilizing, Uncertain, Calibrating, Calibrated
+      name: "BME680 Precisión IAQ"
+
+  - platform: template
+    name: "BME680 IAQ Clasificación"
+    id: "iaq_clasificacion"
+    icon: "mdi:checkbox-marked-circle-outline"
+    update_interval: "never"
+
+  - platform: ld2410
+    version:
+      name: "firmware version"
+    mac_address:
+      name: "mac address"
+
+select:
+  - platform: ld2410
+    distance_resolution:
+      name: "distance resolution"
+    baud_rate:
+      name: "baud rate"
+    light_function:
+      name: light function
+    out_pin_level:
+      name: out pin level
+
+number:
+  - platform: ld2410
+    timeout:
+      name: timeout
+    light_threshold:
+      name: light threshold
+    max_move_distance_gate:
+      name: max move distance gate
+    max_still_distance_gate:
+      name: max still distance gate
+    g0:
+      move_threshold:
+        name: g0 move threshold
+      still_threshold:
+        name: g0 still threshold
+    g1:
+      move_threshold:
+        name: g1 move threshold
+      still_threshold:
+        name: g1 still threshold
+    g2:
+      move_threshold:
+        name: g2 move threshold
+      still_threshold:
+        name: g2 still threshold
+    g3:
+      move_threshold:
+        name: g3 move threshold
+      still_threshold:
+        name: g3 still threshold
+    g4:
+      move_threshold:
+        name: g4 move threshold
+      still_threshold:
+        name: g4 still threshold
+    g5:
+      move_threshold:
+        name: g5 move threshold
+      still_threshold:
+        name: g5 still threshold
+    g6:
+      move_threshold:
+        name: g6 move threshold
+      still_threshold:
+        name: g6 still threshold
+    g7:
+      move_threshold:
+        name: g7 move threshold
+      still_threshold:
+        name: g7 still threshold
+    g8:
+      move_threshold:
+        name: g8 move threshold
+      still_threshold:
+        name: g8 still threshold
+
+script:
+  - id: script_estado_aire
+    then:
+      lambda: |-
+        if ( int(id(iaq).state) <= 50) {
+          if(id(screen_on)){
+            id(rgb_led).turn_on().set_rgb(0.49,0.99,0).perform();
+          }
+          id(iaq_clasificacion).publish_state("Excelente");
+        }
+        else if (int(id(iaq).state) >= 51 && int(id(iaq).state) <= 100) {
+          if(id(screen_on)){
+            id(rgb_led).turn_on().set_rgb(0,1,0).perform();
+          }
+          id(iaq_clasificacion).publish_state("Buena");
+        }
+        else if (int(id(iaq).state) >= 101 && int(id(iaq).state) <= 150) {
+          if(id(screen_on)){
+            id(rgb_led).turn_on().set_rgb(0.56,0.93,0.56).perform();
+          }
+          id(iaq_clasificacion).publish_state("Lig. contaminado");
+        }
+        else if (int(id(iaq).state) >= 151 && int(id(iaq).state) <= 200) {
+          id(rgb_led).turn_on().set_rgb(1,0.84,0).perform();
+          id(iaq_clasificacion).publish_state("Mod. contaminado");
+        }
+        else if (int(id(iaq).state) >= 201 && int(id(iaq).state) <= 250) {
+          id(rgb_led).turn_on().set_rgb(1,0.65,0).perform();
+          id(iaq_clasificacion).publish_state("Muy contaminado");
+        }
+        else if (int(id(iaq).state) >= 251 && int(id(iaq).state) <= 350) {
+          id(rgb_led).turn_on().set_rgb(1,0.55,0).perform();
+          id(iaq_clasificacion).publish_state("Sev. contaminada");
+        }
+        else if (int(id(iaq).state) >= 351) {
+          id(rgb_led).turn_on().set_rgb(1,0.27,0).perform();
+          id(iaq_clasificacion).publish_state("Ext. contaminada");
+        }
+        else {
+          ESP_LOGD("custom", "SIN RECIBIR DATOS");
+          id(rgb_led).turn_on().set_effect("pulse").perform();
+          id(iaq_clasificacion).publish_state("error");
+        }

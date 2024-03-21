@@ -1,0 +1,326 @@
+title: Sensores
+views:
+  - title: Salón
+    path: salon-sensores
+    type: sections
+    sections:
+      - type: grid
+        cards:
+          - type: custom:mushroom-title-card
+            title: Información
+          - type: entities
+            entities:
+              - entity: sensor.sensores_salon_esp32_firmware_version
+              - entity: sensor.sensores_salon_esp32_mac_address
+            show_header_toggle: false
+          - type: custom:mushroom-title-card
+            title: ESP32
+          - type: tile
+            entity: switch.sensores_salon_esp32_estado_pantalla_oled
+            name: Estado pantalla
+            icon: ''
+            show_entity_picture: false
+            color: light-green
+            vertical: false
+            hide_state: true
+          - type: tile
+            entity: light.sensores_salon_esp32_led_rgb_c_todo
+            name: LED Calidad Aire
+            vertical: false
+            hide_state: true
+          - type: tile
+            entity: button.sensores_salon_esp32_bot_n_de_reinicio
+            vertical: false
+            color: deep-orange
+            name: Reiniciar ESP32
+            hide_state: true
+          - type: custom:mushroom-title-card
+            title: Detector de presencia (LD2410b)
+          - type: tile
+            entity: button.sensores_salon_esp32_reinicio
+            name: Reinicio LD2410
+            color: deep-orange
+            vertical: false
+            hide_state: true
+          - type: tile
+            entity: button.sensores_salon_esp32_consulta_de_par_metros
+            name: Consulta de parametros
+            vertical: false
+            hide_state: true
+          - type: entities
+            entities:
+              - entity: number.sensores_salon_esp32_timeout
+                name: timeout
+              - entity: number.sensores_salon_esp32_max_move_distance_gate
+                name: max move distance gate
+              - entity: number.sensores_salon_esp32_max_still_distance_gate
+                name: max still distance gate
+              - entity: select.sensores_salon_esp32_light_function
+                name: light function
+              - entity: number.sensores_salon_esp32_light_threshold
+                name: light threshold
+      - type: grid
+        cards:
+          - type: custom:mushroom-title-card
+            title: BME680
+          - type: entities
+            entities:
+              - entity: sensor.sensores_salon_esp32_bme680_temperatura
+              - entity: sensor.sensores_salon_esp32_bme680_humedad
+              - entity: sensor.sensores_salon_esp32_bme680_presi_n
+              - entity: sensor.sensores_salon_esp32_bme680_iaq_clasificaci_n
+          - type: entities
+            entities:
+              - entity: sensor.sensores_salon_esp32_nivel_luz_ambiente
+              - entity: sensor.sensores_salon_esp32_sensor_ultras_nico
+          - type: vertical-stack
+            title: Detector de presencia (LD2410b)
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: entity
+                    entity: binary_sensor.sensores_salon_esp32_moving_target
+                    name: Movimiento
+                    state_color: true
+                  - type: entity
+                    entity: binary_sensor.sensores_salon_esp32_still_target
+                    name: Inmovil
+                    state_color: true
+              - type: horizontal-stack
+                cards:
+                  - type: entity
+                    entity: binary_sensor.sensores_salon_esp32_out_pin_presence_status
+                    name: gpio presence
+                    state_color: true
+                  - type: entity
+                    entity: binary_sensor.sensores_salon_esp32_still_target
+                    name: Objetivo inmóvil
+                    state_color: true
+              - type: vertical-stack
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: entity
+                        entity: sensor.sensores_salon_esp32_detection_distance
+                        name: Distancia
+                      - type: entity
+                        entity: sensor.sensores_salon_esp32_moving_distance
+                        name: Movimiento
+                      - type: entity
+                        entity: sensor.sensores_salon_esp32_still_distance
+                        name: Inmóvil
+              - type: horizontal-stack
+                cards:
+                  - type: entity
+                    entity: sensor.sensores_salon_esp32_move_energy
+                    name: move energy
+                  - type: entity
+                    entity: sensor.sensores_salon_esp32_still_energy
+                    name: Energía inmóvil
+      - type: grid
+        cards:
+          - type: custom:mushroom-title-card
+            title: BME680
+          - type: entities
+            entities:
+              - entity: sensor.sensores_salon_esp32_bme680_iaq
+              - entity: sensor.sensores_salon_esp32_bme680_static_iaq
+              - entity: sensor.sensores_salon_esp32_bme680_precisi_n_num_rica_iaq
+              - entity: sensor.sensores_salon_esp32_bme680_precisi_n_iaq
+              - entity: sensor.sensores_salon_esp32_bme680_equivalente_de_co2
+              - entity: >-
+                  sensor.sensores_salon_esp32_bme680_equivalente_de_voc_en_aliento
+              - entity: sensor.sensores_salon_esp32_bme680_resistencia_de_gas
+          - type: vertical-stack
+            title: Detector de presencia (LD2410b)
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: entities
+                    entities:
+                      - entity: switch.sensores_salon_esp32_engineering_mode
+                        name: engineering mode
+              - type: conditional
+                conditions:
+                  - entity: switch.sensores_salon_esp32_engineering_mode
+                    state: 'on'
+                card:
+                  type: vertical-stack
+                  cards:
+                    - type: horizontal-stack
+                      cards:
+                        - type: entity
+                          entity: sensor.sensores_salon_esp32_light
+                          name: light
+                        - type: entity
+                          entity: >-
+                            binary_sensor.sensores_salon_esp32_out_pin_presence_status
+                          name: out pin presence
+                          state_color: true
+                    - type: horizontal-stack
+                      cards:
+                        - type: custom:mushroom-title-card
+                          title: Move
+                        - type: custom:mushroom-title-card
+                          title: Still
+                    - type: horizontal-stack
+                      cards:
+                        - type: entity
+                          entity: sensor.sensores_salon_esp32_g0_move_energy
+                          name: g0
+                        - type: entity
+                          entity: number.sensores_salon_esp32_g0_move_threshold
+                          name: ' '
+                        - type: entity
+                          entity: sensor.sensores_salon_esp32_g0_still_energy
+                          name: ' '
+                        - type: entity
+                          entity: number.sensores_salon_esp32_g0_still_threshold
+                          name: ' '
+                    - type: horizontal-stack
+                      cards:
+                        - type: entity
+                          entity: sensor.sensores_salon_esp32_g1_move_energy
+                          name: g1
+                          icon: ' '
+                        - type: entity
+                          entity: number.sensores_salon_esp32_g1_move_threshold
+                          name: ' '
+                          icon: ' '
+                        - type: entity
+                          entity: sensor.sensores_salon_esp32_g1_still_energy
+                          name: ' '
+                          icon: ' '
+                        - type: entity
+                          entity: number.sensores_salon_esp32_g1_still_threshold
+                          name: ' '
+                          icon: ' '
+                    - type: horizontal-stack
+                      cards:
+                        - type: entity
+                          entity: sensor.sensores_salon_esp32_g2_move_energy
+                          name: g2
+                          icon: ' '
+                        - type: entity
+                          entity: number.sensores_salon_esp32_g2_move_threshold
+                          name: ' '
+                          icon: ' '
+                        - type: entity
+                          entity: sensor.sensores_salon_esp32_g2_still_energy
+                          name: ' '
+                          icon: ' '
+                        - type: entity
+                          entity: number.sensores_salon_esp32_g2_still_threshold
+                          name: ' '
+                          icon: ' '
+                    - type: horizontal-stack
+                      cards:
+                        - type: entity
+                          entity: sensor.sensores_salon_esp32_g3_move_energy
+                          name: g3
+                          icon: ' '
+                        - type: entity
+                          entity: number.sensores_salon_esp32_g3_move_threshold
+                          name: ' '
+                          icon: ' '
+                        - type: entity
+                          entity: sensor.sensores_salon_esp32_g3_still_energy
+                          name: ' '
+                          icon: ' '
+                        - type: entity
+                          entity: number.sensores_salon_esp32_g3_still_threshold
+                          name: ' '
+                          icon: ' '
+                    - type: horizontal-stack
+                      cards:
+                        - type: entity
+                          entity: sensor.sensores_salon_esp32_g4_move_energy
+                          name: g4
+                          icon: ' '
+                        - type: entity
+                          entity: number.sensores_salon_esp32_g4_move_threshold
+                          name: ' '
+                          icon: ' '
+                        - type: entity
+                          entity: sensor.sensores_salon_esp32_g4_still_energy
+                          name: ' '
+                          icon: ' '
+                        - type: entity
+                          entity: number.sensores_salon_esp32_g4_still_threshold
+                          name: ' '
+                          icon: ' '
+                    - type: horizontal-stack
+                      cards:
+                        - type: entity
+                          entity: sensor.sensores_salon_esp32_g5_move_energy
+                          name: g5
+                          icon: ' '
+                        - type: entity
+                          entity: number.sensores_salon_esp32_g5_move_threshold
+                          name: ' '
+                          icon: ' '
+                        - type: entity
+                          entity: sensor.sensores_salon_esp32_g5_still_energy
+                          name: ' '
+                          icon: ' '
+                        - type: entity
+                          entity: number.sensores_salon_esp32_g5_still_threshold
+                          name: ' '
+                          icon: ' '
+                    - type: horizontal-stack
+                      cards:
+                        - type: entity
+                          entity: sensor.sensores_salon_esp32_g6_move_energy
+                          name: g6
+                          icon: ' '
+                        - type: entity
+                          entity: number.sensores_salon_esp32_g6_move_threshold
+                          name: ' '
+                          icon: ' '
+                        - type: entity
+                          entity: sensor.sensores_salon_esp32_g6_still_energy
+                          name: ' '
+                          icon: ' '
+                        - type: entity
+                          entity: number.sensores_salon_esp32_g6_still_threshold
+                          name: ' '
+                          icon: ' '
+                    - type: horizontal-stack
+                      cards:
+                        - type: entity
+                          entity: sensor.sensores_salon_esp32_g7_move_energy
+                          name: g7
+                          icon: ' '
+                        - type: entity
+                          entity: number.sensores_salon_esp32_g7_move_threshold
+                          name: ' '
+                          icon: ' '
+                        - type: entity
+                          entity: sensor.sensores_salon_esp32_g7_still_energy
+                          name: ' '
+                          icon: ' '
+                        - type: entity
+                          entity: number.sensores_salon_esp32_g7_still_threshold
+                          name: ' '
+                          icon: ' '
+                    - type: horizontal-stack
+                      cards:
+                        - type: entity
+                          entity: sensor.sensores_salon_esp32_g8_move_energy
+                          name: g8
+                          icon: ' '
+                        - type: entity
+                          entity: number.sensores_salon_esp32_g8_move_threshold
+                          name: ' '
+                          icon: ' '
+                        - type: entity
+                          entity: sensor.sensores_salon_esp32_g8_still_energy
+                          name: ' '
+                          icon: ' '
+                        - type: entity
+                          entity: number.sensores_salon_esp32_g8_still_threshold
+                          name: ' '
+                          icon: ' '
+    theme: ios-dark-mode-light-blue
+    cards: []
+    # View tab title.

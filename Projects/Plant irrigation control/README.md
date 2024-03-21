@@ -6,27 +6,27 @@ Welcome to the Plant Irrigation Control project! This project aims to control th
 This project utilizes ESPHome for firmware development and integrates with Home Assistant for dashboard visualization and control. It includes the schematic, PCB design, and Gerber files for easy reproduction and assembly.
 
 ## Components
-- [Wemos S2 Mini (ESP32-S2)](https://www.aliexpress.com/item/1005006157693055.html)
-- [Soil Moisture Sensors (multiple)](https://www.aliexpress.com/item/1005005261267226.html)
-- [TP4046 Charger](https://www.aliexpress.com/item/1005006365875594.html)
-- [MT3608 Voltage Booster](https://www.aliexpress.com/item/1005006365807934.html)
+- [Wemos S2 Mini (ESP32-S2)](../../Boards/WEMOS_S2_MINI/README.md) - [buy](https://www.aliexpress.com/item/1005006157693055.html)
+- [Soil Moisture Sensors (multiple)](../../Components/Sensors/Soil%20Moisture/Capacitive%20Soil%20Moisture) - [buy](https://www.aliexpress.com/item/1005005261267226.html)
+- [TP4046 Charger]() - [buy](https://www.aliexpress.com/item/1005006365875594.html)
+- [MT3608 Voltage Booster]() - [buy](https://www.aliexpress.com/item/1005006365807934.html)
 - 18650 Battery
 - LED
 - Resistor 220Ω
 - As many **JST 1x03 P2.50mm Vertical connectors** as the number of plants you want to control (the board supports a maximum of 6).
 
 ## Files Included
-- [`plant_irrigation_control.yaml`](./firmware/plant_irrigation_control.yaml): ESPHome firmware configuration file.
-    - [`device_base_lolins2mini.yaml`](./firmware/common/device_base_lolins2mini.yaml)
-    - [`riego_common.yaml`](./firmware/common/riego_common.yaml)
-    - [`riego_esphome.yaml`](./firmware/common/riego_esphome.yaml)
-    - [`wifi_test.yaml`](./firmware/common/wifi_test.yaml)
-- [`home_assistant_dashboard.yaml`](./home_assistant/home_assistant_dashboard.yaml): Home Assistant configuration file for dashboard setup.
-    - [`plant_irrigation_control.yaml`](./home_assistant/xmon_packages/plant_irrigation_control.yaml): Configuration file containing custom settings for ESPHome devices in Home Assistant.
-- [`schematic.pdf`](./hardware/schematic.pdf): Electrical schematic diagram
+- [`plant_irrigation_control.yaml`](firmware/plant_irrigation_control.yaml): ESPHome firmware configuration file.
+    - [`device_base_lolins2mini.yaml`](firmware/common/device_base_lolins2mini.yaml)
+    - [`riego_common.yaml`](firmware/common/riego_common.yaml)
+    - [`riego_esphome.yaml`](firmware/common/riego_esphome.yaml)
+    - [`wifi_test.yaml`](firmware/common/wifi_test.yaml)
+- [`home_assistant_dashboard.yaml`](home_assistant/home_assistant_dashboard.yaml): Home Assistant configuration file for dashboard setup.
+    - [`plant_irrigation_control.yaml`](home_assistant/xmon_packages/plant_irrigation_control.yaml): Configuration file containing custom settings for ESPHome devices in Home Assistant.
+- [`schematic.pdf`](hardware/schematic.pdf): Electrical schematic diagram
 - `pcb_design.pcb`: PCB design file
 - `gerber_files.zip`: Gerber files for PCB fabrication
-- [`LICENSE`](./LICENSE): Creative Commons Attribution-ShareAlike 4.0 International License
+- [`LICENSE`](LICENSE): Creative Commons Attribution-ShareAlike 4.0 International License
 
 ## Installation
 1. Flash the ESPHome firmware onto the Wemos S2 Mini using the provided configuration file.

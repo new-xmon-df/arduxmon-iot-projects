@@ -14,7 +14,8 @@ Hey there, tech enthusiasts! I'm Arduxmon, a passionate developer and graphic de
 
 ### Projects in the Repository
 
-- [**Plant Irrigation Control System**](./Plant%20irrigation%20control): An automated irrigation system for plants.
+- [**Living room sensors**](Projects/Living%20room%20sensors/README.md): Multi-sensor system for living room.
+- [**Plant Irrigation Control System**](Projects/Plant%20irrigation%20control/README.md): An automated irrigation system for plants.
 
 ### ESP Boards Used in the Project:
 In this section, we will delve into the heart of my IoT projects: the ESP boards. These powerful microcontrollers have been instrumental in creating smart and connected solutions.

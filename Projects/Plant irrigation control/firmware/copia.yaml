@@ -1,0 +1,580 @@
+############################## configurations
+substitutions:
+  # TEXTS
+  devicename: plant-irrigation-control # it cannot exceed 24 characters
+  upper_devicename: "Test 1 - Riego Plantas" # it cannot exceed 25 characters
+  comment_device: "Prototipo de proyecto IoT para el control del riego de plantas"
+  plant_name_01: "Potos grande"
+  plant_name_02: "Palmera" # Chamaedorea elegans
+  plant_name_03: "Potos pequeño"
+  # STATIC IP
+  static_ip: 192.168.1.102
+  # DEBUGGING SETTINGS
+  internal_mode: "false"
+  # CALIBRATION
+  value_dry : "2.25"
+  value_wet : "0.90"
+  # PININ
+  pin_plant_01: GPIO3
+  pin_plant_02: GPIO7
+  pin_battery_volt: GPIO9
+  # PINOUT
+  pin_led_ota_wait: GPIO37
+  pin_led_onboard: GPIO15
+  # TIMES
+  tiempo_deepsleep: 30s # time to be in Deep sleep
+  tiempo_espera_deepsleep: 45s # time to wait before entering deep_sleep
+
+globals:
+  - id: deep_sleep_prevent
+    type: bool
+    restore_value: no
+    initial_value: 'false'
+
+############################## common code
+<<: !include common/riego_common.yaml
+
+packages:
+  esphome: !include common/riego_esphome.yaml
+  wifi: !include common/wifi_test.yaml
+  device_base: !include common/device_base_lolins2mini.yaml
+
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "KUaL39nWd7WzDjcScW3DZdzoOSpadmx0XiEGYK7hkQw="
+
+
+# Enable OTA updates
+ota:
+  password: "63bf3d0dbd5b8c27978b4991523f752c"
+
+
+############################## project code
+esphome:
+  on_boot:
+    then:
+      #- light.turn_on: led_esp
+      - light.turn_on:
+          id: led_esp
+          effect: "Slow Pulse"
+      - wait_until:
+          condition:
+            lambda: 'return id(ota_update_available).state != "";'
+          timeout: 30s
+      # Check for pending OTA update, indicated from HA
+      - script.execute: are_ota_update
+      - script.wait: are_ota_update
+      # Reset sensor update counters. These are for debugging.
+      - script.execute: counter_sensors_reset
+      - script.wait: counter_sensors_reset
+      # Turn off all sensors controlling data transmission
+      - script.execute: received_sensors_reset
+      - script.wait: received_sensors_reset
+      # Read sensors
+      - script.execute: sensors_read
+      - script.wait: sensors_read
+      # Check data send
+      - script.execute: check_data_send
+      - script.wait: check_data_send
+  on_shutdown: #Includes deep sleep
+    priority: -100
+    then:
+      # Control update on_shutdown.
+      - binary_sensor.template.publish:
+          id: on_shutdown_test
+          state: ON
+      #- script.execute: before_shutdown
+
+
+## Deep Sleep Configuration
+deep_sleep:
+  id: deep_sleep_sensor
+  run_duration: $tiempo_espera_deepsleep # the device will run for the specified time in wait time and then automatically enter deep sleep mode
+  sleep_duration: $tiempo_deepsleep # time spent in deep_sleep
+
+###########################################################################################################
+#### SENSORS AND DEVICES
+###########################################################################################################
+# LED LIGHTING
+light:
+
+  # onboard LED to indicate which point of the script we are at
+  - platform: monochromatic
+    id: led_esp
+    name: "ESP LED"
+    output: led_onboard
+    internal: true
+    effects:
+      - pulse:
+          name: "Fast Pulse"
+          transition_length:
+            on_length: 0.5s
+            off_length: 0.25s
+          update_interval: 0.25s
+          min_brightness: 50%
+          max_brightness: 100%
+      - pulse:
+          name: "Slow Pulse"
+          transition_length: 2s      # defaults to 1s
+          update_interval: 2s
+      - pulse:
+          name: "Asymmetrical Pulse"
+          transition_length:
+            on_length: 2s
+            off_length: 50ms
+          update_interval: 1.5s
+    # when state changes I want the upper light state to also be cloned
+    on_state:
+      - logger.log: "Light State Changed!"
+      - light.control:
+          id: led_cloned
+          state: !lambda 'return id(led_esp).current_values.get_state();'
+
+  - platform: binary
+    id: led_cloned
+    output: led_ota_wait
+    name: "CLONED LED"
+    internal: true
+
+
+output:
+
+  - platform: ledc
+    pin: $pin_led_onboard
+    id: led_onboard
+
+  - platform: ledc
+    pin: $pin_led_ota_wait
+    id: led_ota_wait
+
+
+# SENSORS
+sensor:
+  # Sensor measuring the time it takes to read the data
+  - platform: uptime
+    id: uptime_sec
+    name: Uptime Sensor
+    update_interval: 2s
+    accuracy_decimals: 0
+    unit_of_measurement: s
+
+  # Soil moisture sensor for plant 01
+  - platform: adc
+    id: moisture_sensor_01
+    pin: $pin_plant_01
+    name: $plant_name_01
+    icon: mdi:sprout
+    internal: false
+    attenuation: 11db
+    accuracy_decimals: 1
+    update_interval: never
+    filters:
+      # Using moving median to handle noise. Taking 10 samples, sending 1.
+      - median:
+          window_size: 10
+          send_every: 10
+          send_first_at: 10
+
+  # Converting voltage to humidity level (%) for plant 01
+  - platform: copy
+    source_id: moisture_sensor_01
+    id: moisture_sensor_percent_01
+    name: "$plant_name_01 - percent"
+    internal: false
+    icon: "mdi:water-percent"
+    unit_of_measurement: '%'
+    accuracy_decimals: 1
+    filters:
+      - calibrate_linear:
+          - $value_wet -> 100.00
+          - $value_dry -> 0.00
+      - lambda: |-
+          if (x < 0) return 0; 
+          else if (x > 100) return 100;
+          else return (x);
+    on_value:
+      then:
+        # Data update received.
+        - binary_sensor.template.publish:
+            id: moisture_level_received_01
+            state: ON
+        # When a new value is received, set the corresponding status based on the recorded level
+        - lambda: |-
+            if (x < 30) {
+              id(plant_state_01).publish_state("Urgent watering");
+            } else if (x < 50) {
+              id(plant_state_01).publish_state("Recommended watering");
+            } else {
+              id(plant_state_01).publish_state("No watering needed");
+            }
+
+  # Soil moisture sensor for plant 02
+  - platform: adc
+    id: moisture_sensor_02
+    pin: $pin_plant_02
+    name: $plant_name_02
+    icon: mdi:sprout
+    internal: false
+    attenuation: 11db
+    accuracy_decimals: 1
+    update_interval: never
+    filters:
+      # Using moving median to handle noise. Taking 10 samples, sending 1.
+      - median:
+          window_size: 10
+          send_every: 10
+          send_first_at: 10
+
+  # Converting voltage to humidity level (%) for plant 02
+  - platform: copy
+    source_id: moisture_sensor_02
+    id: moisture_sensor_percent_02
+    name: "$plant_name_02 - percent"
+    internal: false
+    icon: "mdi:water-percent"
+    unit_of_measurement: '%'
+    accuracy_decimals: 1
+    filters:
+      - calibrate_linear:
+          - $value_wet -> 100.00
+          - $value_dry -> 0.00
+      - lambda: |-
+          if (x < 0) return 0; 
+          else if (x > 100) return 100;
+          else return (x);
+    on_value:
+      then:
+        # Data update received.
+        - binary_sensor.template.publish:
+            id: moisture_level_received_02
+            state: ON
+        # When a new value is received, set the corresponding status based on the recorded level
+        - lambda: |-
+            if (x < 30) {
+              id(plant_state_02).publish_state("Urgent watering");
+            } else if (x < 50) {
+              id(plant_state_02).publish_state("Recommended watering");
+            } else {
+              id(plant_state_02).publish_state("No watering needed");
+            }
+
+  # Voltage divider: 2 x 300 K Ohm resistors are used
+  - platform: adc
+    id: batt_voltage
+    name: Battery Voltage
+    internal: true
+    pin: ${pin_battery_volt} #GPIO9
+    update_interval: never #never
+    accuracy_decimals: 2
+    attenuation: auto
+    filters:
+      # @todo check if this comment is adjusted
+      # Rescale it from the divided voltage value 2 x 300 K > 2.1. 4.2/2.1 = 2.
+      - multiply: 2
+    on_raw_value:
+      then:
+        # Battery measurement sensor update counter.
+        - lambda: id(count_batt_voltage).publish_state(id(count_batt_voltage).state +1);
+
+  # @todo consider if it can be joined with sensor “batt_voltage”
+  # Intermediate sensor
+  - platform: copy
+    source_id: batt_voltage
+    id: batt_voltage_filtered
+    icon: "mdi:battery"
+    internal: false
+    name:  Battery Voltage filtered
+    unit_of_measurement: V
+    accuracy_decimals: 2
+    filters:
+      # I use the moving median to deal with noise. I take a sample of 10, send 1.
+      - median:
+          window_size: 10
+          send_every: 10
+          send_first_at: 10
+
+  # Convert the voltage to a battery level (%)
+  - platform: copy
+    source_id: batt_voltage_filtered
+    id: batt_level
+    internal: false
+    icon: "mdi:battery"
+    name: Battery Percent
+    unit_of_measurement: '%'
+    accuracy_decimals: 0
+    filters:
+      # Voltage map to get battery level in %
+      - calibrate_linear:
+          - 4.5 -> 0 # Changed because I have the connections after the step-up # Set 3.0 to 0%, although it can go down (2.4V), to prolong its useful life. Anyway, there is not much capacity below this.
+          - 5 -> 100 # Changed because I have the connections after the step-up # Set 4.05 to 100%, although it can increase (~4.2V), to extend the useful life.
+      # Cancel values below 0% and above 100%
+      - lambda: |
+          if (x < 0) return 0; 
+          else if (x > 100) return 100;
+          else return ceil(x / 5) * 5;
+    on_value:
+      then:
+        # Data update received.
+        - binary_sensor.template.publish:
+            id: batt_level_received
+            state: ON
+
+  # Track the number of battery readings
+  - platform: template
+    name: "Count Batt V Updates"
+    id: count_batt_voltage
+    unit_of_measurement: count
+    icon: "mdi:counter"
+    entity_category: diagnostic
+
+  # El servicio que se crea en HA con el sensor "batt_voltage"
+  - platform: homeassistant
+    id: ha_batt_voltage
+    entity_id: sensor.battery_voltage
+
+  # El servicio que se crea en HA con el sensor "moisture_sensor_01"
+  - platform: homeassistant
+    id: ha_moisture_sensor_01
+    entity_id: sensor.moisture_sensor_01
+
+  # El servicio que se crea en HA con el sensor "moisture_sensor_02"
+  - platform: homeassistant
+    id: ha_moisture_sensor_02
+    entity_id: sensor.moisture_sensor_02
+
+
+
+
+# BINARIES SENSORS
+binary_sensor:
+
+  # Alert of problem in data updates.
+  - platform: template
+    id: data_update_problem
+    name: Data sent (ESPHome)
+    icon: mdi:database-arrow-up
+    device_class: problem
+    entity_category: diagnostic
+
+  # Control of sending soil moisture data plant 1
+  - platform: template
+    name: "$plant_name_01 updated"
+    id: moisture_level_received_01
+    internal: ${internal_mode}
+    entity_category: diagnostic
+
+  # Control of sending soil moisture data plant 2
+  - platform: template
+    name: "$plant_name_02 updated"
+    id: moisture_level_received_02
+    internal: ${internal_mode}
+    entity_category: diagnostic
+
+  # Control of sending battery level data
+  - platform: template
+    name: Battery level updated
+    id: batt_level_received
+    internal: ${internal_mode}
+    entity_category: diagnostic
+
+  # On shutdown test control
+  - platform: template
+    name: On shutdown test
+    id: on_shutdown_test
+    internal: ${internal_mode}
+    entity_category: diagnostic
+    icon: mdi:clipboard-text-search
+
+  # Check reading of all data
+  - platform: template
+    name: Data updates done
+    id: all_updates_received
+    icon: mdi:database-refresh-outline
+    entity_category: diagnostic
+    lambda: |-
+      return
+      id(moisture_level_received_01).state &&
+      id(moisture_level_received_02).state &&
+      id(batt_level_received).state
+      ;
+    # Register that all updates are done.
+    on_press:
+      then:
+        - binary_sensor.template.publish:
+            id: data_update_problem
+            state: OFF
+        # Show in the log the time it has taken to carry out the entire process
+        - logger.log:
+            format: "All sensors updated after %.1f secs of uptime"
+            args: [ 'id(uptime_sec).state']
+
+  - platform: homeassistant
+    name: "Data updates problem"
+    entity_id: "binary_sensor.all_updates_problem"
+    id: homeassistant_binary_sensor_updates_problem
+
+
+# TEXTS SENSORS
+text_sensor:
+
+  # Reflects the need for watering each plant
+  - platform: template
+    name: "$plant_name_01 - status"
+    id: plant_state_01
+    icon: mdi:watering-can
+  - platform: template
+    name: "$plant_name_02 - status"
+    id: plant_state_02
+    icon: mdi:watering-can
+
+  # The one that collects the information from HA and manages the state of deep_sleep in real time
+  - platform: homeassistant
+    name: "OTA Update Available"
+    entity_id: "input_boolean.ota_update_available"
+    id: ota_update_available
+    on_value:
+      then:
+        - if:
+            condition:
+              text_sensor.state:
+                id: ota_update_available
+                state: 'off'
+            then:
+              - light.turn_on:
+                  id: led_esp
+                  effect: "Fast Pulse"
+              - globals.set:
+                  id: deep_sleep_prevent
+                  value: 'false'
+              - script.stop: check_data_send
+              - script.execute: check_data_send
+              #- deep_sleep.enter: deep_sleep_sensor
+            else:
+              - globals.set:
+                  id: deep_sleep_prevent
+                  value: 'true'
+              - deep_sleep.prevent: deep_sleep_sensor
+
+
+# SCRIPTS
+script:
+  # Restart sensor update counters. These are for debugging. | wake up
+  - id: counter_sensors_reset
+    then:
+      - logger.log: "....Starting sensor reset" #log
+      - lambda: id(count_batt_voltage).publish_state(0);
+
+  # We turn off all the sensors that control the sending of data. | wake up
+  - id: received_sensors_reset
+    then:
+      - binary_sensor.template.publish:
+          id: batt_level_received
+          state: OFF
+      - binary_sensor.template.publish:
+          id: moisture_level_received_01
+          state: OFF
+      - binary_sensor.template.publish:
+          id: moisture_level_received_02
+          state: OFF
+      - binary_sensor.template.publish:
+          id: on_shutdown_test
+          state: OFF
+      # @todo, it is probably not necessary to reset this control, as its value is dynamically calculated when queried
+      - binary_sensor.template.publish:
+          id: all_updates_received
+          state: OFF
+
+  # We read the sensors. | wake up
+  - id: sensors_read
+    then:
+      - logger.log: "....Starting sensor reading" #log
+      - repeat:
+          count: 5 # reading cycles
+          then:
+            - component.update: batt_voltage
+            - delay: 100ms
+            - component.update: moisture_sensor_01
+            - delay: 100ms
+            - component.update: moisture_sensor_02
+            - delay: 100ms
+            # Second step for ADC-based sensors that benefit from more samples.
+            - component.update: batt_voltage
+            - delay: 200ms
+            - component.update: moisture_sensor_01
+            - delay: 200ms
+            - component.update: moisture_sensor_02
+            - delay: 200ms
+      - logger.log: "....Ending sensor reading" #log
+
+  # We check if there is a pending OTA update, indicated from HA. | wake up
+  - id: are_ota_update
+    then:
+      - logger.log: "....Starting check OTA updates" #log
+      - if:
+          condition:
+            text_sensor.state:
+              id: ota_update_available
+              state: 'on'
+          then:
+            - logger.log: "OTA Update Available!" #log
+            - logger.log: "evitamos ir a deep_sleep" #log
+            - globals.set:
+                id: deep_sleep_prevent
+                value: 'true'
+            - deep_sleep.prevent: deep_sleep_sensor
+            - light.turn_on:
+                id: led_esp
+                effect: "Fast Pulse"
+          else:
+            - logger.log: "no OTA Update Available!" #log
+            - logger.log: "permitimos deep_sleep" #log
+            - globals.set:
+                id: deep_sleep_prevent
+                value: 'false'
+            - deep_sleep.allow: deep_sleep_sensor
+
+  # We check that the data has been sent before going back to sleep. | sleeping
+  - id: check_data_send
+    then:
+      - wait_until:
+          condition:
+            and:
+              #- lambda: 'return id(homeassistant_binary_sensor_updates_problem).state != "";'
+              - lambda: 'return id(homeassistant_binary_sensor_updates_problem).state != true and id(homeassistant_binary_sensor_updates_problem).state != false;'
+              - binary_sensor.is_on: all_updates_received
+              - binary_sensor.is_off: homeassistant_binary_sensor_updates_problem
+          # If it has not been achieved in 30 seconds, we continue so as not to drain the battery
+          timeout: 30s
+      # We check if the shipment has finally been made, in case of error, we show it in the binary_sensor
+      - if:
+          condition:
+            - binary_sensor.is_on: all_updates_received
+          then:
+            - logger.log: "Data updates ok..."
+            - light.turn_on:
+                id: led_esp
+                effect: "Slow Pulse"
+            - deep_sleep.enter: deep_sleep_sensor
+          else:
+            - logger.log: "A sensor might be down...missing updates"
+            - binary_sensor.template.publish:
+                id: data_update_problem
+                state: ON
+            - delay: 1s
+            - light.turn_on:
+                id: led_esp
+                effect: "Asymmetrical Pulse"
+            - deep_sleep.prevent: deep_sleep_sensor
+
+  # @deprecated
+  # I create this method because it has to be executed in 3 circumstances:
+  # - 1 when the time defined in “run_duration” is met
+  # - 2 when it is checked that all the data has already been sent and to save energy and not wait for the “run_duration” the “deep_sleep.enter” is executed
+  # - 3 when the value of the input_boolean that indicates if there is an OTA update changes from HA, and it goes from ON to OFF, the “deep_sleep.enter” is also executed
+  # This Script exists even though it only executes a script inside, to be able to centralize all those that have to be executed before “sleeping” the device.
+  - id: before_shutdown
+    then:
+      # We check that the data has been sent before going back to sleep
+      - script.execute: check_data_send
