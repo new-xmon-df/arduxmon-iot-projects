@@ -1,25 +1,25 @@
-title: Sensors
+title: Sensores
 views:
-  - title: Living Room
-    path: living-room-sensors
+  - title: Salón
+    path: salon-sensores
     type: sections
     sections:
       - type: grid
         cards:
           - type: custom:mushroom-title-card
-            title: Information
+            title: Información
           - type: entities
             entities:
               - entity: sensor.sensores_salon_firmware_version
-                name: Firmware Version
+                name: Versión de Firmware
               - entity: sensor.sensores_salon_mac_address
-                name: MAC Address
+                name: Dirección MAC
             show_header_toggle: false
           - type: custom:mushroom-title-card
             title: ESP32
           - type: tile
             entity: switch.sensores_salon_estado_pantalla_oled
-            name: Screen Status
+            name: Estado de la Pantalla
             icon: ''
             show_entity_picture: false
             color: light-green
@@ -27,40 +27,40 @@ views:
             hide_state: true
           - type: tile
             entity: light.sensores_salon_led_rgb_c_todo
-            name: Air Quality LED
+            name: LED Calidad del Aire
             vertical: false
             hide_state: true
           - type: tile
             entity: button.sensores_salon_bot_n_de_reinicio
             vertical: false
             color: deep-orange
-            name: Restart ESP32
+            name: Reiniciar ESP32
             hide_state: true
           - type: custom:mushroom-title-card
-            title: Presence Detector (LD2410b)
+            title: Detector de presencia (LD2410b)
           - type: tile
             entity: button.sensores_salon_reinicio
-            name: LD2410 Restart
+            name: Reinicio LD2410
             color: deep-orange
             vertical: false
             hide_state: true
           - type: tile
             entity: button.sensores_salon_consulta_de_par_metros
-            name: Parameter Query
+            name: Consulta de Parámetros
             vertical: false
             hide_state: true
           - type: entities
             entities:
               - entity: number.sensores_salon_timeout
-                name: Timeout
+                name: Tiempo de Espera
               - entity: number.sensores_salon_max_move_distance_gate
-                name: Max Movement Distance
+                name: Distancia Máxima de Movimiento
               - entity: number.sensores_salon_max_still_distance_gate
-                name: Max Still Distance
+                name: Máx. Distancia Inmóvil
               - entity: select.sensores_salon_light_function
-                name: Light Function
+                name: Función de Luz
               - entity: number.sensores_salon_light_threshold
-                name: Light Threshold
+                name: Umbral de Luz
       - type: grid
         cards:
           - type: custom:mushroom-title-card
@@ -68,41 +68,41 @@ views:
           - type: entities
             entities:
               - entity: sensor.sensores_salon_bme680_temperatura
-                name: Temperature
+                name: Temperatura
               - entity: sensor.sensores_salon_bme680_humedad
-                name: Humidity
+                name: Humedad
               - entity: sensor.sensores_salon_bme680_presi_n
-                name: Pressure
+                name: Presión
               - entity: sensor.sensores_salon_bme680_iaq_clasificaci_n
-                name: IAQ Classification
+                name: Clasificación IAQ
           - type: entities
             entities:
               - entity: sensor.sensores_salon_nivel_luz_ambiente
-                name: Ambient Light Level
+                name: Nivel de Luz Ambiente
               - entity: sensor.sensores_salon_sensor_ultras_nico
-                name: Ultrasonic Sensor
+                name: Sensor Ultrasónico
           - type: vertical-stack
-            title: Presence Detector (LD2410b)
+            title: Detector de presencia (LD2410b)
             cards:
               - type: horizontal-stack
                 cards:
                   - type: entity
                     entity: binary_sensor.sensores_salon_moving_target
-                    name: Movement
+                    name: Movimiento
                     state_color: true
                   - type: entity
                     entity: binary_sensor.sensores_salon_still_target
-                    name: Stillness
+                    name: Inmóvil
                     state_color: true
               - type: horizontal-stack
                 cards:
                   - type: entity
                     entity: binary_sensor.sensores_salon_out_pin_presence_status
-                    name: GPIO Presence
+                    name: Presencia GPIO
                     state_color: true
                   - type: entity
                     entity: binary_sensor.sensores_salon_still_target
-                    name: Still Target
+                    name: Objetivo Inmóvil
                     state_color: true
               - type: vertical-stack
                 cards:
@@ -110,21 +110,21 @@ views:
                     cards:
                       - type: entity
                         entity: sensor.sensores_salon_detection_distance
-                        name: Detection Distance
+                        name: Distancia de Detección
                       - type: entity
                         entity: sensor.sensores_salon_moving_distance
-                        name: Movement Distance
+                        name: Distancia de Movimiento
                       - type: entity
                         entity: sensor.sensores_salon_still_distance
-                        name: Still Distance
+                        name: Distancia Inmóvil
               - type: horizontal-stack
                 cards:
                   - type: entity
                     entity: sensor.sensores_salon_move_energy
-                    name: Movement Energy
+                    name: Energía de Movimiento
                   - type: entity
                     entity: sensor.sensores_salon_still_energy
-                    name: Still Energy
+                    name: Energía en Estado Inmóvil
       - type: grid
         cards:
           - type: custom:mushroom-title-card
@@ -134,26 +134,26 @@ views:
               - entity: sensor.sensores_salon_bme680_iaq
                 name: IAQ
               - entity: sensor.sensores_salon_bme680_static_iaq
-                name: Static IAQ
+                name: IAQ Estático
               - entity: sensor.sensores_salon_bme680_precisi_n_num_rica_iaq
-                name: Numeric IAQ Precision
+                name: Precisión Numérica de IAQ
               - entity: sensor.sensores_salon_bme680_precisi_n_iaq
-                name: IAQ Precision
+                name: Precisión de IAQ
               - entity: sensor.sensores_salon_bme680_equivalente_de_co2
-                name: CO2 Equivalent
+                name: Equivalente de CO2
               - entity: sensor.sensores_salon_bme680_equivalente_de_voc_en_aliento
-                name: VOC Equivalent in Breath
+                name: Equivalente de VOC en la Respiración
               - entity: sensor.sensores_salon_bme680_resistencia_de_gas
-                name: Gas Resistance
+                name: Resistencia de Gas
           - type: vertical-stack
-            title: Presence Detector (LD2410b)
+            title: Detector de presencia (LD2410b)
             cards:
               - type: horizontal-stack
                 cards:
                   - type: entities
                     entities:
                       - entity: switch.sensores_salon_engineering_mode
-                        name: Engineering Mode
+                        name: Modo de Ingeniería
               - type: conditional
                 conditions:
                   - entity: switch.sensores_salon_engineering_mode
@@ -165,17 +165,17 @@ views:
                       cards:
                         - type: entity
                           entity: sensor.sensores_salon_light
-                          name: Light
+                          name: Luz
                         - type: entity
                           entity: binary_sensor.sensores_salon_out_pin_presence_status
-                          name: Output Pin Presence
+                          name: Presencia de Pin de Salida
                           state_color: true
                     - type: horizontal-stack
                       cards:
                         - type: custom:mushroom-title-card
-                          title: Movement
+                          title: Movimiento
                         - type: custom:mushroom-title-card
-                          title: Stillness
+                          title: Inmóvil
                     - type: horizontal-stack
                       cards:
                         - type: entity
@@ -183,13 +183,13 @@ views:
                           name: G0
                         - type: entity
                           entity: number.sensores_salon_g0_move_threshold
-                          name: G0 Move Threshold
+                          name: Umbral de Movimiento G0
                         - type: entity
                           entity: sensor.sensores_salon_g0_still_energy
-                          name: G0 Still Energy
+                          name: Energía en Estado Inmóvil G0
                         - type: entity
                           entity: number.sensores_salon_g0_still_threshold
-                          name: G0 Still Threshold
+                          name: Umbral de Estar Inmóvil G0
                     - type: horizontal-stack
                       cards:
                         - type: entity
@@ -198,15 +198,15 @@ views:
                           icon: ' '
                         - type: entity
                           entity: number.sensores_salon_g1_move_threshold
-                          name: G1 Move Threshold
+                          name: Umbral de Movimiento G1
                           icon: ' '
                         - type: entity
                           entity: sensor.sensores_salon_g1_still_energy
-                          name: G1 Still Energy
+                          name: Energía en Estado Inmóvil G1
                           icon: ' '
                         - type: entity
                           entity: number.sensores_salon_g1_still_threshold
-                          name: G1 Still Threshold
+                          name: Umbral de Estar Inmóvil G1
                           icon: ' '
                     - type: horizontal-stack
                       cards:
@@ -216,15 +216,15 @@ views:
                           icon: ' '
                         - type: entity
                           entity: number.sensores_salon_g2_move_threshold
-                          name: G2 Move Threshold
+                          name: Umbral de Movimiento G2
                           icon: ' '
                         - type: entity
                           entity: sensor.sensores_salon_g2_still_energy
-                          name: G2 Still Energy
+                          name: Energía en Estado Inmóvil G2
                           icon: ' '
                         - type: entity
                           entity: number.sensores_salon_g2_still_threshold
-                          name: G2 Still Threshold
+                          name: Umbral de Estar Inmóvil G2
                           icon: ' '
                     - type: horizontal-stack
                       cards:
@@ -234,15 +234,15 @@ views:
                           icon: ' '
                         - type: entity
                           entity: number.sensores_salon_g3_move_threshold
-                          name: G3 Move Threshold
+                          name: Umbral de Movimiento G3
                           icon: ' '
                         - type: entity
                           entity: sensor.sensores_salon_g3_still_energy
-                          name: G3 Still Energy
+                          name: Energía en Estado Inmóvil G3
                           icon: ' '
                         - type: entity
                           entity: number.sensores_salon_g3_still_threshold
-                          name: G3 Still Threshold
+                          name: Umbral de Estar Inmóvil G3
                           icon: ' '
                     - type: horizontal-stack
                       cards:
@@ -252,15 +252,15 @@ views:
                           icon: ' '
                         - type: entity
                           entity: number.sensores_salon_g4_move_threshold
-                          name: G4 Move Threshold
+                          name: Umbral de Movimiento G4
                           icon: ' '
                         - type: entity
                           entity: sensor.sensores_salon_g4_still_energy
-                          name: G4 Still Energy
+                          name: Energía en Estado Inmóvil G4
                           icon: ' '
                         - type: entity
                           entity: number.sensores_salon_g4_still_threshold
-                          name: G4 Still Threshold
+                          name: Umbral de Estar Inmóvil G4
                           icon: ' '
                     - type: horizontal-stack
                       cards:
@@ -270,15 +270,15 @@ views:
                           icon: ' '
                         - type: entity
                           entity: number.sensores_salon_g5_move_threshold
-                          name: G5 Move Threshold
+                          name: Umbral de Movimiento G5
                           icon: ' '
                         - type: entity
                           entity: sensor.sensores_salon_g5_still_energy
-                          name: G5 Still Energy
+                          name: Energía en Estado Inmóvil G5
                           icon: ' '
                         - type: entity
                           entity: number.sensores_salon_g5_still_threshold
-                          name: G5 Still Threshold
+                          name: Umbral de Estar Inmóvil G5
                           icon: ' '
                     - type: horizontal-stack
                       cards:
@@ -288,15 +288,15 @@ views:
                           icon: ' '
                         - type: entity
                           entity: number.sensores_salon_g6_move_threshold
-                          name: G6 Move Threshold
+                          name: Umbral de Movimiento G6
                           icon: ' '
                         - type: entity
                           entity: sensor.sensores_salon_g6_still_energy
-                          name: G6 Still Energy
+                          name: Energía en Estado Inmóvil G6
                           icon: ' '
                         - type: entity
                           entity: number.sensores_salon_g6_still_threshold
-                          name: G6 Still Threshold
+                          name: Umbral de Estar Inmóvil G6
                           icon: ' '
                     - type: horizontal-stack
                       cards:
@@ -306,15 +306,15 @@ views:
                           icon: ' '
                         - type: entity
                           entity: number.sensores_salon_g7_move_threshold
-                          name: G7 Move Threshold
+                          name: Umbral de Movimiento G7
                           icon: ' '
                         - type: entity
                           entity: sensor.sensores_salon_g7_still_energy
-                          name: G7 Still Energy
+                          name: Energía en Estado Inmóvil G7
                           icon: ' '
                         - type: entity
                           entity: number.sensores_salon_g7_still_threshold
-                          name: G7 Still Threshold
+                          name: Umbral de Estar Inmóvil G7
                           icon: ' '
                     - type: horizontal-stack
                       cards:
@@ -324,15 +324,15 @@ views:
                           icon: ' '
                         - type: entity
                           entity: number.sensores_salon_g8_move_threshold
-                          name: G8 Move Threshold
+                          name: Umbral de Movimiento G8
                           icon: ' '
                         - type: entity
                           entity: sensor.sensores_salon_g8_still_energy
-                          name: G8 Still Energy
+                          name: Energía en Estado Inmóvil G8
                           icon: ' '
                         - type: entity
                           entity: number.sensores_salon_g8_still_threshold
-                          name: G8 Still Threshold
+                          name: Umbral de Estar Inmóvil G8
                           icon: ' '
     theme: ios-dark-mode-light-blue
     cards: []

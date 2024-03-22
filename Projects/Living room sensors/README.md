@@ -18,7 +18,7 @@ The Living Room Control System focuses on creating a centralized control hub for
 
 ## Files Included
 - [`living_room_control.yaml`](firmware/living_room_sensors.yaml): ESPHome firmware configuration file.
-- [`home_assistant_dashboard.yaml`](home_assistant/home_assistant_dashboard.yaml): Home Assistant configuration file for dashboard setup.
+- [`home_assistant_dashboard.yaml`](home_assistant/home_assistant_dashboard.yaml)[`ES`](home_assistant/home_assistant_dashboard.Es-es.yaml): Home Assistant configuration file for dashboard setup.
 - [`schematic.pdf`](hardware/schematic.pdf): Electrical schematic diagram
 - [`LICENSE`](LICENSE): Creative Commons Attribution-ShareAlike 4.0 International License
 
