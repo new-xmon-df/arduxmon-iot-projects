@@ -79,14 +79,14 @@ In this section, I categorize the components utilized in my projects according t
 
    - **Magnetic**:
        - MC-38: *Documentation pending*
-       - A3144E: *Documentation pending*
+       - [A3144E](Components/Sensors/Magnetic/A3144E/README.md): A3144E Hall Effect sensor: versatile for proximity, speed, and current sensing.
 
    - **Presence**:
      - [LD2410b](Components/Sensors/Presence/LD2410b/README.md): The LD2410b sensor by Hilink Electronics detects human presence with high sensitivity using FMCW at 24GHz, enabling precise detection of motion and stationary states, along with distance calculation.
      - LD2411: *Documentation pending*
 
    - **Soil Moisture**:
-       - Capacitive Soil Moisture: *Documentation pending*
+       - [Capacitive Soil Moisture](Components/Sensors/Soil%20Moisture/Capacitive%20Soil%20Moisture/README.md): Capacitive soil moisture sensor measures moisture, differing from resistive sensors.
 
    - **Temperature**:
      - DS18B20: *Documentation pending*
