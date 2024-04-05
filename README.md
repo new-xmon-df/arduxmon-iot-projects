@@ -78,15 +78,16 @@ In this section, I categorize the components utilized in my projects according t
      - [LDR 5528](Components/Sensors/Light/LDR_5528/README.md): The LDR 5528 is a light-dependent resistor that changes resistance based on the intensity of light falling on its surface.
 
    - **Magnetic**:
-       - MC-38: *Documentation pending*
-       - [A3144E](Components/Sensors/Magnetic/A3144E/README.md): A3144E Hall Effect sensor: versatile for proximity, speed, and current sensing.
+     - MC-38: *Documentation pending*
+     - [A3144E](Components/Sensors/Magnetic/A3144E/README.md): A3144E Hall Effect sensor: versatile for proximity, speed, and current sensing.
 
    - **Presence**:
+     - [LD2410c](Components/Sensors/Presence/LD2410c/README.md): The LD2410C sensor by Hilink Electronics utilizes 24GHz FMCW technology for highly sensitive human presence detection, including precise motion and stationary state detection and distance calculation. It boasts compact dimensions of 22mm x 16mm and features a standard 2.54mm pin spacing
      - [LD2410b](Components/Sensors/Presence/LD2410b/README.md): The LD2410b sensor by Hilink Electronics detects human presence with high sensitivity using FMCW at 24GHz, enabling precise detection of motion and stationary states, along with distance calculation.
      - LD2411: *Documentation pending*
 
    - **Soil Moisture**:
-       - [Capacitive Soil Moisture](Components/Sensors/Soil%20Moisture/Capacitive%20Soil%20Moisture/README.md): Capacitive soil moisture sensor measures moisture, differing from resistive sensors.
+     - [Capacitive Soil Moisture](Components/Sensors/Soil%20Moisture/Capacitive%20Soil%20Moisture/README.md): Capacitive soil moisture sensor measures moisture, differing from resistive sensors.
 
    - **Temperature**:
      - DS18B20: *Documentation pending*
