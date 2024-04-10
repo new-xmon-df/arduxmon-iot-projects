@@ -92,6 +92,9 @@ In this section, I categorize the components utilized in my projects according t
 
    - **Temperature**:
      - DS18B20: *Documentation pending*
+     - 
+   - **Vibration**:
+     - [Piezoelectric Vibration & Knock Sensor Module](Components/Sensors/Vibration/SSR1072-Piezo-Vibration-Sensor/README.md): The Piezoelectric Vibration & Knock Sensor Module offers versatility in motion detection, with analog/digital outputs and sensitivity adjustment for seamless project integration.
 
 ### How can you contribute?
 
