@@ -51,6 +51,4 @@ Automatically senses motion for various applications including floor, bathroom, 
 The HC-SR501 PIR Motion Detector is widely utilized in enterprises, hotels, stores, corridors, and other sensitive areas for automatic light control, lighting, and alarm systems.
 
 ## Documentation Links
-
-- [Dimensiones](schemas/dimensiones-BME680.jpg)
 - [Datasheet](pdf/HC-SR501-datasheet.pdf) - [ES](pdf/HC-SR501-datasheet-ES.pdf)
