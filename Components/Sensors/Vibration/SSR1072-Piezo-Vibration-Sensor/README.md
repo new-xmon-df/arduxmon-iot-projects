@@ -22,7 +22,7 @@ The Piezoelectric Vibration & Knock Sensor Module utilizes a piezoelectric eleme
 - **GND:** Ground
 - **D0:** Digital Output
 - **A0:** Analog Output
-- 
+
 ## Documentation Links
 
 - [Datasheet](pdf/SSR1072-Piezo-Vibration-Sensor-datasheet.pdf)
