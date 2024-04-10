@@ -84,6 +84,7 @@ In this section, I categorize the components utilized in my projects according t
    - **Presence**:
      - [LD2410c](Components/Sensors/Presence/LD2410c/README.md): The LD2410C sensor by Hilink Electronics utilizes 24GHz FMCW technology for highly sensitive human presence detection, including precise motion and stationary state detection and distance calculation. It boasts compact dimensions of 22mm x 16mm and features a standard 2.54mm pin spacing
      - [LD2410b](Components/Sensors/Presence/LD2410b/README.md): The LD2410b sensor by Hilink Electronics detects human presence with high sensitivity using FMCW at 24GHz, enabling precise detection of motion and stationary states, along with distance calculation.
+     - [HC-SR501](Components/Sensors/Presence/HC-SR501/README.md): The HC-SR501 PIR Motion Detector is based on infrared technology, featuring an automatic control module designed with a high-sensitivity.
      - LD2411: *Documentation pending*
 
    - **Soil Moisture**:
