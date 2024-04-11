@@ -261,47 +261,47 @@ calibrates the temperature sensor and uses the device in a minimally
 powered-on application, the results could be accurate enough.
 
 ## Pinout
+| Board pin name | Pin number | ADC Function | Capacitive Touch | SPI Function | UART Function | I2C Function | DAC Function | RTC Function | Strapping Pin      | PWM   | Notes                                                                                             |
+|----------------|------------|--------------|------------------|--------------|---------------|--------------|--------------|--------------|--------------------|-------|---------------------------------------------------------------------------------------------------|
+| 3V3            | -          | -            | -                | -            | -             | -            | -            | -            | -                  | -     | Power Supply: 3.3V                                                                                |
+| EN             | -          | -            | -                | -            | -             | -            | -            | -            | Enable (EN), RESET | -     | Pulled up state, reset pin                                                                        |
+| SP             | GPIO36     | ADC1_0       | -                | -            | -             | -            | -            | RTC_0        | -                  | -     | Analog to Digital Converter channel, External wake-up source                                      |
+| SN             | GPIO39     | ADC1_3       | -                | -            | -             | -            | -            | RTC_3        | -                  | -     | Analog to Digital Converter channel, External wake-up source                                      |
+| S34            | GPIO34     | ADC1_6       | -                | -            | -             | -            | -            | RTC_4        | -                  | -     | Analog to Digital Converter channel, External wake-up source                                      |
+| S35            | GPIO35     | ADC1_7       | -                | -            | -             | -            | -            | RTC_5        | -                  | -     | Analog to Digital Converter channel, External wake-up source                                      |
+| S32            | GPIO32     | ADC1_4       | TOUCH 9          | -            | -             | -            | -            | RTC_9        | -                  | **✓** | Analog to Digital Converter channel, Capacitive Touch, External wake-up source                    |
+| S33            | GPIO33     | ADC1_5       | TOUCH 8          | -            | -             | -            | -            | RTC_8        | -                  | **✓** | Analog to Digital Converter channel, Capacitive Touch, External wake-up source                    |
+| S25            | GPIO25     | ADC2_8       | -                | -            | -             | -            | DAC 1        | RTC_6        | -                  | **✓** | Analog to Digital Converter channel, Digital to Analog Converter channel, External wake-up source |
+| S26            | GPIO26     | ADC2_9       | -                | -            | -             | -            | DAC 2        | RTC_7        | -                  | **✓** | Analog to Digital Converter channel, Digital to Analog Converter channel, External wake-up source |
+| S27            | GPIO27     | ADC2_7       | TOUCH 7          | -            | -             | -            | -            | RTC_17       | -                  | **✓** | Analog to Digital Converter channel, Capacitive Touch, External wake-up source                    |
+| S14            | GPIO14     | ADC2_6       | TOUCH 6          | SD CLK       | -             | -            | -            | RTC_16       | -                  | **✓** | Analog to Digital Converter channel, Capacitive Touch, External wake-up source, SPI CLK           |
+| S12            | GPIO12     | ADC2_5       | TOUCH 5          | -            | -             | -            | -            | RTC_15       | -                  | **✓** | Analog to Digital Converter channel, Capacitive Touch, External wake-up source, SPI MOSI          |
+| GND            | -          | -            | -                | -            | -             | -            | -            | -            | -                  | -     | Ground                                                                                            |
+| S13            | GPIO13     | ADC2_4       | -                | -            | -             | -            | -            | RTC_14       | -                  | **✓** | Analog to Digital Converter channel, External wake-up source, SPI MISO                            |
+| SD2            | GPIO9      | -            | -                | SPI D2       | -             | -            | -            | -            | -                  | **✓** | SPI Data line 2                                                                                   |
+| SD3            | GPIO10     | -            | -                | SPI D3       | -             | -            | -            | -            | -                  | **✓** | SPI Data line 3                                                                                   |
+| GND            | GPIO11     | -            | -                | SPI CMD      | -             | -            | -            | -            | -                  | **✓** | SPI CMD                                                                                           |
+| 5V             | -          | -            | -                | -            | -             | -            | -            | -            | -                  | -     | Power Supply: 5V                                                                                  |
+| GND            | -          | -            | -                | -            | -             | -            | -            | -            | -                  | -     | Ground                                                                                            |
+| G23            | GPIO23     | -            | -                | MOSI         | -             | -            | -            | -            | -                  | **✓** | SPI MOSI                                                                                          |
+| G22            | GPIO22     | -            | -                | -            | -             | I2C1 CL      | -            | -            | -                  | **✓** | I2C Clock                                                                                         |
+| TXD            | GPIO1      | -            | -                | -            | U0 TX         | -            | -            | -            | -                  | **✓** | UART Transmit                                                                                     |
+| RXD            | GPIO3      | -            | -                | -            | U0 RX         | -            | -            | -            | -                  | **✓** | UART Receive                                                                                      |
+| G21            | GPIO21     | -            | -                | -            | -             | I2C1 DA      | -            | -            | -                  | **✓** | I2C Data                                                                                          |
+| GND            | -          | -            | -                | -            | -             | -            | -            | -            | -                  | -     | Ground                                                                                            |
+| G19            | GPIO19     | -            | -                | MISO         | -             | -            | -            | -            | -                  | **✓** | SPI MISO                                                                                          |
+| G18            | GPIO18     | -            | -                | CLK          | -             | -            | -            | -            | -                  | **✓** | Clock signal                                                                                      |
+| G5             | GPIO5      | -            | -                | SS           | -             | -            | -            | -            | -                  | **✓** | SPI Slave Select                                                                                  |
+| G17            | GPIO17     | -            | -                | -            | U2 TX         | -            | -            | -            | -                  | **✓** | UART2 Transmit                                                                                    |
+| G16            | GPIO16     | -            | -                | -            | U2 RX         | -            | -            | -            | -                  | **✓** | UART2 Receive                                                                                     |
+| G4             | GPIO4      | ADC2_0       | TOUCH 0          | SD D1        | -             | -            | -            | RTC_10       | -                  | **✓** | Analog to Digital Converter channel, Capacitive Touch, External wake-up source, SPI Data line 1   |
+| G0             | GPIO0      | ADC2_1       | TOUCH 1          | -            | -             | -            | -            | RTC_11       | -                  | **✓** | Analog to Digital Converter channel, Capacitive Touch, External wake-up source                    |
+| G2             | GPIO2      | ADC2_2       | TOUCH 2          | SD D0        | -             | -            | -            | RTC_12       | -                  | **✓** | Analog to Digital Converter channel, Capacitive Touch, External wake-up source, SPI MOSI          |
+| G15            | GPIO15     | ADC2_3       | TOUCH 3          | SD CMD       | -             | -            | -            | RTC_13       | -                  | **✓** | Analog to Digital Converter channel, Capacitive Touch, External wake-up source, SPI Command       |
+| SD1            | GPIO8      | -            | -                | SPI D1       | -             | -            | -            | -            | -                  | **✓** | SPI Data line 1                                                                                   |
+| SD0            | GPIO7      | -            | -                | SPI D0       | -             | -            | -            | -            | -                  | **✓** | SPI Data line 0                                                                                   |
+| CLK            | GPIO6      | -            | -                | SPI CLK      | -             | -            | -            | -            | -                  | **✓** | SPI Clock                                                                                         |
 
-| Board Pin Name | Pin Number | Function      | ADC   | RX/TX | DAC  | TOUCH   | FLASH    | I2C/VSPI  | UART/PWM |
-|----------------|------------|---------------|-------|-------|------|---------|----------|-----------|----------|
-| 3.3V           | -          | -             | -     | -     | -    | -       | -        | -         | -        |
-| EN             | -          | Enable, RESET | -     | -     | -    | -       | -        | -         | -        |
-| SP             | GPIO36     | -             | ADC0  | -     | -    | -       | -        | -         | -        |
-| SN             | GPIO39     | -             | ADC3  | -     | -    | -       | -        | -         | -        |
-| S34            | GPIO34     | -             | ADC6  | -     | -    | -       | -        | -         | -        |
-| S35            | GPIO35     | -             | ADC7  | -     | -    | -       | -        | -         | -        |
-| S32            | GPIO32     | -             | ADC4  | -     | -    | TOUCH 9 | -        | -         | **✓**    |
-| S33            | GPIO33     | -             | ADC5  | -     | -    | TOUCH 8 | -        | -         | **✓**    |
-| S25            | GPIO25     | -             | ADC18 | -     | DAC1 | -       | -        | -         | **✓**    |
-| S26            | GPIO26     | -             | ADC19 | -     | DAC2 | -       | -        | -         | **✓**    |
-| S27            | GPIO27     | -             | ADC17 | -     | -    | TOUCH 7 | -        | -         | **✓**    |
-| S14            | GPIO14     | -             | ADC16 | -     | -    | TOUCH 6 | -        | -         | **✓**    |
-| S12            | GPIO12     | -             | ADC15 | -     | -    | TOUCH 5 | -        | -         | **✓**    |
-| GND            | -          | -             | -     | -     | -    | -       | -        | -         | -        |
-| S13            | GPIO13     | -             | ADC14 | -     | -    | TOUCH 4 | -        | -         | **✓**    |
-| SD2            | GPIO9      | -             | -     | RX1   | -    | -       | FLASH D2 | -         | **✓**    |
-| SD3            | GPIO10     | -             | -     | TX1   | -    | -       | FLASH D3 | -         | **✓**    |
-| GND            | -          | -             | -     | -     | -    | -       | -        | -         | -        |
-| 5V             | -          | -             | -     | -     | -    | -       | -        | -         | -        |
-| GND            | -          | -             | -     | -     | -    | -       | -        | -         | -        |
-| G23            | GPIO23     | -             | -     | -     | -    | -       | -        | VSPI MOSI | **✓**    |
-| G22            | GPIO22     | -             | -     | -     | -    | -       | -        | I2C SCL   | **✓**    |
-| TXD            | GPIO1      | -             | -     | TX0   | -    | -       | -        | -         | **✓**    |
-| RXD            | GPIO3      | -             | -     | RX0   | -    | -       | -        | -         | **✓**    |
-| G21            | GPIO21     | -             | -     | -     | -    | -       | -        | I2C SDA   | **✓**    |
-| GND            | GPIO19     | -             | -     | -     | -    | -       | -        | VSPI MISO | **✓**    |
-| G19            | GPIO18     | -             | -     | -     | -    | -       | -        | VSPI SCK  | **✓**    |
-| G18            | GPIO5      | -             | -     | -     | -    | -       | -        | VSPI SS   | **✓**    |
-| G5             | GPIO17     | -             | -     | TX2   | -    | -       | -        | -         | **✓**    |
-| G17            | GPIO16     | -             | -     | RX2   | -    | -       | -        | -         | **✓**    |
-| G16            | GPIO4      | -             | ADC10 | -     | -    | -       | -        | -         | **✓**    |
-| G4             | GPIO0      | -             | ADC11 | -     | -    | TOUCH 0 | -        | -         | **✓**    |
-| G0             | GPIO2      | -             | ADC12 | -     | -    | TOUCH 1 | -        | -         | **✓**    |
-| G2             | GPIO15     | -             | ADC13 | -     | -    | TOUCH 2 | -        | -         | **✓**    |
-| G15            | GPIO8      | -             | -     | -     | -    | TOUCH 3 | FLASH D1 | -         | **✓**    |
-| SD1            | GPIO7      | -             | -     | -     | -    | -       | FLASH D0 | -         | **✓**    |
-| SD0            | GPIO6      | -             | -     | -     | -    | -       | FLASH CK | -         | **✓**    |
-| CLK            | -          | -             | -     | -     | -    | -       | -        | -         | -        |
 
 [<img src="ESP32-DEVKIT-38PINS-pinout.png" width="1000" alt="PINOUT"/>](ESP32-DEVKIT-38PINS-pinout.png)
 
