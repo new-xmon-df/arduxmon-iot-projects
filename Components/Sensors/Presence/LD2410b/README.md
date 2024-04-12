@@ -36,17 +36,27 @@ The LD2410B human body sensing module can detect and identify human bodies in mo
 Module size: 7mmx35mm, with 5 pin holes reserved in the hardware (factory default does not match the pins).
 The pin hole diameter is 0.6mm, and the pin spacing is 1.27mm.
 
-## Pin Definition:
+## Pinout
+[<img src="schemas/LD2410b-Pinout.png" width="500" alt="Pinout"/>](schemas/LD2410b-Pinout.png)
 
-| Pin | Symbol | Name          | Function                                      |
-| --- | ------ | ------------- | --------------------------------------------- |
-| 1   | OUT    | Target Status | Human presence detected: output high level<br>No human presence: output low level |
-| 2   | UART_Tx| Serial Tx     | Serial Tx pin                                 |
-| 3   | UART_Rx| Serial Rx     | Serial Rx pin                                 |
-| 4   | GND    | Power Ground  | Power ground                                  |
-| 5   | VCC    | Power Input   | Power input 5V                                |
+### Pin Definition:
 
-[<img src="schemas/LD2410b-pinout.jpg" width="400" alt="LD2410b Pinout"/>](schemas/LD2410b-pinout.jpg)
+| Pin | Symbol  | Name          | Function                                                                          |
+|-----|---------|---------------|-----------------------------------------------------------------------------------|
+| 1   | OUT     | Target Status | Human presence detected: output high level<br>No human presence: output low level |
+| 2   | UART_Tx | Serial Tx     | Serial Tx pin                                                                     |
+| 3   | UART_Rx | Serial Rx     | Serial Rx pin                                                                     |
+| 4   | GND     | Power Ground  | Power ground                                                                      |
+| 5   | VCC     | Power Input   | Power input 5V                                                                    |
+
+## Projects
+Explore examples of projects incorporating the BME680 sensor for inspiration and guidance on how to utilize its capabilities in your own projects.
+
+- [**Living room sensors**](../../../../Projects/Living%20room%20sensors/README.md): Multi-sensor system for living room.
+
+## DOWNLOAD FILES
+Here I share the CAD program files.
+- [**KICAD**](downloads/KICAD-HLK-LD2410b.zip): Files for KiCad 6, includes symbol, footprint and 3D.
 
 ## Documentation Links
 
