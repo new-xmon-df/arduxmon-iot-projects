@@ -46,7 +46,7 @@ The WEMOS D1 MINI boards are compact and powerful ESP8266-based microcontrollers
 | 5V  | 5V                           | -            |
 
 
-[<img src="d1_mini_v4.0.0_5_16x9.png" width="700" alt="PINOUT"/>](d1_mini_v4.0.0_5_16x9.png)
+[<img src="wemos-d1-mini-pinout.png" width="1000" alt="PINOUT"/>](wemos-d1-mini-pinout.png)
 
 
 ## Documentation Links

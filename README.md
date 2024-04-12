@@ -54,30 +54,25 @@ been instrumental in creating smart and connected solutions.
 
    In this section, I will detail the specific boards that I have used in my IoT projects. Each of these boards has been
    selected for its particular features and capabilities to meet the requirements of each project.
-
-    - **[WEMOS D1 MINI](Boards/WEMOS_D1_MINI/README.md)** v1, v2, v3, and v4:
+   - **ESP32-C3 Supermini:**
+     The ESP32-C3 Supermini is a compact version of the ESP32-C3 that provides WiFi and Bluetooth LE connectivity. Its
+     small size makes it ideal for applications where space is limited.
+   - **[ESP32-DevKitC 38 pins:](Boards/ESP32-DEVKIT-38PINS/README.md)**
+     This **ESP32**-based development kit offers a wide range of interfaces and peripherals, including GPIO, SPI, I2C,
+     UART, PWM, and more, making it a versatile choice for complex projects.
+   - **[LOLIN32 Lite:](Boards/LOLIN32_Lite/README.md)**
+     The LOLIN32 Lite is an **ESP32**-based board that strikes a balance between performance and power consumption.
+     It's ideal for projects requiring WiFi and Bluetooth connectivity, as well as processing power.
+   - **[WEMOS D1 MINI](Boards/WEMOS_D1_MINI/README.md)** v1, v2, v3, and v4:
       These compact boards based on the **ESP8266** are ideal for projects that require WiFi connectivity and a small
       footprint. Versions v1, v2, v3, and v4 offer progressive improvements in performance and features.
-
-    - **[WEMOS S2 MINI:](Boards/WEMOS_S2_MINI/README.md)**
+   - **[WEMOS S2 MINI:](Boards/WEMOS_S2_MINI/README.md)**
       This board uses the **ESP32-S2**, offering an alternative with higher performance and advanced features such as
       native USB and increased RAM and Flash compared to the ESP8266.
-
-    - **[LOLIN32 Lite:](Boards/LOLIN32_Lite/README.md)**
-      The LOLIN32 Lite is an **ESP32**-based board that strikes a balance between performance and power consumption.
-      It's ideal for projects requiring WiFi and Bluetooth connectivity, as well as processing power.
-
-    - **[ESP32-DevKitC 38 pins:](Boards/ESP32-DEVKIT-38PINS/README.md)**
-      This ESP32-based development kit offers a wide range of interfaces and peripherals, including GPIO, SPI, I2C,
-      UART, PWM, and more, making it a versatile choice for complex projects.
-
     - **WEMOS D1 UNO R3:**
       The WEMOS D1 UNO R3 combines compatibility with Arduino UNO R3 with the capabilities of ESP8266, making it perfect
       for projects that need a familiar Arduino interface and WiFi connectivity.
 
-    - **ESP32-C3 Supermini:**
-      The ESP32-C3 Supermini is a compact version of the ESP32-C3 that provides WiFi and Bluetooth LE connectivity. Its
-      small size makes it ideal for applications where space is limited.
 
 ### Components Used in my Projects:
 
