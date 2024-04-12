@@ -30,6 +30,8 @@ The BME680 sensor is a versatile environmental sensor capable of measuring tempe
 ## Projects
   Explore examples of projects incorporating the BME680 sensor for inspiration and guidance on how to utilize its capabilities in your own projects.
 
+- [**Living room sensors**](../../../../Projects/Living%20room%20sensors/README.md): Multi-sensor system for living room.
+
 ## Documentation Links
 
 - [Dimensiones](schemas/dimensiones-BME680.jpg)
