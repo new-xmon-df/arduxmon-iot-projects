@@ -32,6 +32,11 @@ The BME680 sensor is a versatile environmental sensor capable of measuring tempe
 
 - [**Living room sensors**](../../../../Projects/Living%20room%20sensors/README.md): Multi-sensor system for living room.
 
+## CAD
+Here I share the CAD program files.
+- [**KICAD**](cad/KICAD-CJMCU-680.zip): Files for KiCad 6, includes symbol, footprint and 3D.
+
+
 ## Documentation Links
 
 - [Dimensiones](schemas/dimensiones-BME680.jpg)
