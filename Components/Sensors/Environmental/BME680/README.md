@@ -22,7 +22,7 @@ The BME680 sensor is a versatile environmental sensor capable of measuring tempe
 
 
 ## Pinout
-[<img src="schemas/BME680-Pinout.jpg" width="500" alt="Pinout"/>](schemas/BME680-Pinout.jpg)
+[<img src="schemas/BME680-Pinout.png" width="500" alt="Pinout"/>](schemas/BME680-Pinout.png)
 
 ## Integration
   Integrating the BME680 sensor into your project is straightforward, thanks to its compatibility with popular microcontrollers and development platforms. Simply connect the sensor to your microcontroller using the I2C or SPI interface and utilize the appropriate library to read data from the sensor.
