@@ -30,7 +30,7 @@ Automatically senses motion for various applications including floor, bathroom, 
 - High output signal compatibility with various circuits.
 
 ## Pinout
-[<img src="schemas/HC-SR501-pinout.jpg" width="500" alt="Pinout"/>](schemas/HC-SR501-pinout.jpg)
+[<img src="schemas/HC-SR501-Pinout.png" width="500" alt="Pinout"/>](schemas/HC-SR501-Pinout.png)
 
 ## Adjustment
 - Distance and delay adjustment through potentiometers.
@@ -49,6 +49,11 @@ Automatically senses motion for various applications including floor, bathroom, 
 - Industrial automation control, etc.
 
 The HC-SR501 PIR Motion Detector is widely utilized in enterprises, hotels, stores, corridors, and other sensitive areas for automatic light control, lighting, and alarm systems.
+
+
+## DOWNLOAD FILES
+Here I share the CAD program files.
+- [**KICAD**](downloads/KICAD-HC-SR501.zip): Files for KiCad 6, includes symbol, footprint and 3D.
 
 ## Documentation Links
 - [Datasheet](pdf/HC-SR501-datasheet.pdf) - [ES](pdf/HC-SR501-datasheet-ES.pdf)
