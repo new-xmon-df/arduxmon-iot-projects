@@ -1,4 +1,4 @@
-# BME680 Sensor
+# CJMCU-680 Module (BME680 Sensor)
 
 The BME680 sensor is a versatile environmental sensor capable of measuring temperature, humidity, pressure, and gas levels. Here's a detailed overview of the BME680 sensor and its integration into your IoT projects:
 

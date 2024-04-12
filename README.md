@@ -91,8 +91,8 @@ accompanied by a general description, and each specific component is linked to i
    Explore the different types of sensors I've integrated, each serving a unique purpose:
 
     - **Environmental**:
-        - [BME680](Components/Sensors/Environmental/BME680/README.md): The BME680 sensor is a versatile environmental
-          sensor capable of measuring temperature, humidity, pressure, and gas levels.
+        - [CJMCU-680 Module (BME680 Sensor)](Components/Sensors/Environmental/CJMCU-680/README.md): The BME680 sensor is a versatile environmental
+          sensor capable of measuring temperature, humidity, pressure, and gas levels. This is the low-cost CJMCU-680 Module.
         - BMP280: *Documentation pending*
 
     - **Distance**:
