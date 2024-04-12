@@ -3,8 +3,8 @@
 The BME680 sensor is a versatile environmental sensor capable of measuring temperature, humidity, pressure, and gas levels. Here's a detailed overview of the BME680 sensor and its integration into your IoT projects:
 
 
-[<img src="pictures/BME680-front.jpg" width="300" alt="Front"/>](pictures/BME680-front.jpg)
-[<img src="pictures/BME680-back.jpg" width="300" alt="Back"/>](pictures/BME680-back.jpg)
+[<img src="pictures/CJMCU-680-front.jpg" width="300" alt="Front"/>](pictures/CJMCU-680-front.jpg)
+[<img src="pictures/CJMCU-680-back.jpg" width="300" alt="Back"/>](pictures/CJMCU-680-back.jpg)
 
 ## Description
   The BME680 sensor offers accurate and reliable environmental data sensing, making it suitable for a wide range of applications, including weather stations, indoor air quality monitoring, and environmental monitoring systems.
