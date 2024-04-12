@@ -36,23 +36,29 @@ The LD2410C human body sensing module is suitable for detecting and identifying 
 
 Module dimensions: 7mmx35mm, featuring 5 pin holes reserved in the hardware (factory default does not match the pins). The pin hole diameter is 0.6mm, with a pin spacing of 1.27mm.
 
-## Pin Definition:
+## Pinout
+[<img src="schemas/LD2410c-Pinout.png" width="500" alt="Pinout"/>](schemas/LD2410c-Pinout.png)
 
-| Pin | Symbol | Name          | Function                                      |
-| --- | ------ | ------------- | --------------------------------------------- |
-| 1   | OUT    | Target Status | High output: Human presence detected<br>Low output: No human presence detected |
-| 2   | UART_Tx| Serial Tx     | Transmitting pin for serial communication     |
-| 3   | UART_Rx| Serial Rx     | Receiving pin for serial communication        |
-| 4   | GND    | Power Ground  | Ground connection for power supply             |
-| 5   | VCC    | Power Input   | 5V power input                                 |
+### Pin Definition:
+
+| Pin | Symbol  | Name          | Function                                                                       |
+|-----|---------|---------------|--------------------------------------------------------------------------------|
+| 1   | OUT     | Target Status | High output: Human presence detected<br>Low output: No human presence detected |
+| 2   | UART_Tx | Serial Tx     | Transmitting pin for serial communication                                      |
+| 3   | UART_Rx | Serial Rx     | Receiving pin for serial communication                                         |
+| 4   | GND     | Power Ground  | Ground connection for power supply                                             |
+| 5   | VCC     | Power Input   | 5V power input                                                                 |
 
 
-[<img src="pictures/LD2410c-dimensions.jpg" width="400" alt="LD2410c Back"/>](pictures/LD2410c-dimensions.jpg)
+## Projects
+Explore examples of projects incorporating the BME680 sensor for inspiration and guidance on how to utilize its capabilities in your own projects.
 
+- [**Living room sensors**](../../../../Projects/Living%20room%20sensors/README.md): Multi-sensor system for living room.~~
+
+## DOWNLOAD FILES
+Here I share the CAD program files.
+- [**KICAD**](downloads/KICAD-HLK-LD2410c.zip): Files for KiCad 6, includes symbol, footprint and 3D.
 
 ## Documentation Links
 
 - [Datasheet](pdf/HLK-LD2410C_datasheet.pdf)
-
----
-This README.md provides detailed information about the LD2410C Human Presence Sensing Module, including its features, application scenarios, hardware description, pin definition, and relevant documentation links.
