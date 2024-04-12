@@ -19,12 +19,19 @@ The HC-SR04 sensor uses ultrasonic waves to measure distance, making it suitable
 - Wide operating voltage range for compatibility with various microcontrollers.
 - Simple interfacing using trigger and echo pins.
 - Non-contact measurement method for increased safety and reliability.
+- 
+## Pinout
+[<img src="schemas/HC-SR04-Pinout.png" width="500" alt="Pinout"/>](schemas/HC-SR04-Pinout.png)
 
 ## Integration
 Integrating the HC-SR04 sensor into your project is straightforward. Connect the VCC pin to the 5V power supply, GND pin to ground, TRIG pin to a digital output pin of the microcontroller, and ECHO pin to a digital input pin of the microcontroller. You can then use the provided Arduino library or implement your own logic to measure distances based on the pulse width of the ECHO signal.
 
 ## Projects
 Explore examples of projects incorporating the HC-SR04 sensor for inspiration and guidance on how to utilize its capabilities in your own projects.
+
+## DOWNLOAD FILES
+Here I share the CAD program files.
+- [**KICAD**](downloads/KICAD-HC-SR04.zip): Files for KiCad 6, includes symbol, footprint and 3D.
 
 ## Documentation Links
 - [Datasheet](pdf/HCSR04.pdf)
