@@ -37,9 +37,11 @@ There are modules that already incorporate all the necessary circuitry for the u
 
 
 Personally, I create a module like the KY-018, I also share the schema.
+
 [<img src="schemas/LDR-5528-Pinout.png" width="500" alt="Pinout"/>](schemas/LDR-5528-Pinout.png)
 
 This is the schema with which the LDR must be integrated into our projects.
+
 [<img src="schemas/ldr-5528-schema.png" width="500" alt="Schema"/>](schemas/ldr-5528-schema.png)
 
 
