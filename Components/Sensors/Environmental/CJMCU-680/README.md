@@ -38,6 +38,4 @@ Here I share the CAD program files.
 
 
 ## Documentation Links
-
-- [Dimensiones](schemas/dimensiones-BME680.jpg)
 - [Datasheet](pdf/BME680.pdf)
