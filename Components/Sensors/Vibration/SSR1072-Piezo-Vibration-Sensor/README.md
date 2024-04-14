@@ -17,11 +17,16 @@ The Piezoelectric Vibration & Knock Sensor Module utilizes a piezoelectric eleme
 - **Working Temperature Range:** -10℃ to +70℃
 
 ## Pinout
-![Pinout](schemas/SSR1072-Piezo-Vibration-Sensor-pinout.jpg)
-- **VCC:** Module power supply – 3.3V to 5V
-- **GND:** Ground
-- **D0:** Digital Output
-- **A0:** Analog Output
+[<img src="schemas/SSR1072-Piezo-Vibration-Sensor-Pinout.png" width="500" alt="Pinout"/>](schemas/SSR1072-Piezo-Vibration-Sensor-Pinout.png)
+
+### Pin Definition:
+| Pin | Description                      |
+|-----|----------------------------------|
+| VCC | Module power supply - 3.3V to 5V |
+| GND | Ground                           |
+| D0  | Digital Output                   |
+| A0  | Analog Output                    |
+
 
 ## Documentation Links
 
