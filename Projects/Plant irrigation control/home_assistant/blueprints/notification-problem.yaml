@@ -36,7 +36,7 @@ trigger:
 
 action:
   - variables:
-      low_moisture_plants: "{{ states | selectattr('entity_id', 'regex_search', '^plant\\..*') | selectattr('attributes.area', 'eq', area) | selectattr('attributes.moisture', 'eq', 'low') | map(attribute='entity_id') | list }}"
+      low_moisture_plants: "{{ states | select('match', '^plant\\..*') | selectattr('attributes.area', 'eq', area) | selectattr('attributes.moisture', 'eq', 'low') | map(attribute='entity_id') | list }}"
   - condition: template
     value_template: "{{ low_moisture_plants | count > 0 }}"
   - choose:
