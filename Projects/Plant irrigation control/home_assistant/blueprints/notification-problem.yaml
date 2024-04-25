@@ -1,57 +1,50 @@
 blueprint:
-  name: Water plants
-  description: Warning to water plants by area
+  name: Need for watering plants.
+  description: Send notifications when any of the plants in an area of the house need watering.
   domain: automation
   author: Arduxmon
   input:
     time:
-      name: Time to test on
-      description: Test is run at configured time
+      name: Execution time
+      description: The time at which the automation will run.
       default: '18:00:00'
       selector:
-        time: {}
-    person:
-      name: Person to come home
-      description: Trigger when this person comes home
+        time: { }
+    area:
+      name: Área
+      description: El área donde están las plantas
       selector:
-        entity:
-          domain: person
-    notify_device:
-      name: Device to notify
-      description: What device to notify
-      selector:
-        device:
-          integration: mobile_app
-    exclude:
-      name: Excluded Sensors
-      description: Plant sensors (e.g. cactus) to exclude from detection. Only entities are supported, devices must be expanded!
-      default: {entity_id: []}
+        area:
+    mobile_devices:
+      name: Dispositivos móviles
+      description: Los dispositivos móviles a los que se enviará la notificación
       selector:
         target:
           entity:
-            domain: plant
-trigger:
-  - platform: state
-    entity_id: !input person
-    to: home
-  - platform: time
-    at: !input time
+            domain: device_tracker
+    alexa_device:
+      name: Dispositivo Alexa
+      description: El dispositivo Alexa que dará la notificación
+      selector:
+        entity:
+          domain: media_player
 
-condition:
-  - condition: and
-    conditions:
-      - condition: state
-        entity_id: !input person
-        state: home
-      - condition: template
-        value_template: "{{ states.plant | selectattr('attributes.moisture_status', 'match', 'Low') | rejectattr('entity_id', 'in', exclude) | list | count > 0 }}"
+
+trigger:
+  platform: time
+  at: !input 'time'
+
 action:
-  - domain: mobile_app
-    type: notify
-    device_id: !input notify_device
-    title: 🌱
-    message: >-
-      {% for plant in states.plant | selectattr('attributes.moisture_status', 'match', 'Low') | rejectattr('entity_id', 'in', exclude) %}
-        {{- plant.name }} 💧{% if 'Low' in plant.attributes.conductivity_status %}💩{% endif -%} {% if not loop.last %}, {% endif -%}
-      {% endfor %}
-mode: single
+  - variables:
+      low_moisture_plants: "{{ states.plant | selectattr('attributes.moisture', 'eq', 'low') | selectattr('attributes.area', 'eq', area) | map(attribute='entity_id') | list }}"
+  - condition: template
+    value_template: "{{ low_moisture_plants | count > 0 }}"
+  - choose:
+      - conditions: "{{ states[mobile_devices] | selectattr('state', 'eq', 'home') | list | count > 0 }}"
+        sequence:
+          - service: notify.{{ alexa_device }}
+            data:
+              message: "La humedad de la planta es baja"
+  - service: notify.mobile_app_{{ mobile_devices }}
+    data:
+      message: "La humedad de la planta es baja"
