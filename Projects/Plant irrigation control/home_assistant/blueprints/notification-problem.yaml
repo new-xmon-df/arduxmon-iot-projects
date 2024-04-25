@@ -29,6 +29,8 @@ blueprint:
         entity:
           domain: media_player
 
+variables:
+  low_moisture_plants: []
 
 trigger:
   platform: time
@@ -36,7 +38,8 @@ trigger:
 
 action:
   - variables:
-      low_moisture_plants: "{{ states | select('match', '^plant\\..*') | selectattr('attributes.area', 'eq', area) | selectattr('attributes.moisture', 'eq', 'low') | map(attribute='entity_id') | list }}"
+      low_moisture_plants: "{{ expand('area.' ~ area.entity_id) | selectattr('entity_id', 'in', state_attr(area.entity_id, 'entity_id')) | map(attribute='name') | list }}"
+      #low_moisture_plants: "{{ states | select('match', '^plant\\..*') | selectattr('attributes.area', 'eq', area) | selectattr('attributes.moisture', 'eq', 'low') | map(attribute='entity_id') | list }}"
   - condition: template
     value_template: "{{ low_moisture_plants | count > 0 }}"
   - choose:
