@@ -16,7 +16,7 @@ and other fields, offering scalability and rich software support.
 - Wi-Fi: 2.4 GHz b/g/n
 - Bluetooth: BLE 5
 - Processor: 32-bit RISC-V single-core, up to 160MHz
-- SRAM: 400KB
+- SRAM: 320KB
 - Flash: 4MB
 - Interfaces: 2x UART, 1x I²C, 3x SPI
 - GPIO Pins: 11 digital (PWM), 4 analog (ADC)
