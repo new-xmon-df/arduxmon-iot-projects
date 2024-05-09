@@ -112,7 +112,7 @@ esp32:
 
 esphome:
   platformio_options:
-    board_build.flash_mode: dio`
+    board_build.flash_mode: dio
 ```
 
 Config for status_led (on GPIO8):
