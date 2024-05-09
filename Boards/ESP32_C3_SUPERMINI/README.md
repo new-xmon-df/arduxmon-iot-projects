@@ -101,6 +101,34 @@ Before pressing the buttons, it will connect and disconnect.
 - The BOOT button is wired to GPIO9.
 - JTAG is available on GPIO4 - GPIO7.
 
+### ESPHOME SETUP
+
+```yaml
+esp32:
+  board: esp32-c3-devkitm-1
+  variant: ESP32C3
+  framework:
+    type: esp-idf
+
+esphome:
+  platformio_options:
+    board_build.flash_mode: dio`
+```
+
+Config for status_led (on GPIO8):
+
+```yaml
+light:
+  - platform: status_led
+    name: "Status LED"
+    id: esp_status_led
+    icon: "mdi:alarm-light"
+    pin:
+      number: GPIO8
+      inverted: true
+    restore_mode: ALWAYS_OFF
+```
+
 ## Documentation Links
 
 - [Schematic](pictures/ESP32-C3-SuperMini-schematic.png)
