@@ -54,7 +54,7 @@ been instrumental in creating smart and connected solutions.
 
    In this section, I will detail the specific boards that I have used in my IoT projects. Each of these boards has been
    selected for its particular features and capabilities to meet the requirements of each project.
-   - **ESP32-C3 Supermini:**
+   - **[ESP32-C3 Supermini:](Boards/ESP32_C3_SUPERMINI/README.md)**
      The ESP32-C3 Supermini is a compact version of the ESP32-C3 that provides WiFi and Bluetooth LE connectivity. Its
      small size makes it ideal for applications where space is limited.
    - **[ESP32-DevKitC 38 pins:](Boards/ESP32-DEVKIT-38PINS/README.md)**
