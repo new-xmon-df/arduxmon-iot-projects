@@ -234,7 +234,8 @@ blueprint:
       selector:
         number:
           min: 0
-          max: 255
+          max: 100
+          unit_of_measurement: %
     no_motion_wait:
       name: Wait time
       description: Time to leave the light on after last motion is detected.
