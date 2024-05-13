@@ -1,5 +1,5 @@
 blueprint:
-  name: Night Motion-activated WLED Light
+  name: Night Motion-activated WLED Light - basic
   description: Turn on a WLED light when motion is detected on night.
   domain: automation
   source_url: https://github.com/home-assistant/core/blob/dev/homeassistant/components/automation/blueprints/motion_light.yaml
@@ -20,7 +20,7 @@ blueprint:
             integration: wled
     wled_light_effect:
       name: "WLED effect"
-      default: "Waving Cell"
+      default: "Solid"
       selector:
         select:
           options:
@@ -211,89 +211,14 @@ blueprint:
             - Waving Cell
             - Wipe
             - Wipe Random
-    wled_light_palette:
-      name: "WLED color palette"
-      default: "Fire"
+    wled_light_color:
+      name: "WLED color"
+      default: [255, 0, 0]
       selector:
-        select:
-          options:
-            - Analogous
-            - April Night
-            - Aqua Flash
-            - Atlantica
-            - Aurora
-            - Aurora 2
-            - Autumn
-            - Beach
-            - Beech
-            - Blink Red
-            - Breeze
-            - C9
-            - C9 2
-            - C9 New
-            - Candy
-            - Candy2
-            - Cloud
-            - Cyane
-            - Default
-            - Departure
-            - Drywet
-            - Fairy Reaf
-            - Fire
-            - Forest
-            - Grintage
-            - Hult
-            - Hult 64
-            - Icefire
-            - Jul
-            - Landscape
-            - Lava
-            - Light Pink
-            - Lite Light
-            - Magenta
-            - Magred
-            - Ocean
-            - Orange & Teal
-            - Orangery
-            - Party
-            - Pastel
-            - Pink Candy
-            - Rainbow
-            - Rainbow Bands
-            - Red & Blue
-            - Red Flash
-            - Red Reaf
-            - Red Shift
-            - Red Tide
-            - Retro Clown
-            - Rewhi
-            - Rivendell
-            - Sakura
-            - Semi Blue
-            - Sherbet
-            - Splash
-            - Sunset
-            - Sunset 2
-            - Temperature
-            - Tertiary
-            - Tiamat
-            - Toxy Reaf
-            - Vintage
-            - Yelblu
-            - Yelblu Hot
-            - Yellowout
-            - Yelmag
-    wled_light_intensity:
-      name: "WLED intensity"
+        color_rgb:
+    wled_light_brightness:
+      name: "WLED brightness"
       default: 40
-      selector:
-        number:
-          min: 0
-          max: 100
-          unit_of_measurement: "%"
-    wled_light_speed:
-      name: "WLED speed"
-      default: 30
       selector:
         number:
           min: 0
@@ -326,24 +251,8 @@ action:
     target: !input wled_light_target
     data:
       effect: !input wled_light_effect
-  - alias: "Color palette"
-    service: select.select_option
-    target:
-      entity_id: select.salamandra_paleta_de_color
-    data:
-      option: !input wled_light_palette
-  - alias: "Intensity"
-    service: number.set_value
-    target:
-      entity_id: number.salamandra_intensidad
-    data:
-      value: !input wled_light_intensity
-  - alias: "Lights speed"
-    service: number.set_value
-    target:
-      entity_id: number.salamandra_velocidad
-    data:
-      value: !input wled_light_speed
+      brightness: !input wled_light_brightness
+      rgb_color: !input wled_light_color
   - alias: "Wait until there is no motion from device"
     wait_for_trigger:
       platform: state
