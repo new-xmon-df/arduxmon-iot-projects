@@ -12,11 +12,23 @@ blueprint:
           filter:
             device_class: motion
             domain: binary_sensor
-    wled_light_target:
-      name: "WLED device"
+    condition_toggle:
+      name: "Consider Condition"
+      description: Enter any conditions you would like to apply to the automation.
+      default:
+        - condition: sun
+          before: sunrise
+          after: sunset
+          after_offset: "+00:30:00"
+          enabled: false
       selector:
-        device:
+        condition:
+    wled_light_target:
+      name: "WLED light"
+      selector:
+        entity:
           filter:
+            domain: light
             integration: wled
     wled_light_effect:
       name: "WLED effect"
@@ -218,12 +230,11 @@ blueprint:
         color_rgb:
     wled_light_brightness:
       name: "WLED brightness"
-      default: 40
+      default: 128
       selector:
         number:
           min: 0
-          max: 100
-          unit_of_measurement: "%"
+          max: 255
     no_motion_wait:
       name: Wait time
       description: Time to leave the light on after last motion is detected.
@@ -245,10 +256,14 @@ trigger:
   from: "off"
   to: "on"
 
+condition:
+  !input condition_toggle
+
 action:
   - alias: "Turn on the light"
     service: light.turn_on
-    target: !input wled_light_target
+    target:
+      entity_id: !input wled_light_target
     data:
       effect: !input wled_light_effect
       brightness: !input wled_light_brightness
@@ -263,6 +278,7 @@ action:
     delay: !input no_motion_wait
   - alias: "Turn off the light"
     service: light.turn_off
-    target: !input wled_light_target
+    target:
+      entity_id: !input wled_light_target
 
 
