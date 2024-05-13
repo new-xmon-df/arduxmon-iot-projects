@@ -1,0 +1,9 @@
+esp32:
+  board:  lolin_s2_mini # https://www.wemos.cc/en/latest/s2/s2_mini.html
+  framework:
+    type: arduino
+
+esphome:
+  name: ${devicename}
+  friendly_name: ${upper_devicename}
+  comment: ${comment_device}

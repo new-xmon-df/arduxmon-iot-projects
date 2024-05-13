@@ -1,0 +1,19 @@
+wifi:
+  id: ${esp_id}_wifi
+  # power_save_mode: none #light (default) # doc https:#esphome.io/components/wifi.html#wifi-power-save-mode
+  password: !secret wifi_domo_password
+  ssid: !secret wifi_domo_ssid
+  fast_connect: true # connects directly to the WiFi network without first performing a full scan.
+
+  manual_ip:
+    # Configure this with the ESP IP
+    static_ip: $static_ip
+    # Configure this with the router's IP address. Usually ends in .1
+    gateway: 192.168.1.1
+    # The subnet of the network. 255.255.255.0 usually works well for most home networks.
+    subnet: 255.255.255.0
+
+  # Enable backup access point (captive portal) in case Wi-Fi connection fails
+  ap:
+    ssid: "${upper_devicename} HSPOT"
+    password: !secret fallback_hotspot_password

@@ -1,0 +1,82 @@
+substitutions:
+  # Device data
+  devicename: "hallway-pir"
+  upper_devicename: "Hallway PIR"
+  comment_device: "Motion sensing for hallways"
+
+  esp_name: ${upper_devicename}
+  esp_id: hallway_pir
+
+  static_ip: 192.168.xxx.xxx
+
+  api_key: "Dtz/2tbfn501qUd4PLNZw2lsssT+Hvaq5CVpEqLPuSs="
+  ota_password: "562e3ff7d181c2387290bd57493b7cb3"
+
+  #--------------------
+  ## Pinout
+  ## | Pin Number | Function     | ADC/TOUCH |
+  ## |------------|--------------|-----------|
+  ## | GPIO15     | BOARD LED    | -         |
+  ## | GPIO16     | PIR SENSOR   | -         |
+
+
+  # PININ
+  pin_sr501: GPIO16
+
+  # PINOUT
+  pin_led_board: GPIO15
+
+packages:
+  board: !include boards/wemos-s2-mini.yaml
+  wifi: !include common/wifi_domotica.yaml
+
+# Enable logging
+logger:
+  level: DEBUG #NONE ERROR WARN INFO DEBUG VERBOSE VERY_VERBOSE
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: $api_key
+
+ota:
+  password: $ota_password
+
+# set up a webserver, if you access the internal IP of the device you CAN control it!!
+web_server:
+  auth:
+    username: !secret web_server_username
+    password: !secret web_server_password
+
+# If the wifi connection fails, create the hotspot to connect to it and configure the WIFI
+captive_portal:
+
+binary_sensor:
+  - platform: gpio
+    name: "${esp_name} Motion sensor"
+    id: ${esp_id}_pir
+    device_class: motion
+    pin:
+      number: $pin_sr501
+      mode:
+        input: true
+        pullup: true
+    on_state:
+      then:
+        - logger.log: Motion detected
+        - light.turn_on: ${esp_id}_light_board #turn on the onboard light
+        - delay: 2s
+        - light.turn_off: ${esp_id}_light_board #turn off the onboard light
+
+# LED LIGHTING
+output:
+  - platform: ledc
+    pin: ${pin_led_board}
+    id: ${esp_id}_led_board
+
+light:
+  - platform: monochromatic
+    output: ${esp_id}_led_board
+    name: "${esp_name} Light status"
+    id: ${esp_id}_light_board
+
