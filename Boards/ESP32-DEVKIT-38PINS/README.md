@@ -7,6 +7,8 @@ dual-core 32-bit Tensilica Xtensa processor running at up to 240MHz, WiFi, and B
 extensive features and compatibility with various development environments, making it an ideal choice for Internet of
 Things (IoT) projects.
 
+[ESP32 Hardware Reference](https://docs.espressif.com/projects/esp-idf/en/v4.3/esp32/hw-reference/index.html).
+
 [<img src="pictures/ESP32-DEVKIT-38PINS-front.jpg" width="300" alt="top view"/>](pictures/ESP32-DEVKIT-38PINS-front.jpg)
 [<img src="pictures/ESP32-DEVKIT-38PINS-back.jpg" width="300" alt="bottom view"/>](pictures/ESP32-DEVKIT-38PINS-back.jpg)
 

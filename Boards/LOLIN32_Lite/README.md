@@ -2,6 +2,7 @@
 ## Overview
 The LOLIN32 Lite is a compact development board based on the ESP32 chip. It offers WiFi and Bluetooth connectivity, making it suitable for a wide range of IoT projects and prototyping applications. Additionally, it features a built-in battery charging circuit, allowing you to power your projects with rechargeable batteries.
 
+[ESP32 Hardware Reference](https://docs.espressif.com/projects/esp-idf/en/v4.3/esp32/hw-reference/index.html).
 
 [<img src="pictures/LOLIN32-Lite-01_1.jpg" width="300" alt="top view"/>](pictures/LOLIN32-Lite-01_1.jpg)
 [<img src="pictures/LOLIN32-Lite-01_2.jpg" width="300" alt="bottom view"/>](pictures/LOLIN32-Lite-01_2.jpg)

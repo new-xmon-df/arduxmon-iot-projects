@@ -8,6 +8,8 @@ communication capabilities. It can be developed using the ESP-IDF development fr
 development environments such as MicroPython and Arduino. The product is suitable for IoT, smart home, sensor networks,
 and other fields, offering scalability and rich software support.
 
+[ESP32-C3 Hardware Reference](https://docs.espressif.com/projects/esp-idf/en/v4.3/esp32c3/hw-reference/index.html).
+
 [<img src="pictures/ESP32-C3-SuperMini-front.jpg" width="300" alt="top view"/>](pictures/ESP32-C3-SuperMini-front.jpg)
 [<img src="pictures/ESP32-C3-SuperMini-back.jpg" width="300" alt="bottom view"/>](pictures/ESP32-C3-SuperMini-back.jpg)
 ## Features

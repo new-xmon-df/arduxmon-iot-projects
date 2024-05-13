@@ -3,6 +3,8 @@
 ## Overview
 The WEMOS S2 Mini is a compact microcontroller board based on the ESP32-S2 chip. It offers WiFi connectivity and a small form factor, making it suitable for IoT projects that require wireless communication and advanced features.
 
+[ESP32-S2 Hardware Reference](https://docs.espressif.com/projects/esp-idf/en/v4.3/esp32s2/hw-reference/index.html).
+
 [<img src="pictures/s2_mini_v1.0.0_1_16x16.jpg" width="300" alt="top view"/>](pictures/s2_mini_v1.0.0_1_16x16.jpg)
 [<img src="pictures/s2_mini_v1.0.0_2_16x16.jpg" width="300" alt="bottom view"/>](pictures/s2_mini_v1.0.0_2_16x16.jpg)
 
@@ -27,7 +29,6 @@ The WEMOS S2 Mini is a compact microcontroller board based on the ESP32-S2 chip.
 | PSRAM             | 2M Bytes    |
 | Size              | 34.3*25.4mm |
 | Weight            | 2.4g        |
-
 
 ## Device Firmware Upgrade (DFU) Mode
 To enter DFU mode:
