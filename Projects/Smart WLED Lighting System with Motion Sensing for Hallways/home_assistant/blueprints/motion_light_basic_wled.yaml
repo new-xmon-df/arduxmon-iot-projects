@@ -2,7 +2,7 @@ blueprint:
   name: Night Motion-activated WLED Light - basic
   description: Turn on a WLED light when motion is detected on night.
   domain: automation
-  source_url: https://github.com/home-assistant/core/blob/dev/homeassistant/components/automation/blueprints/motion_light.yaml
+  source_url: https://github.com/new-xmon-df/arduxmon-iot-projects/blob/736c9521a5172a51d0bcf45b661cfc93f8ba7da0/Projects/Smart%20WLED%20Lighting%20System%20with%20Motion%20Sensing%20for%20Hallways/home_assistant/blueprints/motion_light_basic_wled.yaml
   author: Arduxmon
   input:
     motion_entity:
