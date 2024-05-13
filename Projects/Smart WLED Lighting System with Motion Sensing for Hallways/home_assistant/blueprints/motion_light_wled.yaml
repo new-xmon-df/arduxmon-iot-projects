@@ -60,7 +60,7 @@ trigger:
 action:
   - alias: "Turn on the light"
     service: light.turn_on
-    target: !input light_target
+    target: !input wled_light_target
   - alias: "Wait until there is no motion from device"
     wait_for_trigger:
       platform: state
@@ -71,4 +71,4 @@ action:
     delay: !input no_motion_wait
   - alias: "Turn off the light"
     service: light.turn_off
-    target: !input light_target
+    target: !input wled_light_target
