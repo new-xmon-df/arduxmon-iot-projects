@@ -1,7 +1,7 @@
-# Welcome to Arduxmon IoT projects!  💀🌟
+# Welcome to Arduxmon IoT Projects! 💀🌟
 
 Hey there, tech enthusiasts! I'm Arduxmon, a passionate developer and graphic designer with an insatiable love for IoT
-projects. In this space, I share my craziest and coolest creations so we can all learn, experiment, and improve
+projects. In this space, I share my craziest and coolest creations, so we can all learn, experiment, and improve
 together. 💡🛠️
 
 ### What will you find here?
@@ -20,29 +20,31 @@ together. 💡🛠️
 
 ### Projects in the Repository
 
-- [**Living room sensors**](Projects/Living%20room%20sensors/README.md): Multi-sensor system for living room.
-- [**Plant Irrigation Control System**](Projects/Plant%20irrigation%20control/README.md) _incomplete_: An automated
+- [**Living Room Sensors**](Projects/Living%20room%20sensors/README.md): Multi-sensor system for the living room.
+- [**Plant Irrigation Control System**](Projects/Plant%20irrigation%20control/README.md) _(incomplete)_: An automated
   irrigation system for plants.
 
-### ESP Boards Used in the Project:
+### ESP Boards Used in the Projects
 
 In this section, we will delve into the heart of my IoT projects: the ESP boards. These powerful microcontrollers have
 been instrumental in creating smart and connected solutions.
 
 1. **ESP32**:
-   is a versatile and powerful board that offers integrated WiFi and Bluetooth connectivity. Its dual-core processor and
-   wide range of peripherals make it an ideal choice for projects requiring high performance and wireless communication.
-    - **Technical details**:
+   The ESP32 is a versatile and powerful board that offers integrated Wi-Fi and Bluetooth connectivity. Its dual-core
+   processor and wide range of peripherals make it an ideal choice for projects requiring high performance and wireless
+   communication.
+    - **Technical Details**:
         - Processor: Dual-core Xtensa LX6 at 240 MHz
-        - Connectivity: WiFi 802.11 b/g/n, Bluetooth v4.2 BR/EDR and BLE
+        - Connectivity: Wi-Fi 802.11 b/g/n, Bluetooth v4.2 BR/EDR and BLE
         - Interfaces: GPIO, SPI, I2C, UART, PWM, ADC, DAC, etc.
         - Memory: 520 KB SRAM, 4 MB Flash
 2. **ESP8266**:
-   is another popular and affordable board known for its integrated WiFi connectivity. Although it has fewer resources
-   than the ESP32, it is perfect for simpler projects requiring internet connection and remote control.
-    - **Technical details**:
+   The ESP8266 is another popular and affordable board known for its integrated Wi-Fi connectivity. Although it has
+   fewer resources than the ESP32, it is perfect for simpler projects requiring an internet connection and remote
+   control.
+    - **Technical Details**:
         - Processor: Single-core Xtensa LX106 at 80 MHz
-        - Connectivity: WiFi 802.11 b/g/n
+        - Connectivity: Wi-Fi 802.11 b/g/n
         - Interfaces: GPIO, SPI, I2C, UART, PWM, ADC
         - Memory: 80 KB RAM, 1 MB Flash
 3. **Uses in my Projects**:
@@ -54,35 +56,41 @@ been instrumental in creating smart and connected solutions.
 
    In this section, I will detail the specific boards that I have used in my IoT projects. Each of these boards has been
    selected for its particular features and capabilities to meet the requirements of each project.
-   - **[ESP32-C3 Supermini:](Boards/ESP32_C3_SUPERMINI/README.md)**
-     The ESP32-C3 Supermini is a compact version of the ESP32-C3 that provides WiFi and Bluetooth LE connectivity. Its
-     small size makes it ideal for applications where space is limited. [ESP32-C3 Hardware Reference](https://docs.espressif.com/projects/esp-idf/en/v4.3/esp32c3/hw-reference/index.html).
-   - **[ESP32-DevKitC 38 pins:](Boards/ESP32-DEVKIT-38PINS/README.md)**
-     This **ESP32**-based development kit offers a wide range of interfaces and peripherals, including GPIO, SPI, I2C,
-     UART, PWM, and more, making it a versatile choice for complex projects. [ESP32 Hardware Reference](https://docs.espressif.com/projects/esp-idf/en/v4.3/esp32/hw-reference/index.html).
-   - **[LOLIN32 Lite:](Boards/LOLIN32_Lite/README.md)**
-     The LOLIN32 Lite is an **ESP32**-based board that strikes a balance between performance and power consumption.
-     It's ideal for projects requiring WiFi and Bluetooth connectivity, as well as processing power. [ESP32 Hardware Reference](https://docs.espressif.com/projects/esp-idf/en/v4.3/esp32/hw-reference/index.html).
-   - **[WEMOS D1 MINI](Boards/WEMOS_D1_MINI/README.md)** v1, v2, v3, and v4:
-      These compact boards based on the **ESP8266** are ideal for projects that require WiFi connectivity and a small
+    - **[ESP32-C3 Supermini](Boards/ESP32_C3_SUPERMINI/README.md)**:
+      The ESP32-C3 Supermini is a compact version of the ESP32-C3 that provides Wi-Fi and Bluetooth LE connectivity. Its
+      small size makes it ideal for applications where space is
+      limited. [ESP32-C3 Hardware Reference](https://docs.espressif.com/projects/esp-idf/en/v4.3/esp32c3/hw-reference/index.html).
+    - **[ESP32-C3 ZERO](Boards/ESP32_C3_ZERO/README.md)**:
+      The ESP32-C3-ZERO is a versatile board offering Wi-Fi and Bluetooth LE connectivity, designed for efficient
+      performance with a reduced pin count. Its compact form factor is suitable for various IoT
+      applications. [ESP32-C3 Hardware Reference](https://docs.espressif.com/projects/esp-idf/en/v4.3/esp32c3/hw-reference/index.html).
+    - **[ESP32-DevKitC 38 Pins](Boards/ESP32-DEVKIT-38PINS/README.md)**:
+      This ESP32-based development kit offers a wide range of interfaces and peripherals, including GPIO, SPI, I2C,
+      UART, PWM, and more, making it a versatile choice for complex
+      projects. [ESP32 Hardware Reference](https://docs.espressif.com/projects/esp-idf/en/v4.3/esp32/hw-reference/index.html).
+    - **[LOLIN32 Lite](Boards/LOLIN32_Lite/README.md)**:
+      The LOLIN32 Lite is an ESP32-based board that strikes a balance between performance and power consumption. It's
+      ideal for projects requiring Wi-Fi and Bluetooth connectivity, as well as processing
+      power. [ESP32 Hardware Reference](https://docs.espressif.com/projects/esp-idf/en/v4.3/esp32/hw-reference/index.html).
+    - **[WEMOS D1 MINI](Boards/WEMOS_D1_MINI/README.md)** v1, v2, v3, and v4:
+      These compact boards based on the ESP8266 are ideal for projects that require Wi-Fi connectivity and a small
       footprint. Versions v1, v2, v3, and v4 offer progressive improvements in performance and features.
-   - **[WEMOS S2 MINI:](Boards/WEMOS_S2_MINI/README.md)**
-      This board uses the **ESP32-S2**, offering an alternative with higher performance and advanced features such as
-      native USB and increased RAM and Flash compared to the ESP8266. [ESP32-S2 Hardware Reference](https://docs.espressif.com/projects/esp-idf/en/v4.3/esp32s2/hw-reference/index.html).
-    - **WEMOS D1 UNO R3:**
+    - **[WEMOS S2 MINI](Boards/WEMOS_S2_MINI/README.md)**:
+      This board uses the ESP32-S2, offering an alternative with higher performance and advanced features such as native
+      USB and increased RAM and Flash compared to the
+      ESP8266. [ESP32-S2 Hardware Reference](https://docs.espressif.com/projects/esp-idf/en/v4.3/esp32s2/hw-reference/index.html).
+    - **WEMOS D1 UNO R3**:
       The WEMOS D1 UNO R3 combines compatibility with Arduino UNO R3 with the capabilities of ESP8266, making it perfect
-      for projects that need a familiar Arduino interface and WiFi connectivity.
+      for projects that need a familiar Arduino interface and Wi-Fi connectivity.
 
-
-### Components Used in my Projects:
+### Components Used in My Projects
 
 In this section, I categorize the components utilized in my projects according to their type. Each component type is
 accompanied by a general description, and each specific component is linked to its respective documentation.
 
-1. **Displays**: are essential components in many of my IoT projects, providing visual feedback and information display
-   to users. Explore the diverse range of displays I've integrated:
-
-    - [SH1116](Components/Displays/SH1106/README.md): The SH1106 display is a popular choice among hobbyists and
+1. **Displays**: Displays are essential components in many of my IoT projects, providing visual feedback and information
+   display to users. Explore the diverse range of displays I've integrated:
+    - [SH1106](Components/Displays/SH1106/README.md): The SH1106 display is a popular choice among hobbyists and
       professionals alike, offering high contrast and excellent visibility in various lighting conditions. Here's what
       you need to know about integrating the SH1106 display into your IoT projects:
 
@@ -95,8 +103,10 @@ accompanied by a general description, and each specific component is linked to i
           of measuring distance accurately using ultrasonic waves.
 
     - **Environmental**:
-        - [CJMCU-680 Module (BME680 Sensor)](Components/Sensors/Environmental/CJMCU-680/README.md): The BME680 sensor is a versatile environmental
-          sensor capable of measuring temperature, humidity, pressure, and gas levels. This is the low-cost CJMCU-680 Module.
+        - [CJMCU-680 Module (BME680 Sensor)](Components/Sensors/Environmental/CJMCU-680/README.md): The BME680 sensor is
+          a versatile environmental
+          sensor capable of measuring temperature, humidity, pressure, and gas levels. This is the low-cost CJMCU-680
+          Module.
         - BMP280: *Documentation pending*
 
     - **Light**:
@@ -109,16 +119,16 @@ accompanied by a general description, and each specific component is linked to i
           speed, and current sensing.
 
     - **Presence**:
-      - [HC-SR501](Components/Sensors/Presence/HC-SR501/README.md): The HC-SR501 PIR Motion Detector is based on
-        infrared technology, featuring an automatic control module designed with a high-sensitivity.
-      - [LD2410b](Components/Sensors/Presence/LD2410b/README.md): The LD2410b sensor by Hilink Electronics detects
-      human presence with high sensitivity using FMCW at 24GHz, enabling precise detection of motion and stationary
-      states, along with distance calculation.
-      - [LD2410c](Components/Sensors/Presence/LD2410c/README.md): The LD2410C sensor by Hilink Electronics utilizes
-        24GHz FMCW technology for highly sensitive human presence detection, including precise motion and stationary
-        state detection and distance calculation. It boasts compact dimensions of 22mm x 16mm and features a standard
-        2.54mm pin spacing
-      - LD2411: *Documentation pending*
+        - [HC-SR501](Components/Sensors/Presence/HC-SR501/README.md): The HC-SR501 PIR Motion Detector is based on
+          infrared technology, featuring an automatic control module designed with high sensitivity.
+        - [LD2410b](Components/Sensors/Presence/LD2410b/README.md): The LD2410b sensor by Hilink Electronics detects
+          human presence with high sensitivity using FMCW at 24GHz, enabling precise detection of motion and stationary
+          states, along with distance calculation.
+        - [LD2410c](Components/Sensors/Presence/LD2410c/README.md): The LD2410C sensor by Hilink Electronics utilizes
+          24GHz FMCW technology for highly sensitive human presence detection, including precise motion and stationary
+          state detection and distance calculation. It boasts compact dimensions of 22mm x 16mm and features a standard
+          2.54mm pin spacing.
+        - LD2411: *Documentation pending*
 
     - **Soil Moisture**:
         - [Capacitive Soil Moisture](Components/Sensors/Soil%20Moisture/Capacitive%20Soil%20Moisture/README.md):
