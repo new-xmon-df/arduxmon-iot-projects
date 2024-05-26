@@ -130,3 +130,6 @@ Here I share the CAD program files.
 - [Schematic](pdf/sch_s2_mini_v1.0.0.pdf)
 - [ESP32-S2 Datasheet](pdf/esp32-s2_datasheet_en.pdf)
 - [Official WEMOS D1 MINI Documentation](https://www.wemos.cc/en/latest/s2/s2_mini.html)
+
+
+[All boards comparative](../../Docs/comparative-boards.md)

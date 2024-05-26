@@ -82,6 +82,10 @@ been instrumental in creating smart and connected solutions.
     - **WEMOS D1 UNO R3**:
       The WEMOS D1 UNO R3 combines compatibility with Arduino UNO R3 with the capabilities of ESP8266, making it perfect
       for projects that need a familiar Arduino interface and Wi-Fi connectivity.
+    
+To help you choose the most suitable development board for your projects, I have created a comprehensive comparison table of various ESP32 and WEMOS boards. This table includes detailed information on processors, memory capacities, performance, dimensions, and specific features of each board.
+
+You can view and download the full comparative document [here](Docs/comparative-boards.md).
 
 ### Components Used in My Projects
 

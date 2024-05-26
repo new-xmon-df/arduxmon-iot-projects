@@ -129,3 +129,5 @@ Here I share the CAD program files.
 - [ESP32-C3-Zero Schematic](pdf/ESP32-C3-Zero-Sch.pdf)
 - [ESP32-C3-Zero Dimensions](pictures/ESP32-C3-Zero_dimensions.jpg)
 - [Official ESP32-C3-Zero Documentation](https://www.waveshare.com/wiki/ESP32-C3-Zero)
+
+[All boards comparative](../../Docs/comparative-boards.md)

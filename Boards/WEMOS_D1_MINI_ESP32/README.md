@@ -110,3 +110,5 @@ Here I share the CAD program files.
 
 ## Versions
 - **V2.0** (current)
+
+[All boards comparative](../../Docs/comparative-boards.md)

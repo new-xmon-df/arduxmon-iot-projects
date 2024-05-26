@@ -104,3 +104,6 @@ Here I share the CAD program files.
 - **v3.0**
 - **v2.0**
 - **v1.0**
+
+
+[All boards comparative](../../Docs/comparative-boards.md)

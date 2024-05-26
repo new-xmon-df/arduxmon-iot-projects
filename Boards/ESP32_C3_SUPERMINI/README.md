@@ -137,3 +137,6 @@ Here I share the CAD program files.
 
 - [Schematic](pictures/ESP32-C3-SuperMini-schematic.png)
 - [ESP32-S2 Datasheet](pdf/ESP32-C3-SuperMini-Datasheet.pdf)
+
+
+[All boards comparative](../../Docs/comparative-boards.md)

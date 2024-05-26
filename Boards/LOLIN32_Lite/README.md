@@ -142,3 +142,5 @@ For detailed instructions and more configuration options, refer to the [ESPHome 
 
 ## Documentation Links
 - [Schematic](pdf/sch_lolin32_lite_v1.0.0.pdf)
+
+[All boards comparative](../../Docs/comparative-boards.md)

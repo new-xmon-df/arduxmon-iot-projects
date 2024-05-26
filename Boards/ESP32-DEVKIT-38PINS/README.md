@@ -268,3 +268,5 @@ For detailed instructions and more configuration options, refer to the [ESPHome 
 - [Dimensions](pictures/ESP32-DEVKIT-38PINS-dimensions.jpg)
 - [Schematic](pdf/ESP32-Core-Board-V2_sch.pdf)
 - [ESP32 Datasheet](pdf/esp32_datasheet_en.pdf)
+
+[All boards comparative](../../Docs/comparative-boards.md)
