@@ -1,4 +1,4 @@
-# WEMOS D1 MINI **v4** 
+# WEMOS D1 MINI **v4**
 #### (older v1, v2, v3)
 
 ## Overview
@@ -45,9 +45,48 @@ The WEMOS D1 MINI boards are compact and powerful ESP8266-based microcontrollers
 | G   | Ground                       | GND          |
 | 5V  | 5V                           | -            |
 
-
 [<img src="wemos-d1-mini-pinout.png" width="1000" alt="PINOUT"/>](wemos-d1-mini-pinout.png)
 
+## Using with ESPHome
+The WEMOS D1 Mini V4 can be easily integrated with ESPHome for use in Home Assistant. Here are the basic steps to get started:
+
+1. **Install ESPHome**: Follow the [installation guide](https://esphome.io/guides/installing_esphome.html) on the ESPHome website.
+2. **Create a new configuration file**: Create a YAML file for your WEMOS D1 Mini V4. Here is an example configuration:
+
+    ```yaml
+    esphome:
+      name: wemos_d1_mini_v4
+      friendly_name: WEMOS D1 MINI V4
+      comment: Template for this board
+   
+    esp8266:
+      board: d1_mini
+
+    wifi:
+      ssid: "your_SSID"
+      password: "your_PASSWORD"
+
+    # Enable logging
+    logger:
+
+    # Enable Home Assistant API
+    api:
+      password: "your_API_password"
+
+    ota:
+      password: "your_OTA_password"
+
+    # Example configuration entry for a GPIO switch
+    switch:
+      - platform: gpio
+        name: "Wemos D1 Mini V4 Switch"
+        pin: GPIO16
+    ```
+
+3. **Upload the configuration**: Use the ESPHome command line or the web interface to upload the configuration to your WEMOS D1 Mini V4.
+4. **Integrate with Home Assistant**: Once the configuration is uploaded, the device will automatically appear in Home Assistant.
+
+For detailed instructions and more configuration options, refer to the [ESPHome documentation](https://esphome.io/).
 
 ## Documentation Links
 - [Schematic v4](pdf/sch_d1_mini_v4.0.0.pdf)

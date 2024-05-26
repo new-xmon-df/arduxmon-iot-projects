@@ -1,42 +1,41 @@
 # WEMOS S2 MINI
 
 ## Overview
-The WEMOS S2 Mini is a compact microcontroller board based on the ESP32-S2 chip. It offers WiFi connectivity and a small form factor, making it suitable for IoT projects that require wireless communication and advanced features.
+The WEMOS S2 Mini is a compact microcontroller board based on the ESP32-S2 chip. It offers Wi-Fi connectivity and a small form factor, making it suitable for IoT projects that require wireless communication and advanced features.
 
-[ESP32-S2 Hardware Reference](https://docs.espressif.com/projects/esp-idf/en/v4.3/esp32s2/hw-reference/index.html).
+[ESP32-S2 Hardware Reference](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s2/hw-reference/index.html).
 
 [<img src="pictures/s2_mini_v1.0.0_1_16x16.jpg" width="300" alt="top view"/>](pictures/s2_mini_v1.0.0_1_16x16.jpg)
 [<img src="pictures/s2_mini_v1.0.0_2_16x16.jpg" width="300" alt="bottom view"/>](pictures/s2_mini_v1.0.0_2_16x16.jpg)
 
 ## Features
-- based ESP32-S2FN4R2 WIFI IC
+- Based on ESP32-S2FN4R2 Wi-Fi IC
 - Type-C USB
 - 4MB Flash
 - 2MB PSRAM
 - 27x IO
 - ADC, DAC, I2C, SPI, UART, USB OTG
 - Compatible with LOLIN D1 mini shields
-- Compatible with MicroPython, Arduino, CircuitPython and ESP-IDF
+- Compatible with MicroPython, Arduino, CircuitPython, and ESP-IDF
 - Default firmware: MicroPython
 
 ## Technical Specs
-|                   |             |
-|-------------------|-------------|
-| Operating Voltage | 3.3V        |
-| Digital I/O Pins  | 27          |
-| Clock Speed       | 240MHz      |
-| Flash             | 4M Bytes    |
-| PSRAM             | 2M Bytes    |
-| Size              | 34.3*25.4mm |
-| Weight            | 2.4g        |
+|                   |                |
+|-------------------|----------------|
+| Operating Voltage | 3.3V           |
+| Digital I/O Pins  | 27             |
+| Clock Speed       | 240MHz         |
+| Flash             | 4M Bytes       |
+| PSRAM             | 2M Bytes       |
+| Size              | 34.3 x 25.4 mm |
+| Weight            | 2.4g           |
 
 ## Device Firmware Upgrade (DFU) Mode
 To enter DFU mode:
 - Hold button 0
 - Short-press Button RST
 - Release button 0
-You should hear the USB connect sound from your computer.
-
+  You should hear the USB connect sound from your computer.
 
 ## Pinout
 | Pin Number | Function           | ADC    | SPI                | DAC   | TOUCH    | UART/I2C/PWM |
@@ -72,10 +71,52 @@ You should hear the USB connect sound from your computer.
 | GPIO18     | Digital I/O        | ADC2_7 | -                  | DAC_2 | -        | **✓**        |
 | GPIO16     | Digital I/O        | ADC2_5 | -                  | -     | -        | **✓**        |
 | GND        | Ground             | -      | -                  | -     | -        | -            |
-| VBUS       | Power              | -      | -                  | -     | -        | -            |
+| BUS        | Power              | -      | -                  | -     | -        | -            |
 
 [<img src="WEMOS-ESP32-S2-MINI-pinout.png" width="1000" alt="PINOUT"/>](WEMOS-ESP32-S2-MINI-pinout.png)
 
+## Using with ESPHome
+The WEMOS S2 Mini can be easily integrated with ESPHome for use in Home Assistant. Here are the basic steps to get started:
+
+1. **Install ESPHome**: Follow the [installation guide](https://esphome.io/guides/installing_esphome.html) on the ESPHome website.
+2. **Create a new configuration file**: Create a YAML file for your WEMOS S2 Mini. Here is an example configuration:
+
+    ```yaml
+    esphome:
+      name: wemos_s2_mini
+      friendly_name: WEMOS S2 MINI
+      comment: Template for this board
+   
+    esp32:
+      board: lolin_s2_mini # https://www.wemos.cc/en/latest/s2/s2_mini.html
+      framework:
+        type: arduino
+   
+    wifi:
+      ssid: "your_SSID"
+      password: "your_PASSWORD"
+
+    # Enable logging
+    logger:
+
+    # Enable Home Assistant API
+    api:
+      password: "your_API_password"
+
+    ota:
+      password: "your_OTA_password"
+
+    # Example configuration entry for a GPIO switch
+    switch:
+      - platform: gpio
+        name: "Wemos S2 Mini Switch"
+        pin: GPIO16
+    ```
+
+3. **Upload the configuration**: Use the ESPHome command line or the web interface to upload the configuration to your WEMOS S2 Mini.
+4. **Integrate with Home Assistant**: Once the configuration is uploaded, the device will automatically appear in Home Assistant.
+
+For detailed instructions and more configuration options, refer to the [ESPHome documentation](https://esphome.io/).
 
 ## Documentation Links
 - [Dimensions](pdf/dim_s2_mini_v1.0.0.pdf)

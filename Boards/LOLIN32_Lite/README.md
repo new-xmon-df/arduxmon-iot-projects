@@ -1,6 +1,7 @@
 # LOLIN32 Lite
+
 ## Overview
-The LOLIN32 Lite is a compact development board based on the ESP32 chip. It offers WiFi and Bluetooth connectivity, making it suitable for a wide range of IoT projects and prototyping applications. Additionally, it features a built-in battery charging circuit, allowing you to power your projects with rechargeable batteries.
+The LOLIN32 Lite is a compact development board based on the ESP32 chip. It offers Wi-Fi and Bluetooth connectivity, making it suitable for a wide range of IoT projects and prototyping applications. Additionally, it features a built-in battery charging circuit, allowing you to power your projects with rechargeable batteries.
 
 [ESP32 Hardware Reference](https://docs.espressif.com/projects/esp-idf/en/v4.3/esp32/hw-reference/index.html).
 
@@ -64,7 +65,6 @@ The LOLIN32 Lite is a compact development board based on the ESP32 chip. It offe
 | Size              | 50*25mm      |
 | Weight            | 2.4g         |
 
-
 ## Pinout
 | Board Pin Name | ESP32 Pin Number | GPIO Pin | ADC/DAC/TOUCH | Function       | RTCIO/SPI |
 |----------------|------------------|----------|---------------|----------------|-----------|
@@ -95,13 +95,50 @@ The LOLIN32 Lite is a compact development board based on the ESP32 chip. It offe
 | 15             | 21               | GPIO15   | TOUCH 3       | -              | RTCIO 13  |
 | 13             | 20               | GPIO13   | -             | -              | RTCIO 14  |
 
-
-
-
 [<img src="LOLIN32-Lite-01-pinout.png" width="700" alt="PINOUT"/>](LOLIN32-Lite-01-pinout.png)
 
 [<img src="LOLIN32-Lite-02-pinout.jpg" width="700" alt="PINOUT"/>](LOLIN32-Lite-02-pinout.jpg)
 
+## ESPHome Configuration
+The LOLIN32 Lite can be easily integrated with ESPHome for use in Home Assistant. Here are the basic steps to get started:
+
+1. **Install ESPHome**: Follow the [installation guide](https://esphome.io/guides/installing_esphome.html) on the ESPHome website.
+2. **Create a new configuration file**: Create a YAML file for your LOLIN32 Lite. Here is an example configuration:
+```yaml
+    esphome:
+      name: lolin32_lite
+      friendly_name: LOLIN32 Lite
+      comment: Template for this board
+
+    esp32:
+      board: lolin32_lite
+      framework:
+        type: arduino
+
+    wifi:
+      ssid: "your_SSID"
+      password: "your_PASSWORD"
+
+    # Enable logging
+    logger:
+
+    # Enable Home Assistant API
+    api:
+      password: "your_API_password"
+
+    ota:
+      password: "your_OTA_password"
+
+    # Example configuration entry
+    sensor:
+      - platform: adc
+        pin: GPIO32
+        name: "Lolin32 Lite ADC Sensor"
+```
+3. **Upload the configuration**: Use the ESPHome command line or the web interface to upload the configuration to your WEMOS D1 Mini ESP32.
+4. **Integrate with Home Assistant**: Once the configuration is uploaded, the device will automatically appear in Home Assistant.
+
+For detailed instructions and more configuration options, refer to the [ESPHome documentation](https://esphome.io/).
 
 ## Documentation Links
 - [Schematic](pdf/sch_lolin32_lite_v1.0.0.pdf)
