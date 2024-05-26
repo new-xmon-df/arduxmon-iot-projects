@@ -2,8 +2,8 @@
 
 ESP32-C3-Zero compact size, the use of half-hole process, easy to integrate into other motherboards, ESP32-C3-Zero on-board Type-C USB, in the small board Type leads most of the unused pins. The ESP32-C3FN4 is a system-on-a-chip (SoC) that integrates low-power Wi-Fi and BLE5 with 4MB Flash. In addition, there are hardware encryption accelerators, RNG, HMAC, and Digital Signature modules to meet the security requirements of the Internet of Things and rich peripheral interfaces. A variety of low-power operating states meet the power needs of Internet of Things (IoT), mobile devices, wearable electronics, smart home, and other application scenarios.
 
-[<img src="pictures/esp32_c3_zero_top.jpg" width="300" alt="top view"/>](pictures/s2_mini_v1.0.0_1_16x16.jpg)
-[<img src="pictures/esp32_c3_zero_bottom.jpg" width="300" alt="bottom view"/>](pictures/s2_mini_v1.0.0_2_16x16.jpg)
+[<img src="pictures/esp32_c3_zero_top.jpg" width="300" alt="top view"/>](pictures/esp32_c3_zero_top.jpg)
+[<img src="pictures/esp32_c3_zero_bottom.jpg" width="300" alt="bottom view"/>](pictures/esp32_c3_zero_bottom.jpg)
 
 ## Specifications
 
@@ -78,7 +78,7 @@ wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
 
-  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  # Enable fallback hotspot (captive portal) in case Wi-Fi connection fails
   ap:
     ssid: "Fallback Hotspot"
     password: !secret wifi_ap_password
@@ -122,7 +122,7 @@ For detailed instructions and more configuration options, refer to the [ESPHome 
 
 Here I share the CAD program files.
 
-- [**KICAD**](downloads/KICAD-Waveshare-ESP32-C3-Zero.zip): Files for KiCad 6, includes symbol, footprint and 3D.
+- [**KICAD**](downloads/KICAD-ESP32_C3_ZERO.zip): Files for KiCad 6, includes symbol, footprint and 3D.
 
 ## Documentation Links
 - [ESP32-C3 Datasheet](pdf/esp32-c3_datasheet_en.pdf)

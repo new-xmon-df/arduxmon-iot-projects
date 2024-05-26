@@ -2,7 +2,7 @@
 #### (older v1, v2, v3)
 
 ## Overview
-The WEMOS D1 MINI boards are compact and powerful ESP8266-based microcontrollers. They offer WiFi connectivity and a small form factor, making them ideal for IoT projects that require wireless communication.
+The WEMOS D1 MINI boards are compact and powerful ESP8266-based microcontrollers. They offer Wi-Fi connectivity and a small form factor, making them ideal for IoT projects that require wireless communication.
 
 [<img src="pictures/d1_mini_v4.0.0_1_16x16.png" width="300" alt="top view"/>](pictures/d1_mini_v4.0.0_1_16x16.png)
 [<img src="pictures/d1_mini_v4.0.0_2_16x16.png" width="300" alt="bottom view"/>](pictures/d1_mini_v4.0.0_2_16x16.png)
@@ -87,6 +87,12 @@ The WEMOS D1 Mini V4 can be easily integrated with ESPHome for use in Home Assis
 4. **Integrate with Home Assistant**: Once the configuration is uploaded, the device will automatically appear in Home Assistant.
 
 For detailed instructions and more configuration options, refer to the [ESPHome documentation](https://esphome.io/).
+
+## DOWNLOAD FILES
+
+Here I share the CAD program files.
+
+- [**KICAD**](downloads/KICAD-WEMOS_D1_MINI.zip): Files for KiCad 6, includes symbol, footprint and 3D.
 
 ## Documentation Links
 - [Schematic v4](pdf/sch_d1_mini_v4.0.0.pdf)

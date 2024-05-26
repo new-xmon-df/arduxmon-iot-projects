@@ -127,6 +127,12 @@ light:
     restore_mode: ALWAYS_OFF
 ```
 
+## DOWNLOAD FILES
+
+Here I share the CAD program files.
+
+- [**KICAD**](downloads/KICAD-ESP32-C3_SUPERMINI.zip): Files for KiCad 6, includes symbol, footprint and 3D.
+
 ## Documentation Links
 
 - [Schematic](pictures/ESP32-C3-SuperMini-schematic.png)

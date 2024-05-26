@@ -53,7 +53,7 @@ At the core of this module is the ESP32-D0WDQ6 chip. The integrated chip is desi
 | Network Protocols            | IPv4, IPv6, SSL, TCP/UDP/HTTP/FTP/MQTT                                                 |
 
 ## Pinout
-[<img src="wemos-d1-mini-esp32-pinout.png" width="1000" alt="PINOUT"/>](wemos-d1-mini-esp32-pinout.png)
+[<img src="wemos-d1-mini-esp32-pinout.png" width="1000" alt="PINOUT"/>](wemos-d1-mini-esp32-pinout.png)[pending]
 
 ## Using with ESPHome
 The WEMOS D1 Mini ESP32 can be easily integrated with ESPHome for use in Home Assistant. Here are the basic steps to get started:
@@ -98,8 +98,14 @@ The WEMOS D1 Mini ESP32 can be easily integrated with ESPHome for use in Home As
 
 For detailed instructions and more configuration options, refer to the [ESPHome documentation](https://esphome.io/).
 
+## DOWNLOAD FILES
+
+Here I share the CAD program files.
+
+- [**KICAD**](downloads/KICAD-WEMOS_D1_MINI_ESP32.zip): Files for KiCad 6, includes symbol, footprint and 3D.
+
 ## Documentation Links
-- [Schematic](pdf/schematic_d1_mini_esp32_v2.0.pdf)
+- [Schematic](pdf/***)[pending]
 - [Official WEMOS D1 MINI ESP32 Documentation](https://www.wemos.cc/en/latest/d1/d1_mini32.html)
 
 ## Versions

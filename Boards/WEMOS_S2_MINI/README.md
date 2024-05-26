@@ -118,6 +118,13 @@ The WEMOS S2 Mini can be easily integrated with ESPHome for use in Home Assistan
 
 For detailed instructions and more configuration options, refer to the [ESPHome documentation](https://esphome.io/).
 
+
+## DOWNLOAD FILES
+
+Here I share the CAD program files.
+
+- [**KICAD**](downloads/KICAD-WEMOS_S2_MINI.zip): Files for KiCad 6, includes symbol, footprint and 3D.
+
 ## Documentation Links
 - [Dimensions](pdf/dim_s2_mini_v1.0.0.pdf)
 - [Schematic](pdf/sch_s2_mini_v1.0.0.pdf)
