@@ -82,6 +82,7 @@ dallas:
 ```
 
 Check the logs after uploading to see the detected addresses, something like this:
+
 <img src="pictures/dallas-log.png" width="300" alt="Dallas log"/>
 
 ## Pinout
