@@ -82,8 +82,10 @@ been instrumental in creating smart and connected solutions.
     - **WEMOS D1 UNO R3**:
       The WEMOS D1 UNO R3 combines compatibility with Arduino UNO R3 with the capabilities of ESP8266, making it perfect
       for projects that need a familiar Arduino interface and Wi-Fi connectivity.
-    
-To help you choose the most suitable development board for your projects, I have created a comprehensive comparison table of various ESP32 and WEMOS boards. This table includes detailed information on processors, memory capacities, performance, dimensions, and specific features of each board.
+
+To help you choose the most suitable development board for your projects, I have created a comprehensive comparison
+table of various ESP32 and WEMOS boards. This table includes detailed information on processors, memory capacities,
+performance, dimensions, and specific features of each board.
 
 You can view and download the full comparative document [here](Docs/comparative-boards.md).
 
@@ -118,9 +120,11 @@ accompanied by a general description, and each specific component is linked to i
           changes resistance based on the intensity of light falling on its surface.
 
     - **Magnetic**:
-        - MC-38: *Documentation pending*
         - [A3144E](Components/Sensors/Magnetic/A3144E/README.md): A3144E Hall Effect sensor: versatile for proximity,
           speed, and current sensing.
+        - [MC-38](Components/Sensors/Magnetic/MC-38/README.md): reliable wired door/window sensor with a magnetic
+          switch. It detects the opening and closing of doors and windows, making it ideal for security systems. It
+          features a normally closed (NC) circuit that opens when the magnet is moved away.
 
     - **Presence**:
         - [HC-SR501](Components/Sensors/Presence/HC-SR501/README.md): The HC-SR501 PIR Motion Detector is based on
@@ -139,7 +143,9 @@ accompanied by a general description, and each specific component is linked to i
           Capacitive soil moisture sensor measures moisture, differing from resistive sensors.
 
     - **Temperature**:
-        - DS18B20: *Documentation pending*
+        - [DS18B20](Components/Sensors/Temperature/DS18B20/README.md): digital temperature sensor offering 9-bit to
+          12-bit Celsius temperature measurements with high accuracy. It uses a 1-Wire interface, making it easy to
+          connect multiple sensors on the same data line.
 
     - **Vibration**:
         - [Piezoelectric Vibration & Knock Sensor Module](Components/Sensors/Vibration/SSR1072-Piezo-Vibration-Sensor/README.md):
