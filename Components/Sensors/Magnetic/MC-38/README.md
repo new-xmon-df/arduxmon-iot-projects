@@ -56,7 +56,7 @@ The MC-38 sensor can be easily integrated into Home Assistant using ESPHome. Bel
 ESPHome.
 
 ```yaml
-[ ... ]
+# ...
 
 binary_sensor:
   - platform: gpio
@@ -66,7 +66,7 @@ binary_sensor:
     name: "Door Sensor"
     device_class: door
 
-  [ ... ]
+# ...
 ```
 
 ### Explanation
