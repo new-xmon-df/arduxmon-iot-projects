@@ -46,17 +46,19 @@ The DS18B20 sensor can be easily integrated into Home Assistant using ESPHome. B
 
 ```yaml
 
-[...]
+# ...
 
 dallas:
-  - pin: GPIO4
+  - id: 'sensor_dallas'
+    pin: GPIOXX
+    update_interval: 30min
 
 sensor:
   - platform: dallas
-    address: 0x123456789ABCDEF
-    name: "Living Room Temperature"
+    address: 0xADDRESS
+    name: "Temperature Sensor"
     
-[...]
+# ...
 ```
 
 ### Explanation
@@ -70,16 +72,17 @@ To find the unique addresses of your DS18B20 sensors, you can upload a simple sk
 
 
 ```yaml
+# ...
 dallas:
-  - pin: GPIO4
+  - pin: GPIOXX
 
-sensor:
-  - platform: dallas
-    address: 0xADDRESS
-    name: "Temperature Sensor"
+# Note you don't have to add any sensors at this point
+
+# ...
 ```
 
-Check the logs after uploading to see the detected addresses.
+Check the logs after uploading to see the detected addresses, something like this:
+ ![Dallas log](pictures/dallas-log.png)
 
 ## Pinout
 
