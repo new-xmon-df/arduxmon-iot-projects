@@ -144,7 +144,7 @@ For detailed instructions and more configuration options, refer to the [ESPHome 
 Here I share the CAD program files.
 
 - [**KICAD**](downloads/KICAD-LOLIN32_LITE.zip): Files for KiCad 6, includes symbol, footprint and 3D.
-- [**KICAD**](downloads/KICAD-PROJECT-TEMPLATE-LOLIN32_Lite.zip): Files for KiCad template.
+- [**KICAD template**](downloads/KICAD-PROJECT-TEMPLATE-LOLIN32_Lite.zip): Files for KiCad template.
 
 ## Documentation Links
 - [Schematic](pdf/sch_lolin32_lite_v1.0.0.pdf)

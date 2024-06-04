@@ -93,7 +93,7 @@ For detailed instructions and more configuration options, refer to the [ESPHome 
 Here I share the CAD program files.
 
 - [**KICAD**](downloads/KICAD-WEMOS_D1_MINI.zip): Files for KiCad 6, includes symbol, footprint and 3D.
-- [**KICAD**](downloads/KICAD-PROJECT-TEMPLATE-ESP8266-WEMOS_D1_MINI.zip): Files for KiCad template.
+- [**KICAD template**](downloads/KICAD-PROJECT-TEMPLATE-ESP8266-WEMOS_D1_MINI.zip): Files for KiCad template.
 
 ## Documentation Links
 - [Schematic v4](pdf/sch_d1_mini_v4.0.0.pdf)

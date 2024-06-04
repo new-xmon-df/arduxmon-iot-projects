@@ -132,7 +132,7 @@ light:
 Here I share the CAD program files.
 
 - [**KICAD**](downloads/KICAD-ESP32-C3_SUPERMINI.zip): Files for KiCad 6, includes symbol, footprint and 3D.
-- [**KICAD**](downloads/KICAD-PROJECT-TEMPLATE-ESP32-C3_Supermini.zip): Files for KiCad template.
+- [**KICAD template**](downloads/KICAD-PROJECT-TEMPLATE-ESP32-C3_Supermini.zip): Files for KiCad template.
 
 ## Documentation Links
 
