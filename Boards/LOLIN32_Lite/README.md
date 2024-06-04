@@ -95,9 +95,8 @@ The LOLIN32 Lite is a compact development board based on the ESP32 chip. It offe
 | 15             | 21               | GPIO15   | TOUCH 3       | -              | RTCIO 13  |
 | 13             | 20               | GPIO13   | -             | -              | RTCIO 14  |
 
-[<img src="LOLIN32-Lite-01-pinout.png" width="700" alt="PINOUT"/>](LOLIN32-Lite-01-pinout.png)
+[<img src="LOLIN32_LITE-pinout.png" width="1000" alt="PINOUT"/>](LOLIN32_LITE-pinout.png)
 
-[<img src="LOLIN32-Lite-02-pinout.jpg" width="700" alt="PINOUT"/>](LOLIN32-Lite-02-pinout.jpg)
 
 ## ESPHome Configuration
 The LOLIN32 Lite can be easily integrated with ESPHome for use in Home Assistant. Here are the basic steps to get started:
