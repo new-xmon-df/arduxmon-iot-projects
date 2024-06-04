@@ -123,6 +123,7 @@ For detailed instructions and more configuration options, refer to the [ESPHome 
 Here I share the CAD program files.
 
 - [**KICAD**](downloads/KICAD-ESP32_C3_ZERO.zip): Files for KiCad 6, includes symbol, footprint and 3D.
+- [**KICAD template**](downloads/KICAD-PROJECT-TEMPLATE-ESP32-C3_ZERO.zip): Files for KiCad template.
 
 ## Documentation Links
 - [ESP32-C3 Datasheet](pdf/esp32-c3_datasheet_en.pdf)
