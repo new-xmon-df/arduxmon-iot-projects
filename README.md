@@ -75,12 +75,18 @@ been instrumental in creating smart and connected solutions.
     - **[WEMOS D1 MINI](Boards/WEMOS_D1_MINI/README.md)** v1, v2, v3, and v4:
       These compact boards based on the ESP8266 are ideal for projects that require Wi-Fi connectivity and a small
       footprint. Versions v1, v2, v3, and v4 offer progressive improvements in performance and features.
+    - **[WEMOS D1 MINI ESP32](Boards/WEMOS_D1_MINI_ESP32/README.md)**:
+      The WEMOS D1 MINI ESP32 is a compact board that offers Wi-Fi and Bluetooth LE connectivity. It's ideal for
+      projects that require a small size without sacrificing performance and connectivity capabilities. ESP32 Hardware
+      Reference. [ESP32 Hardware Reference](https://docs.espressif.com/projects/esp-idf/en/v4.3/esp32/hw-reference/index.html).
     - **[WEMOS S2 MINI](Boards/WEMOS_S2_MINI/README.md)**:
-      This board uses the ESP32-S2, offering an alternative with higher performance and advanced features such as native
+      This board uses the ESP32-S2, offering an alternative with higher performance and advanced features such as
+      native
       USB and increased RAM and Flash compared to the
       ESP8266. [ESP32-S2 Hardware Reference](https://docs.espressif.com/projects/esp-idf/en/v4.3/esp32s2/hw-reference/index.html).
     - **WEMOS D1 UNO R3**:
-      The WEMOS D1 UNO R3 combines compatibility with Arduino UNO R3 with the capabilities of ESP8266, making it perfect
+      The WEMOS D1 UNO R3 combines compatibility with Arduino UNO R3 with the capabilities of ESP8266, making it
+      perfect
       for projects that need a familiar Arduino interface and Wi-Fi connectivity.
 
 To help you choose the most suitable development board for your projects, I have created a comprehensive comparison
