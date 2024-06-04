@@ -103,12 +103,10 @@ For detailed instructions and more configuration options, refer to the [ESPHome 
 Here I share the CAD program files.
 
 - [**KICAD**](downloads/KICAD-WEMOS_D1_MINI_ESP32.zip): Files for KiCad 6, includes symbol, footprint and 3D.
+- [**KICAD template**](downloads/KICAD-PROJECT-TEMPLATE-ESP32-WEMOS_D1_MINI_ESP32.zip): Files for KiCad template.
 
 ## Documentation Links
 - [Schematic](pdf/***)[pending]
 - [Official WEMOS D1 MINI ESP32 Documentation](https://www.wemos.cc/en/latest/d1/d1_mini32.html)
-
-## Versions
-- **V2.0** (current)
 
 [All boards comparative](../../Docs/comparative-boards.md)
