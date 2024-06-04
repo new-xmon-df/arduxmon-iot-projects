@@ -123,7 +123,8 @@ For detailed instructions and more configuration options, refer to the [ESPHome 
 
 Here I share the CAD program files.
 
-- [**KICAD**](downloads/KICAD-WEMOS_S2_MINI.zip): Files for KiCad 6, includes symbol, footprint and 3D.
+- [**KICAD**](downloads/KICAD-WEMOS_S2_MINI.zip): Files for KiCad, includes symbol, footprint and 3D.
+- [**KICAD template**](downloads/KICAD-PROJECT-TEMPLATE-ESP32-WEMOS_S2_MINI.zip): Files for KiCad template.
 
 ## Documentation Links
 - [Dimensions](pdf/dim_s2_mini_v1.0.0.pdf)

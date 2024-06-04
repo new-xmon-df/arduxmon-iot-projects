@@ -140,7 +140,15 @@ The LOLIN32 Lite can be easily integrated with ESPHome for use in Home Assistant
 
 For detailed instructions and more configuration options, refer to the [ESPHome documentation](https://esphome.io/).
 
+## DOWNLOAD FILES
+
+Here I share the CAD program files.
+
+- [**KICAD**](downloads/KICAD-LOLIN32_LITE.zip): Files for KiCad 6, includes symbol, footprint and 3D.
+- [**KICAD**](downloads/KICAD-PROJECT-TEMPLATE-LOLIN32_Lite.zip): Files for KiCad template.
+
 ## Documentation Links
 - [Schematic](pdf/sch_lolin32_lite_v1.0.0.pdf)
+- [Datasheet and more](pdf/Wemos-ESP32-Lolin32-Board-BOOK-ENGLISH.pdf)
 
 [All boards comparative](../../Docs/comparative-boards.md)
