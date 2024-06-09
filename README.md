@@ -138,10 +138,8 @@ accompanied by a general description, and each specific component is linked to i
           of measuring distance accurately using ultrasonic waves.
 
     - **Environmental**:
-        - [CJMCU-680 Module (BME680 Sensor)](Components/Sensors/Environmental/CJMCU-680/README.md): The BME680 sensor is
-          a versatile environmental
-          sensor capable of measuring temperature, humidity, pressure, and gas levels. This is the low-cost CJMCU-680
-          Module.
+        - [AHT20 + BME280 Module](Components/Sensors/Environmental/CJMCU-680/README.md):  The AHT20 + BMP280 module combines temperature, humidity, and pressure sensing capabilities into a single device, offering a comprehensive solution for environmental monitoring in IoT projects.
+        - [CJMCU-680 Module (BME680 Sensor)](Components/Sensors/Environmental/CJMCU-680/README.md): The BME680 sensor is a versatile environmental sensor capable of measuring temperature, humidity, pressure, and gas levels. This is the low-cost CJMCU-680 Module.
         - BMP280: *Documentation pending*
 
     - **Light**:
