@@ -103,10 +103,17 @@ accompanied by a general description, and each specific component is linked to i
 1. **Displays**: Displays are essential components in many of my IoT projects, providing visual feedback and information
    display to users. Explore the diverse range of displays I've integrated:
     - [SH1106](Components/Displays/SH1106/README.md): The SH1106 display is a popular choice among hobbyists and
-      professionals alike, offering high contrast and excellent visibility in various lighting conditions. Here's what
-      you need to know about integrating the SH1106 display into your IoT projects:
+      professionals alike, offering high contrast and excellent visibility in various lighting conditions. 
 
-2. **Sensors**:
+2. **Transistors**:
+   - **MOSFETs**:
+      - **NPN**:
+         - [AO3400A](Components/Transistors/Mosfets/NPN/AO3400A/README.md):
+           The AO3400A is a versatile N-channel MOSFET with low on-resistance and fast switching capabilities. It is
+           suitable for applications requiring efficient power management and high-speed switching, commonly used in
+           power supplies and motor control circuits.
+
+3. **Sensors**:
    Sensors play a crucial role in gathering environmental data and enabling smart functionalities in my projects.
    Explore the different types of sensors I've integrated, each serving a unique purpose:
 
