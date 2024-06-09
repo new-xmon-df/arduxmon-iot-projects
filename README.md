@@ -134,13 +134,12 @@ accompanied by a general description, and each specific component is linked to i
    Explore the different types of sensors I've integrated, each serving a unique purpose:
 
     - **Distance**:
-        - [HC-SR04](Components/Sensors/Distance/HC-SR04/README.md): The HC-SR04 is an ultrasonic distance sensor capable
-          of measuring distance accurately using ultrasonic waves.
+        - [HC-SR04](Components/Sensors/Distance/HC-SR04/README.md): The HC-SR04 is an ultrasonic distance sensor capable of measuring distance accurately using ultrasonic waves.
 
     - **Environmental**:
-        - [AHT20 + BME280 Module](Components/Sensors/Environmental/AHT20+BMP280/README.md):  The AHT20 + BMP280 module combines temperature, humidity, and pressure sensing capabilities into a single device, offering a comprehensive solution for environmental monitoring in IoT projects.
+        - [AHT20 + BMP280 Module](Components/Sensors/Environmental/AHT20+BMP280/README.md):  The AHT20 + BMP280 module combines temperature, humidity, and pressure sensing capabilities into a single device, offering a comprehensive solution for environmental monitoring in IoT projects.
+        - [BME280 Module](Components/Sensors/Environmental/BME280-3V3/README.md): The BME280 sensor is a versatile environmental sensor capable of measuring temperature, humidity, and atmospheric pressure.
         - [CJMCU-680 Module (BME680 Sensor)](Components/Sensors/Environmental/CJMCU-680/README.md): The BME680 sensor is a versatile environmental sensor capable of measuring temperature, humidity, pressure, and gas levels. This is the low-cost CJMCU-680 Module.
-        - BMP280: *Documentation pending*
 
     - **Light**:
         - [LDR 5528](Components/Sensors/Light/LDR_5528/README.md): The LDR 5528 is a light-dependent resistor that

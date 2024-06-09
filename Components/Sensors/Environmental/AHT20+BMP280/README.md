@@ -87,7 +87,7 @@ sensor:
 
 ## DOWNLOAD FILES
 Here I share the CAD program files.
-- [**KICAD**](downloads/KICAD-AHT20+BME280.zip): Files for KiCad 7, includes symbol, footprint, and 3D model.
+- [**KICAD**](downloads/KICAD-AHT20+BMP280.zip): Files for KiCad 7, includes symbol, footprint, and 3D model.
 
 ## Documentation Links
 - [AHT20 Datasheet](pdf/AHT20-datasheet.pdf)
