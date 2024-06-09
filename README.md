@@ -113,7 +113,23 @@ accompanied by a general description, and each specific component is linked to i
            suitable for applications requiring efficient power management and high-speed switching, commonly used in
            power supplies and motor control circuits.
 
-3. **Sensors**:
+3. **Power Management**:
+   - **Step-Down (Buck) Converters**:
+      - [MP1584EN](Components/Power%20Management/Step-Down%20Converters/MP1584EN/README.md):
+        The MP1584EN is a high-efficiency, step-down DC-DC converter that provides up to 3A output current. It is
+        ideal for applications requiring compact size and high performance, such as battery-powered devices and
+        portable electronics.
+      - [DC-DC 12V to 3.3V 5V Buck Converter Module (T89)](Components/Power%20Management/Step-Down%20Converters/T89-DC-DC%2012V%20to%203.3V-5V/README.md):
+        This module efficiently steps down 12V DC input to regulated 3.3V and 5V outputs. It is perfect for powering
+        microcontrollers, sensors, and other electronics requiring stable lower voltages from a 12V source.
+   - **Step-Up (Boost) Converters**:
+      - [MT3608](Components/Power%20Management/Step-Up%20Converters/MT3608/README.md):
+        The MT3608 is a high-efficiency, step-up DC-DC converter capable of boosting input voltages as low as 2V to
+        output voltages up to 28V. It is commonly used in projects needing voltage conversion for sensors, displays,
+        and other components.
+
+
+1. **Sensors**:
    Sensors play a crucial role in gathering environmental data and enabling smart functionalities in my projects.
    Explore the different types of sensors I've integrated, each serving a unique purpose:
 
