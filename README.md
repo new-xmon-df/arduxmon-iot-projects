@@ -128,8 +128,7 @@ accompanied by a general description, and each specific component is linked to i
         output voltages up to 28V. It is commonly used in projects needing voltage conversion for sensors, displays,
         and other components.
 
-
-1. **Sensors**:
+4. **Sensors**:
    Sensors play a crucial role in gathering environmental data and enabling smart functionalities in my projects.
    Explore the different types of sensors I've integrated, each serving a unique purpose:
 
@@ -163,6 +162,10 @@ accompanied by a general description, and each specific component is linked to i
           state detection and distance calculation. It boasts compact dimensions of 22mm x 16mm and features a standard
           2.54mm pin spacing.
         - LD2411: *Documentation pending*
+
+    - **Smoke Sensors**:
+        - [MQ-2 Gas Sensor](Components/Sensors/Smoke/MQ-2/README.md):
+          The MQ-2 smoke and gas sensor detects various gases, including LPG, propane, methane, alcohol, and hydrogen. It’s commonly used for gas leakage detection and safety applications.
 
     - **Soil Moisture**:
         - [Capacitive Soil Moisture](Components/Sensors/Soil%20Moisture/Capacitive%20Soil%20Moisture/README.md):
