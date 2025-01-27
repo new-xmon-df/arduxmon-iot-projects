@@ -1,4 +1,5 @@
 # Flame-M Five Channel Flame Detection Module
+![Pending Review](https://img.shields.io/badge/documentation-Pending_Review-orange)
 
 The Flame-M Five Channel Flame Detection Module is a robust and reliable solution for detecting flames over a wide range and with high precision. Here's a detailed overview of the Flame-M module and its integration into your IoT and safety projects:
 
