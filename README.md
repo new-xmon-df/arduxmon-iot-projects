@@ -184,6 +184,12 @@ accompanied by a general description, and each specific component is linked to i
           The Piezoelectric Vibration & Knock Sensor Module offers versatility in motion detection, with analog/digital
           outputs and sensitivity adjustment for seamless project integration.
 
+5. **Controls**:
+   Controls are components that allow for manual adjustment of parameters in electronic circuits. These include potentiometers, encoders, and switches, among others. Below is a list of controls I've integrated into my projects:
+
+   - **Potentiometers**:
+      - [WH148](Components/Controls/Potentiometers/WH148/README.md): The WH148 is a rotary potentiometer commonly used for adjusting parameters such as volume, brightness, or other analog values in electronic circuits. While I primarily use the 10 kΩ version, the WH148 is available in other resistance values to suit various applications.
+
 ### How can you contribute?
 
 I love the idea of building a collaborative community! If you have improvements, corrections, or new projects to add,
