@@ -1,4 +1,5 @@
 # Welcome to Arduxmon IoT Projects! 💀🌟
+![Last commit](https://img.shields.io/github/last-commit/new-xmon-df/arduxmon-iot-projects?logo=github&style=flat-square)
 
 Hey there, tech enthusiasts! I'm Arduxmon, a passionate developer and graphic designer with an insatiable love for IoT
 projects. In this space, I share my craziest and coolest creations, so we can all learn, experiment, and improve
@@ -17,6 +18,27 @@ together. 💡🛠️
 
 4. **PCB Designs and Gerber Files**: Take your projects to the next level with our PCB designs and ready-to-produce
    Gerber files. Bring your ideas to life!
+
+## Technologies Used
+
+The following technologies and tools are used in this project:
+### Containers/Infrastructure
+![Debian](https://img.shields.io/badge/Debian-A81D33?logo=debian&logoColor=white)  ![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)  ![Portainer](https://img.shields.io/badge/Portainer-13BEF9?logo=portainer&logoColor=white)
+
+### Development
+![VS Code](https://img.shields.io/badge/VS%20Code-007ACC?style=flat&logo=visualstudiocode&logoColor=white)  ![PHPStorm](https://img.shields.io/badge/PHPStorm-000000?logo=phpstorm&logoColor=white)  ![Filebrowser](https://img.shields.io/badge/Filebrowser-32BEA6?logo=filebrowser&logoColor=white)
+
+### IoT Automation
+![Home Assistant](https://img.shields.io/badge/Home%20Assistant-41BDF5?logo=homeassistant&logoColor=white)  ![ESPHome](https://img.shields.io/badge/ESPHome-03B6FC?logo=esphome&logoColor=white)  ![Node-RED](https://img.shields.io/badge/Node--RED-8F0000?logo=nodered&logoColor=white)  ![MQTT](https://img.shields.io/badge/MQTT-660066?logo=mqtt&logoColor=white) ![Mosquitto](https://img.shields.io/badge/Mosquitto-DA7A08?logo=eclipsemosquitto&logoColor=white)
+
+### Languages and Databases
+![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)  ![YAML](https://img.shields.io/badge/YAML-000000?logo=yaml&logoColor=white)  ![MariaDB](https://img.shields.io/badge/MariaDB-003545?logo=mariadb&logoColor=white)
+
+### Version Control
+![Gitea](https://img.shields.io/badge/Gitea-609926?logo=gitea&logoColor=white)  ![GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)
+
+### Hardware/Devices
+![ESP32](https://img.shields.io/badge/ESP32-8C63FF?logo=espressif&logoColor=white)
 
 ### Projects in the Repository
 
